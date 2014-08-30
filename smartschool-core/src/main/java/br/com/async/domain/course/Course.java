@@ -1,7 +1,6 @@
 package br.com.async.domain.course;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Course implements Serializable {
 

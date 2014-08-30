@@ -2,6 +2,8 @@ package br.com.async.domain.person;
 
 import java.io.Serializable;
 
+import br.com.async.domain.person.Person;
+
 public class User implements Serializable {
 
 	/**

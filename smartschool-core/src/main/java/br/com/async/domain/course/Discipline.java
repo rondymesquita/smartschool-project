@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import br.com.async.domain.college.Professor;
 import br.com.async.domain.college.Student;
+import br.com.async.domain.course.Discipline;
 
 public class Discipline implements Serializable {
 

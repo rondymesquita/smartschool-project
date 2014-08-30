@@ -2,7 +2,6 @@ package br.com.async.domain.course;
 
 import java.util.List;
 
-import br.com.async.domain.attendance.Diary;
 import br.com.async.domain.college.Manager;
 
 public class CourseCurriculumSemester {

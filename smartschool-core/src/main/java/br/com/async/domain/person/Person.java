@@ -16,26 +16,36 @@ public class Person implements Serializable {
 	private Integer code;
 	private String name;
 	private String cpf;
-
+	
 	public Person(Integer code, String name, String cpf) {
-		super();
 		this.code = code;
 		this.name = name;
 		this.cpf = cpf;
 	}
+	
+	
+	public Person() {
+	}
+
 
 	public Integer getCode() {
 		return code;
 	}
-
+	public void setCode(Integer code) {
+		this.code = code;
+	}
 	public String getName() {
 		return name;
 	}
-
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getCpf() {
 		return cpf;
 	}
-
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -45,7 +55,6 @@ public class Person implements Serializable {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -73,4 +82,5 @@ public class Person implements Serializable {
 		return true;
 	}
 
+	
 }

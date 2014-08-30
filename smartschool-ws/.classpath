@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container" exported="true"/>
+	<classpathentry kind="output" path="bin"/>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-webmvc/3.2.2.RELEASE/source/e304b61946aaef6929c1f96e0c2a01a93f6352a3/spring-webmvc-3.2.2.RELEASE-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-webmvc/3.2.2.RELEASE/jar/dd962b49d731a69c4ca0c4ec67b71076742657cc/spring-webmvc-3.2.2.RELEASE.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
@@ -20,6 +20,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/com.fasterxml.jackson.core/jackson-databind/2.4.1.3/source/3fe830d425abf6358eae50344ba177693c0d60cf/jackson-databind-2.4.1.3-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/com.fasterxml.jackson.core/jackson-databind/2.4.1.3/bundle/337a63173c2950939158544315ce6d49c19d84a8/jackson-databind-2.4.1.3.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/io.github.benas/jpopulator/1.0.1/source/fe7e387bc1cede5f31e8aa32b2ab40ba189197c5/jpopulator-1.0.1-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/io.github.benas/jpopulator/1.0.1/jar/ebb5019775d2a521a749ddeb3e81e2e2ec052c7a/jpopulator-1.0.1.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
@@ -80,6 +85,26 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/com.fasterxml.jackson.core/jackson-core/2.4.1.1/source/45569a3cbc23149cc073680d74905596ae827b07/jackson-core-2.4.1.1-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/com.fasterxml.jackson.core/jackson-core/2.4.1.1/bundle/f1b322a9ff873aee0b710af5f33bc10a2eb019ba/jackson-core-2.4.1.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/commons-collections/commons-collections/3.2.1/source/fa095ef874374e5b2a11f8b06c26a5d68c7cb3a4/commons-collections-3.2.1-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/commons-collections/commons-collections/3.2.1/jar/761ea405b9b37ced573d2df0d1e3a4e0f9edc668/commons-collections-3.2.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/commons-beanutils/commons-beanutils/1.9.1/source/44a8b7377eb4156f8a610985ed73e0395285f261/commons-beanutils-1.9.1-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/commons-beanutils/commons-beanutils/1.9.1/jar/d2662a4e018671ed061e9acca6299a31b7652f3c/commons-beanutils-1.9.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/commons-lang/commons-lang/2.6/source/67313d715fbf0ea4fd0bdb69217fb77f807a8ce5/commons-lang-2.6-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/commons-lang/commons-lang/2.6/jar/ce1edb914c94ebc388f086c6827e8bdeec71ac2/commons-lang-2.6.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/rondymesquita/Documents/Desenvolvimento/Eclipse/smartschool-project/smartschool-ws/src/main/webapp/WEB-INF/lib/smartschool-core.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
