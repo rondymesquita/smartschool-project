@@ -1,0 +1,9 @@
+**/build
+**/target
+**/.gradle
+**/.settings
+**/lib*
+build/
+apache*
+.gradle
+**/bin

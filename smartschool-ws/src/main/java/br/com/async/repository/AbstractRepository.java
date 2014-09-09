@@ -8,5 +8,5 @@ public interface AbstractRepository <T> {
 	List<T> list();
 	void save(T entity);
 	void update(T entity);
-	void delete(T entity);
+	void delete(Integer code);
 }

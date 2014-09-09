@@ -33,8 +33,8 @@ public class ProfessorApplication implements AbstractApplication<Professor>{
 	}
 
 	@Override
-	public void delete(Professor entity) {
-		ProfessorRepository.delete(entity);
+	public void delete(Integer code) {
+		ProfessorRepository.delete(code);
 	}
 
 }

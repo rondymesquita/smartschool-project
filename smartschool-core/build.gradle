@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+	
+repositories{
+	mavenCentral()
+	mavenLocal()
+}
+
+group "br.com.async"
+version "1.0-SNAPSHOT"
+
+dependencies{
+	compile "junit:junit:4.11"
+	compile 'org.mockito:mockito-all:1.8.4'
+	compile 'io.github.benas:jpopulator:1.0.1'
+
+}
+
+sourceSets {
+    main {
+      java {
+        srcDir 'src'
+      }
+    }
+  }
+
+

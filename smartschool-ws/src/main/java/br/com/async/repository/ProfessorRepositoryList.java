@@ -24,6 +24,7 @@ public class ProfessorRepositoryList implements AbstractRepository<Professor>{
 		
 		for (int i = 0; i < 5; i++) {
 			professor = populator.populateBean(Professor.class);
+			professor.setCode(i);
 			list.add(professor);
 		}
 		
@@ -50,9 +51,8 @@ public class ProfessorRepositoryList implements AbstractRepository<Professor>{
 	}
 
 	@Override
-	public void delete(Professor entity) {
-		list.remove(entity.getCode());
-		
+	public void delete(Integer code) {
+		int id = code;
+		list.remove(id);
 	}
-
 }

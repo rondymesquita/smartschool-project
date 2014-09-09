@@ -15,5 +15,27 @@ public class Student implements Serializable {
 	private Person person;
 	private String registry;
 	
+	public Integer getCode() {
+		return code;
+	}
+	public void setCode(Integer code) {
+		this.code = code;
+	}
+	public Person getPerson() {
+		return person;
+	}
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+	public String getRegistry() {
+		return registry;
+	}
+	public void setRegistry(String registry) {
+		this.registry = registry;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 
 }

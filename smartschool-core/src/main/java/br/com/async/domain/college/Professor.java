@@ -15,6 +15,7 @@ public class Professor implements Serializable {
 	private String enrollments;
 	private String registry;
 	private String formation;
+	
 	public Integer getCode() {
 		return code;
 	}

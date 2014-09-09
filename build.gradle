@@ -1,0 +1,6 @@
+allprojects {
+  apply plugin: 'java'
+  apply plugin: 'maven'
+
+  group = 'br.com.async'
+}
