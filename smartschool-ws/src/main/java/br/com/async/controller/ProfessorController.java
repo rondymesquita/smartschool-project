@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.application.ProfessorApplication;
 import br.com.async.domain.college.Professor;
-import br.com.async.util.AsyncConstants;
+import br.com.async.util.Constants;
 import br.com.async.util.ResponseData;
 
 @Controller
@@ -21,6 +21,12 @@ public class ProfessorController {
 	@Autowired
 	private ProfessorApplication professorApplication;
 	
+	
+	
+	/**
+	 * @return
+	 * 
+	 */
 	@RequestMapping(value="/api/professors", method = RequestMethod.GET)
 	public @ResponseBody List<Professor> list(){
 		return professorApplication.list();
@@ -34,21 +40,21 @@ public class ProfessorController {
 	@RequestMapping(value="/api/professors", method = RequestMethod.POST)
 	public @ResponseBody ResponseData save(@RequestBody Professor professor){
 		professorApplication.save(professor);
-		ResponseData responseData = new ResponseData(AsyncConstants.REGISTRY_SAVED, ResponseData.SUCCESS);
+		ResponseData responseData = new ResponseData(Constants.REGISTRY_SAVED, ResponseData.SUCCESS);
 		return responseData;
 	}
 	
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ResponseData update(@RequestBody Professor professor){
 		professorApplication.update(professor);
-		ResponseData responseData = new ResponseData(AsyncConstants.REGISTRY_UPDATED, ResponseData.SUCCESS);
+		ResponseData responseData = new ResponseData(Constants.REGISTRY_UPDATED, ResponseData.SUCCESS);
 		return responseData;
 	}
 	
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseData delete(@PathVariable String id){
 		professorApplication.delete(Integer.parseInt(id));
-		ResponseData responseData = new ResponseData(AsyncConstants.REGISTRY_REMOVED, ResponseData.SUCCESS);
+		ResponseData responseData = new ResponseData(Constants.REGISTRY_REMOVED, ResponseData.SUCCESS);
 		return responseData;
 	}
 	
