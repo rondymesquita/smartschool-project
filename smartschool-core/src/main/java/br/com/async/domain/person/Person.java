@@ -1,8 +1,6 @@
 package br.com.async.domain.person;
 
 import java.io.Serializable;
-import java.util.UUID;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
