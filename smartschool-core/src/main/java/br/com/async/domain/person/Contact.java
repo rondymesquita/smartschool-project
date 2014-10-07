@@ -2,59 +2,29 @@ package br.com.async.domain.person;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.NonNull;
+@Data
+@Entity(name = "tb_contact")
 public class Contact implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@Getter
+	@Id
+	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "contact_seq", sequenceName = "contact_seq")
+	@GeneratedValue(generator = "contact_seq", strategy = GenerationType.AUTO)
 	private Integer code;
+	@NonNull
+	@Getter
 	private String email;
-
-	public Contact(Integer code, String email) {
-		super();
-		this.code = code;
-		this.email = email;
-	}
-
-	public Integer getCode() {
-		return code;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((code == null) ? 0 : code.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Contact other = (Contact) obj;
-		if (code == null) {
-			if (other.code != null)
-				return false;
-		} else if (!code.equals(other.code))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		return true;
-	}
-
 }

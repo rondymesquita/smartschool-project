@@ -14,18 +14,18 @@ public class TeacherTest {
 	private Populator populator; 
 	private Professor professor;
 	
-	@Before
-	public void init() {
-		MockitoAnnotations.initMocks(this);
-		populator = new PopulatorBuilder().build();
-		professor = populator.populateBean(Professor.class);
-	}
-	
-	@Test
-	public void testProfessor(){
-		System.out.println(professor.getFormation());
-		System.out.println(professor.getPerson().getName());
-	}
+//	@Before
+//	public void init() {
+//		MockitoAnnotations.initMocks(this);
+//		populator = new PopulatorBuilder().build();
+//		professor = populator.populateBean(Professor.class);
+//	}
+//	
+//	@Test
+//	public void testProfessor(){
+//		System.out.println(professor.getFormation());
+//		System.out.println(professor.getPerson().getName());
+//	}
 	
 	
 }

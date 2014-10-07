@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<context:component-scan base-package="br.com.kariri.smartschoolo" />
+
+	<bean id="dataSources" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="url" value="jdbc:postgresql://localhost:5432/smartschool" />
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="username" value="postgres" />
+		<property name="password" value="123456" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSources" />
+		<property name="annotatedClasses">
+			<list>
+				<value>br.com.async.domain.attendance.Attendance</value>
+				<value>br.com.async.domain.attendance.Diary</value>
+				<value>br.com.async.domain.attendance.SchoolClass</value>
+
+				<value>br.com.async.domain.college.Manager</value>
+				<value>br.com.async.domain.college.Professor</value>
+				<value>br.com.async.domain.college.Student</value>
+
+				<value>br.com.async.domain.course.Course</value>
+				<value>br.com.async.domain.course.CourseCurriculum</value>
+				<value>br.com.async.domain.course.Discipline</value>
+				<value>br.com.async.domain.course.Professorship</value>
+				<value>br.com.async.domain.course.Semester</value>
+
+				<value>br.com.async.domain.person.Contact</value>
+				<value>br.com.async.domain.person.Person</value>
+				<value>br.com.async.domain.person.User</value>
+
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- <prop key="hibernate.connection.autocommit">false</prop> -->
+			</props>
+		</property>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- Repository beans declaration -->
+
+	<bean id="abstractRepository" class="br.com.async.repository.AbstractRepository"
+		abstract="true">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="attendanceRepository" class="br.com.async.repository.AttendanceRepositoryImpl"
+		parent="abstractRepository">
+	</bean>
+	<bean id="courseRepository" class="br.com.async.repository.CourseRepositoryImpl"
+		parent="abstractRepository">
+	</bean>
+	<bean id="professorRepository" class="br.com.async.repository.ProfessorRepositoryImpl"
+		parent="abstractRepository">
+	</bean>
+	<bean id="studentRepository" class="br.com.async.repository.StudentRepositoryImpl"
+		parent="abstractRepository">
+	</bean>
+	<bean id="userRepository" class="br.com.async.repository.UserRepositoryImpl"
+		parent="abstractRepository">
+	</bean>
+
+	<!-- Application beans declaration -->
+	<bean id="attendanceApplication" class="br.com.async.application.impl.AttendanceApplicationImpl">
+		<constructor-arg index="0" ref="attendanceRepository" />
+	</bean>
+	<bean id="courseApplication" class="br.com.async.application.impl.CourseApplicationImpl">
+		<constructor-arg index="0" ref="courseRepository" />
+	</bean>
+	<bean id="professorApplication" class="br.com.async.application.impl.ProfessorApplicationImpl">
+		<constructor-arg index="0" ref="professorRepository" />
+	</bean>
+	<bean id="studentApplication" class="br.com.async.application.impl.StudentApplicationImpl">
+		<constructor-arg index="0" ref="studentRepository" />
+	</bean>
+	<bean id="userApplication" class="br.com.async.application.impl.UserApplicationImpl">
+		<constructor-arg index="0" ref="userRepository" />
+	</bean>
+</beans>

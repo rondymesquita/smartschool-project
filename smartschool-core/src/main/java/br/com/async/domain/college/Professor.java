@@ -1,8 +1,23 @@
 package br.com.async.domain.college;
 
 import java.io.Serializable;
-import br.com.async.domain.person.Person;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.NonNull;
+import br.com.async.domain.person.Person;
+@Data
+@Entity (name = "tb_professor")
 public class Professor implements Serializable {
 
 	/**
@@ -10,46 +25,23 @@ public class Professor implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Getter
+	@Id
+	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "professor_seq", sequenceName = "professor_seq")
+	@GeneratedValue(generator = "professor_seq", strategy = GenerationType.AUTO)
 	private Integer code;
+	@NonNull
+	@Getter
+	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "person")
 	private Person person;
+	@NonNull
+	@Getter
 	private String enrollments;
+	@NonNull
+	@Getter
 	private String registry;
+	@NonNull
+	@Getter
 	private String formation;
-	
-	public Integer getCode() {
-		return code;
-	}
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-	public Person getPerson() {
-		return person;
-	}
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-	public String getEnrollments() {
-		return enrollments;
-	}
-	public void setEnrollments(String enrollments) {
-		this.enrollments = enrollments;
-	}
-	public String getRegistry() {
-		return registry;
-	}
-	public void setRegistry(String registry) {
-		this.registry = registry;
-	}
-	public String getFormation() {
-		return formation;
-	}
-	public void setFormation(String formation) {
-		this.formation = formation;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-
 }
