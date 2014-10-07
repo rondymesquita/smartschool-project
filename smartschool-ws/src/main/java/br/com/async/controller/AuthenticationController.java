@@ -1,11 +1,11 @@
 package br.com.async.controller;
 
-import java.util.UUID;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,10 +20,13 @@ import br.com.async.util.ResponseData;
 
 @Controller
 public class AuthenticationController {
-
+	
+	@Autowired
+	private HttpSession httpSession;
+	
 	@RequestMapping(value="/must-be-logged")
-	public void mustBeLogged(){
-		ResponseData responseData = new ResponseData(Constants.MUST_BE_LOGGED, HttpStatus.NETWORK_AUTHENTICATION_REQUIRED+"");
+	public @ResponseBody ResponseData mustBeLogged(){
+		return new ResponseData(Constants.MUST_BE_LOGGED, HttpStatus.NETWORK_AUTHENTICATION_REQUIRED+"");
 	}
 	
 	/**
@@ -35,23 +38,30 @@ public class AuthenticationController {
 		
 		ResponseData responseData;
 		
-		//verify if user is already logged
-		Cookie authToken = HttpUtils.getCookieFromRequest(request, Constants.AUTH_TOKEN);
-		if(authToken != null){
-			responseData = new ResponseData(Constants.ALREADY_LOGGED_IN, HttpStatus.OK.toString());
-			return responseData;
+		//TODO remove this block
+		if(login.getUsername().equals("johndoe") && login.getPassword().equals("xxx")){
+			httpSession.invalidate();
 		}
 		
 		if(login.getUsername().equals("johndoe") && login.getPassword().equals("123")){
-			String token = UUID.randomUUID().toString();
-			response.addCookie(new Cookie(Constants.AUTH_TOKEN, token));
+			
+//			String token = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
+//			if(token != null){
+//				responseData = new ResponseData(Constants.ALREADY_LOGGED_IN, HttpStatus.OK.toString());
+//				return responseData;
+//			}
+			
+			String token = HttpUtils.generateToken();
+			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
+			httpSession.setMaxInactiveInterval(1*10);
 			responseData = new ResponseData(token, HttpStatus.OK.toString());
 		}else{
-			responseData = new ResponseData(Constants.MUST_BE_LOGGED, HttpStatus.NETWORK_AUTHENTICATION_REQUIRED+"");
+			responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
 		}
 		
 		return responseData;
 	}
+	
 	
 	private void addUserToCookieSession(HttpServletRequest request){
 		

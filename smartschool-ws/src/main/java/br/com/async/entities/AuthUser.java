@@ -7,6 +7,7 @@ public class AuthUser implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
+	private String authToken;
 	
 	public String getUsername() {
 		return username;
@@ -20,5 +21,12 @@ public class AuthUser implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getAuthToken() {
+		return authToken;
+	}
+	public void setAuthToken(String authToken) {
+		this.authToken = authToken;
+	}
+	
 
 }
