@@ -3,7 +3,7 @@ package br.com.async.domain.college;
 import java.io.Serializable;
 
 import br.com.async.domain.person.Person;
-
+@Data
 public class Student implements Serializable {
 
 	/**

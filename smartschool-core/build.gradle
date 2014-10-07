@@ -14,7 +14,7 @@ dependencies{
 	compile "junit:junit:4.11"
 	compile 'org.mockito:mockito-all:1.8.4'
 	compile 'io.github.benas:jpopulator:1.0.1'
-
+        compile 'org.projectlombok:lombok:1.14.8'
 }
 
 sourceSets {

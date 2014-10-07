@@ -1,8 +1,13 @@
 package br.com.async.domain.college;
 
 import java.io.Serializable;
-import br.com.async.domain.person.Person;
+import java.util.UUID;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NonNull;
+import br.com.async.domain.person.Person;
+@Data
 public class Professor implements Serializable {
 
 	/**
@@ -10,46 +15,18 @@ public class Professor implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer code;
+	@Getter
+	private UUID code = UUID.randomUUID();
+	@NonNull
+	@Getter
 	private Person person;
+	@NonNull
+	@Getter
 	private String enrollments;
+	@NonNull
+	@Getter
 	private String registry;
+	@NonNull
+	@Getter
 	private String formation;
-	
-	public Integer getCode() {
-		return code;
-	}
-	public void setCode(Integer code) {
-		this.code = code;
-	}
-	public Person getPerson() {
-		return person;
-	}
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-	public String getEnrollments() {
-		return enrollments;
-	}
-	public void setEnrollments(String enrollments) {
-		this.enrollments = enrollments;
-	}
-	public String getRegistry() {
-		return registry;
-	}
-	public void setRegistry(String registry) {
-		this.registry = registry;
-	}
-	public String getFormation() {
-		return formation;
-	}
-	public void setFormation(String formation) {
-		this.formation = formation;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	
-
 }

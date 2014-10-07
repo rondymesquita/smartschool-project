@@ -1,19 +1,28 @@
 package br.com.async.domain.person;
 
 import java.io.Serializable;
+import java.util.UUID;
 
-import br.com.async.domain.person.Person;
-
+import lombok.Data;
+import lombok.Getter;
+import lombok.NonNull;
+@Data
 public class User implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private Integer code;
+	@Getter
+	private UUID code = UUID.randomUUID();
+	@NonNull
+	@Getter
 	private Person person;
+	@NonNull
+	@Getter
 	private String username;
+	@NonNull
+	@Getter
 	private String password;
 	
 
