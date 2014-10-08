@@ -23,7 +23,7 @@ import br.com.async.util.HttpUtils;
 import br.com.async.util.ResponseData;
 
 @Controller
-public class ProfessorController {
+public class ProfessorController extends BaseController{
 	
 	@Autowired
 	private ProfessorApplication professorApplication;

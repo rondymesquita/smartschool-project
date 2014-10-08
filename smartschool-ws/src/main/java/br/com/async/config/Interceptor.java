@@ -20,39 +20,53 @@ public class Interceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	private HttpSession httpSession;
-	
+
 	@Autowired
 	private AuthenticationController authenticationController;
-	
+
+	private String token = "";
+	private String tokenSession = "";
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
-		
-		if(method.isAnnotationPresent(Authenticate.class)){
-			String token = request.getHeader(Constants.AUTH_TOKEN);
-			System.out.println("Token Request : "+ token);
-			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
-			System.out.println("Token Session : "+ token);
-			
-			if(token != null && tokenSession != null){
-				if(token.equals(tokenSession)){
+
+		if (method.isAnnotationPresent(Authenticate.class)) {
+
+			token = request.getHeader(Constants.AUTH_TOKEN);
+			System.out.println("Token Request : " + token);
+
+			tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
+			System.out.println("Token Session : " + tokenSession);
+
+			System.out.println("");
+
+			if (token == null || tokenSession == null) {
+				System.out.println("nulos");
+				response.sendRedirect("/smartschool-ws/must-be-logged");
+				return false;
+			} else {
+				if (token.equals(tokenSession)) {
 					return true;
+				}else{
+					response.sendRedirect("/smartschool-ws/must-be-logged");
+					return false;
 				}
 			}
+
 		}
+
 		return true;
-		
+
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 	}
 
 	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 	}
 
 }

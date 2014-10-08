@@ -1,12 +1,18 @@
 package br.com.async.controller;
 
-import javax.servlet.http.Cookie;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +25,7 @@ import br.com.async.util.HttpUtils;
 import br.com.async.util.ResponseData;
 
 @Controller
-public class AuthenticationController {
+public class AuthenticationController extends BaseController{
 	
 	@Autowired
 	private HttpSession httpSession;
@@ -32,9 +38,12 @@ public class AuthenticationController {
 	/**
 	 * @param {"username":"johndoe","password":"123"}
 	 * @return
+	 * @throws IOException 
+	 * @throws JsonMappingException 
+	 * @throws JsonGenerationException 
 	 */
 	@RequestMapping(value="/api/login", method = RequestMethod.POST)
-	public @ResponseBody ResponseData login(@RequestBody AuthUser login, HttpServletRequest request, HttpServletResponse response){
+	public @ResponseBody ResponseEntity<String> login(@RequestBody AuthUser login, HttpServletRequest request, HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
 		
 		ResponseData responseData;
 		
@@ -45,26 +54,16 @@ public class AuthenticationController {
 		
 		if(login.getUsername().equals("johndoe") && login.getPassword().equals("123")){
 			
-//			String token = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
-//			if(token != null){
-//				responseData = new ResponseData(Constants.ALREADY_LOGGED_IN, HttpStatus.OK.toString());
-//				return responseData;
-//			}
-			
 			String token = HttpUtils.generateToken();
 			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
-			httpSession.setMaxInactiveInterval(1*10);
-			responseData = new ResponseData(token, HttpStatus.OK.toString());
+			httpSession.setMaxInactiveInterval(10*60);
+			return new ResponseEntity<String>("{\"Token\":\""+token+"\",\"Login\":\"TRUE\"}", HttpStatus.OK);
 		}else{
 			responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
+			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+			String json = ow.writeValueAsString(responseData);
+			return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
 		}
-		
-		return responseData;
-	}
-	
-	
-	private void addUserToCookieSession(HttpServletRequest request){
-		
 	}
 	
 	@RequestMapping(value="/api/token/generate", method = RequestMethod.GET)
