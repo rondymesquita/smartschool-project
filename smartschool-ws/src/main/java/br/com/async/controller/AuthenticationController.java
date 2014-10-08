@@ -53,7 +53,6 @@ public class AuthenticationController extends BaseController{
 		}
 		
 		if(login.getUsername().equals("johndoe") && login.getPassword().equals("123")){
-			
 			String token = HttpUtils.generateToken();
 			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
 			httpSession.setMaxInactiveInterval(10*60);
@@ -64,12 +63,6 @@ public class AuthenticationController extends BaseController{
 			String json = ow.writeValueAsString(responseData);
 			return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
 		}
-	}
-	
-	@RequestMapping(value="/api/token/generate", method = RequestMethod.GET)
-	public void getAccessToken(HttpServletRequest request, HttpServletResponse response){
-		
-		
 	}
 	
 }

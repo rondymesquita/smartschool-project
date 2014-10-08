@@ -36,11 +36,13 @@ public class ProfessorController extends BaseController{
 		return professorApplication.list();
 	}
 	
+	@Authenticate
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.GET)
 	public @ResponseBody Professor find(@PathVariable String id){
 		return professorApplication.find(Integer.parseInt(id));
 	}
 	
+	@Authenticate
 	@RequestMapping(value="/api/professors", method = RequestMethod.POST)
 	public @ResponseBody ResponseData save(@RequestBody Professor professor){
 		professorApplication.save(professor);
@@ -48,6 +50,7 @@ public class ProfessorController extends BaseController{
 		return responseData;
 	}
 	
+	@Authenticate
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ResponseData update(@RequestBody Professor professor){
 		professorApplication.update(professor);
@@ -55,13 +58,12 @@ public class ProfessorController extends BaseController{
 		return responseData;
 	}
 	
+	@Authenticate
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseData delete(@PathVariable String id){
 		professorApplication.delete(Integer.parseInt(id));
 		ResponseData responseData = new ResponseData(Constants.REGISTRY_REMOVED, ResponseData.SUCCESS);
 		return responseData;
 	}
-	
-	
 	
 }
