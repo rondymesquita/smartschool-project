@@ -1,4 +1,4 @@
-package test.java.br.com.async.domain;
+package br.com.async.domain;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
