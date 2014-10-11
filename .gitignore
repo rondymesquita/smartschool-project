@@ -2,8 +2,8 @@
 **/target
 **/.gradle
 **/.settings
-**/lib*
+**/lib/*
+**/bin/**
 build/
 apache*
 .gradle
-**/bin
