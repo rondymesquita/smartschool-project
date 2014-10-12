@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/jar/4e031bb61df09069aeb2bffb4019e7a5034a4ee0/junit-4.11.jar" sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/junit/junit/4.11/source/28e0ad201304e4a4abf999ca0570b7cffc352c3c/junit-4.11-sources.jar"/>
@@ -36,5 +37,6 @@
 	<classpathentry exported="true" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/aopalliance/aopalliance/1.0/jar/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/aopalliance/aopalliance/1.0/source/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-aop/4.1.1.RELEASE/jar/5175950be849e409f328bd4ea0f16f3ea9466359/spring-aop-4.1.1.RELEASE.jar" sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-aop/4.1.1.RELEASE/source/34f77ba9c1df0604051c1e9511e0555286509ef9/spring-aop-4.1.1.RELEASE-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-expression/4.1.1.RELEASE/jar/c86cad6880c3f5c13a81677411b6f41873c80e75/spring-expression-4.1.1.RELEASE.jar" sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-expression/4.1.1.RELEASE/source/1719ef93281026ae09e94b71f8179e1514ea2b9d/spring-expression-4.1.1.RELEASE-sources.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-8.3-604.jdbc4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
