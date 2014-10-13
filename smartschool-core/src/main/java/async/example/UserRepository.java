@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-@Transactional
+//@Transactional
 @Repository("userDao")
 public class UserRepository {
 
@@ -17,12 +17,14 @@ public class UserRepository {
 	
 	public UserRepository(){}
 	
-	public boolean persist(MyUser transientInstance) {
+	@Transactional
+	public boolean save(MyUser transientInstance) {
 		try {
 //			sessionFactory.getCurrentSession().persist(transientInstance);
-			hibernateTemplate.persist(transientInstance);
+			hibernateTemplate.save(transientInstance);
 			return true;
 		} catch (RuntimeException re) {
+			System.err.println(re);
 			return false;
 		}
 	}

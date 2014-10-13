@@ -13,7 +13,7 @@ public class UserApplication{
 	
 	@Transactional
 	public boolean create(MyUser entity) {
-		return userRepository.persist(entity);
+		return userRepository.save(entity);
 	}
 
 }
