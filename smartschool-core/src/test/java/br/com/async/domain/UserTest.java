@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import async.example.MyUser;
-import async.example.UserApplication;
+import async.example.UserApplicationImpl;
 
 public class UserTest {
 	
@@ -23,7 +23,7 @@ public class UserTest {
 //		userApplication = new UserApplication();
 		
 		ctx = new AnnotationConfigApplicationContext();
-		ctx.scan("br.com.async.a.example");
+		ctx.scan("async.example");
 		ctx.refresh();
 	}
 	
@@ -32,10 +32,10 @@ public class UserTest {
 	public void saveUserTest() throws Exception{
 		
 		
-		UserApplication userApplication = ctx.getBean("userApplication",UserApplication.class);
+		UserApplicationImpl userApplication = ctx.getBean("userApplication",UserApplicationImpl.class);
 		MyUser user = populator.populateBean(MyUser.class);
 		System.out.println(user.getUsername());
-		userApplication.create(user);
+		userApplication.save(user);
 		System.out.println("Done!");
 	}
 
