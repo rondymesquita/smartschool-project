@@ -9,10 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 @Data
 @Entity(name = "tb_manager")
+@EqualsAndHashCode(callSuper=false)
 public class Manager extends AbstractEntity implements Serializable {
 
 	/**

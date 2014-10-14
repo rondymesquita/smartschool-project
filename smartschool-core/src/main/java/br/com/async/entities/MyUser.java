@@ -9,9 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity(name = "tb_myuser")
 @Data
+@EqualsAndHashCode(callSuper=false)
 public class MyUser extends AbstractEntity implements Serializable{
 	
 	/**

@@ -1,5 +1,6 @@
 package br.com.async.entities;
 
-public class AbstractEntity {
+
+public class AbstractEntity{
 
 }

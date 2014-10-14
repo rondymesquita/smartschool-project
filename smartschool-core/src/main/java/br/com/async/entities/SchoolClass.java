@@ -12,10 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 @Data
 @Entity(name = "tb_schoolclass")
+@EqualsAndHashCode(callSuper=false)
 public class SchoolClass extends AbstractEntity {
 	@Getter
 	@Id

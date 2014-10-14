@@ -9,11 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 
 @Data
 @Entity(name = "tb_course")
+@EqualsAndHashCode(callSuper=false)
 public class Course extends AbstractEntity implements Serializable {
 
 	/**

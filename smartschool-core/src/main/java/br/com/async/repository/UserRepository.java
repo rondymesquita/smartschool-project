@@ -15,4 +15,22 @@ public class UserRepository extends AbstractRepositoryImpl<User>{
 		super(User.class);
 	}
 
+	@Override
+	public void update(User entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(User entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Integer findByCode(Integer code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
