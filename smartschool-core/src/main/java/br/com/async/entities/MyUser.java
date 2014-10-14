@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Entity(name = "tb_myuser")
 @Data
-public class MyUser implements Serializable{
+public class MyUser extends AbstractEntity implements Serializable{
 	
 	/**
 	 * 

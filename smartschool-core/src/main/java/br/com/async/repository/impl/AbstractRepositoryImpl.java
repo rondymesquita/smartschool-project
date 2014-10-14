@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import br.com.async.entities.AbstractEntity;
 import br.com.async.entities.MyUser;
 import br.com.async.repository.AbstractRepository;
 
 @Repository
-public abstract class AbstractRepositoryImpl<E> implements AbstractRepository<MyUser, Integer>{
+public abstract class AbstractRepositoryImpl<E> implements AbstractRepository<E, Integer>{
 
 	private final E entity;
 	
@@ -31,7 +32,7 @@ public abstract class AbstractRepositoryImpl<E> implements AbstractRepository<My
 	}
 	
 	@Transactional
-	public boolean save(MyUser transientInstance) {
+	public boolean save(E transientInstance) {
 		try {
 			hibernateTemplate.save(transientInstance);
 			return true;
