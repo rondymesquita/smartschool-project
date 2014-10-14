@@ -1,7 +1,7 @@
 package br.com.async.repository;
 
-public interface AbstractRepository<T, E> {
+public interface AbstractRepository<E, T> {
 
-	boolean save(T entity);
+	boolean save(E entity);
 	
 }
