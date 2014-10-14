@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.application.UserApplication;
 import br.com.async.business.UserBusiness;
+import br.com.async.config.AppConfig;
+import br.com.async.config.ApplicationContext;
 import br.com.async.entities.AuthUser;
 import br.com.async.util.Constants;
 import br.com.async.util.HttpUtils;
@@ -33,9 +35,7 @@ public class AuthenticationController extends BaseController{
 	@Autowired
 	private HttpSession httpSession;
 	
-	@Autowired
-	@Qualifier("userApplication")
-	private UserApplication userApplication;
+	private UserApplication userApplication = ApplicationContext.getInstance().getBean("userApplicationImpl", UserApplication.class);
 	
 	@RequestMapping(value="/must-be-logged")
 	public @ResponseBody ResponseData mustBeLogged(){

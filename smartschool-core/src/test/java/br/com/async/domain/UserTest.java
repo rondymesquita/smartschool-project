@@ -12,16 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import br.com.async.application.AbstractApplication;
-import br.com.async.application.UserApplication;
-import br.com.async.entities.Person;
-import br.com.async.entities.User;
+import br.com.async.core.application.AbstractApplication;
+import br.com.async.core.application.UserApplication;
+import br.com.async.core.entities.Person;
+import br.com.async.core.entities.User;
 
 public class UserTest {
 	
-//	@Autowired
-//	@Qualifier("userApplication")
-//	private UserApplication userApplication;
+	@Autowired
+	@Qualifier("userApplicationImpl")
+	private UserApplication userApplication;
 	
 	private Populator populator;
 	private AnnotationConfigApplicationContext ctx;
@@ -31,7 +31,7 @@ public class UserTest {
 		populator = new PopulatorBuilder().build();
 		
 		ctx = new AnnotationConfigApplicationContext();
-		ctx.scan("br.com.async");
+		ctx.scan("br.com.async.core");
 		ctx.refresh();
 	}
 	
