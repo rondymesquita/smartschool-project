@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.async.application.UserApplication;
-import br.com.async.entities.MyUser;
+import br.com.async.entities.User;
 import br.com.async.repository.AbstractRepository;
 
 
@@ -16,10 +16,10 @@ public class UserApplicationImpl implements UserApplication{
 	
 	@Autowired
 	@Qualifier("userRepository")
-	private AbstractRepository<MyUser, Integer> repository;
+	private AbstractRepository<User, Integer> repository;
 
 	@Transactional
-	public boolean save(MyUser entity) {
+	public boolean save(User entity) {
 		return repository.save(entity);
 	}
 

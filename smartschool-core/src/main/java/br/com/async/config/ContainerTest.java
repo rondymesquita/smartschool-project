@@ -6,7 +6,8 @@ import io.github.benas.jpopulator.impl.PopulatorBuilder;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import br.com.async.application.UserApplication;
-import br.com.async.entities.MyUser;
+import br.com.async.entities.Person;
+import br.com.async.entities.User;
 
 
 public class ContainerTest {
@@ -21,7 +22,9 @@ public class ContainerTest {
 		ctx.refresh();
 		System.out.println(ctx);
         UserApplication userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
-        MyUser user = populator.populateBean(MyUser.class);
+//        User user = populator.populateBean(User.class);
+        Person person = new Person("Rondy","123");
+        User user = new User(person, "username", "123");
 		boolean result = userApplication.save(user);
 		if(result)
 			System.out.println("Done!");
