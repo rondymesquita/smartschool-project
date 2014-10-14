@@ -1,10 +1,13 @@
-package async.example;
+package br.com.async.repository.impl;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+
+import br.com.async.entities.MyUser;
+import br.com.async.repository.AbstractRepository;
 
 @Repository
 public abstract class AbstractRepositoryImpl<E> implements AbstractRepository<MyUser, Integer>{

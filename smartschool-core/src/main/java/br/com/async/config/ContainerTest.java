@@ -1,10 +1,13 @@
-package async.example;
+package br.com.async.config;
 
 import io.github.benas.jpopulator.api.Populator;
 import io.github.benas.jpopulator.impl.PopulatorBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import br.com.async.application.UserApplication;
+import br.com.async.entities.MyUser;
 
 
 public class ContainerTest {
@@ -15,7 +18,7 @@ public class ContainerTest {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
 		Populator populator = new PopulatorBuilder().build();
-		ctx.scan("async.example");
+		ctx.scan("br.com.async");
 		ctx.refresh();
 		System.out.println(ctx);
         UserApplication userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);

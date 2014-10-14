@@ -1,4 +1,4 @@
-package async.example;
+package br.com.async.config;
 
 import java.util.Properties;
 
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:application.properties" })
-@ComponentScan({ "async.example" })
+@ComponentScan({ "br.com.async" })
 public class HibernateConfig {
 
 	private String driverClassName = "org.postgresql.Driver";
@@ -48,7 +48,7 @@ public class HibernateConfig {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
 		sessionFactory.setHibernateProperties(getHibernateProperties());
-		sessionFactory.setPackagesToScan(new String[] { "async.example" });
+		sessionFactory.setPackagesToScan(new String[] { "br.com.async" });
 		return sessionFactory;
 	}
 

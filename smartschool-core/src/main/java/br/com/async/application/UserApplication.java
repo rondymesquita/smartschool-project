@@ -1,7 +1,7 @@
 package br.com.async.application;
 
-import br.com.async.domain.person.User;
+import br.com.async.entities.MyUser;
 
-public interface UserApplication extends AbstractApplication<User, Integer>{
+public interface UserApplication extends AbstractApplication<Integer, MyUser>{
 
 }

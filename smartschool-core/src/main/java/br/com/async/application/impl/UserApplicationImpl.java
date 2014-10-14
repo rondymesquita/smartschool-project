@@ -1,32 +1,26 @@
 package br.com.async.application.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.async.application.UserApplication;
-import br.com.async.domain.person.User;
+import br.com.async.entities.MyUser;
+import br.com.async.repository.AbstractRepository;
 
+
+@Service
+@Transactional
 public class UserApplicationImpl implements UserApplication{
+	
+	@Autowired
+	@Qualifier("userRepository")
+	private AbstractRepository<MyUser, Integer> repository;
 
-	@Override
-	public void create(User entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(User entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(User entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public User findByCode(Integer code) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public boolean save(MyUser entity) {
+		return repository.save(entity);
 	}
 
 }

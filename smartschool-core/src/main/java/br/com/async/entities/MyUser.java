@@ -1,4 +1,4 @@
-package async.example;
+package br.com.async.entities;
 
 import java.io.Serializable;
 
