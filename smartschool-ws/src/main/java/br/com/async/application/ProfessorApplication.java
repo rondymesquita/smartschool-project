@@ -1,12 +1,8 @@
 package br.com.async.application;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.async.entities.Professor;
-import br.com.async.repository.ProfessorRepositoryList;
+import br.com.async.core.entities.Professor;
 
 @Component
 public class ProfessorApplication implements AbstractApplication<Professor>{

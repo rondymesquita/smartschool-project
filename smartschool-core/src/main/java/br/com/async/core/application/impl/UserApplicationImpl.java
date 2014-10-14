@@ -27,12 +27,12 @@ public class UserApplicationImpl implements UserApplication{
 		return repository.save(entity);
 	}
 
-	@Override
+	@Transactional
 	public boolean login(String username, String password) {
 		return true;
 	}
 
-	@Override
+	@Transactional
 	public boolean findByUsernameAndPassword(String username, String password) {
 		
 		if(username.equals("admin") && password.equals("123"))

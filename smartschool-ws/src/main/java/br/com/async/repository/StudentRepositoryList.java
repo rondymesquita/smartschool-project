@@ -1,14 +1,8 @@
 package br.com.async.repository;
 
-import io.github.benas.jpopulator.api.Populator;
-import io.github.benas.jpopulator.impl.PopulatorBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
-import br.com.async.entities.Student;
+import br.com.async.core.entities.Student;
 
 @Component
 public class StudentRepositoryList implements AbstractRepository<Student>{

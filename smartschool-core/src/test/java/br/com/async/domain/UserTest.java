@@ -48,5 +48,18 @@ public class UserTest {
 				save(user);
 		Assert.assertEquals(true, result);
 	}
+	
+	@Test
+	public void loginWithUsernameAndPasswordTest(){
+		UserApplication userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
+        boolean result = userApplication.findByUsernameAndPassword("admin", "123");
+		Assert.assertEquals(true, result);
+	}
+	@Test
+	public void loginWithWrongUsernameAndPasswordTest(){
+		UserApplication userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
+        boolean result = userApplication.findByUsernameAndPassword("admin", "1234");
+		Assert.assertEquals(false, result);
+	}
 
 }

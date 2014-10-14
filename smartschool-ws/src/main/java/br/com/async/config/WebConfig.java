@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages="br.com.async")
+@ComponentScan(basePackages={"br.com.async","br.com.async.core"})
 public class WebConfig extends WebMvcConfigurerAdapter{
 
 	@Bean
