@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import br.com.async.repository.AbstractRepository;
 
 @Repository
-public abstract class AbstractRepositoryImpl<E> implements AbstractRepository<E, Integer>{
+public abstract class AbstractRepositoryImpl<E, T> implements AbstractRepository<E, T>{
 
 	private final E entity;
 	
@@ -53,7 +53,7 @@ public abstract class AbstractRepositoryImpl<E> implements AbstractRepository<E,
 	}
 
 	@Override
-	public Integer findByCode(Integer code) {
+	public T findByCode(T code) {
 		// TODO Auto-generated method stub
 		return null;
 	}

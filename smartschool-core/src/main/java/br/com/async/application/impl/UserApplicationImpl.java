@@ -11,17 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.async.application.UserApplication;
 import br.com.async.entities.User;
 import br.com.async.repository.AbstractRepository;
+import br.com.async.repository.UserRepository;
 
 
 @Service
 @Transactional
-@Resource(name="userApplication")
-@Component
 public class UserApplicationImpl implements UserApplication{
 	
 	@Autowired
-	@Qualifier("userRepository")
-	private AbstractRepository<User, Integer> repository;
+	@Qualifier("userRepositoryImpl")
+	private UserRepository repository;
 
 	@Transactional
 	public boolean save(User entity) {
