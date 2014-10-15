@@ -35,10 +35,36 @@ public class UserApplicationImpl implements UserApplication{
 	@Transactional
 	public boolean findByUsernameAndPassword(String username, String password) {
 		
-		if(username.equals("admin") && password.equals("123"))
+		boolean resultQuery = repository.findByUsernameAndPassword(username, password);
+		
+		if(resultQuery)
 			return true;
 		
 		return false;
+	}
+
+	@Override
+	public boolean update(User entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(User entity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean findByCode(Integer code) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Iterable<Integer> list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -6,10 +6,12 @@ import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -19,30 +21,34 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@PropertySource({ "classpath:application.properties" })
+@PropertySource("classpath:application.properties")
 @ComponentScan({ "br.com.async.core" })
 public class HibernateConfig {
 
-	private String driverClassName = "org.postgresql.Driver";
-	private String url = "jdbc:postgresql://localhost:5432/smartschool?charSet=utf8";
-	private String username = "postgres";
-	private String password = "123456";
-
-	private String hibernateDialect = "org.hibernate.dialect.PostgreSQLDialect";
-	private String hibernateShowSql = "true";
-	private String hibernateHbm2ddlAuto = "update";
+	@Value("${postgres.driverClassName}")
+	private String driverClassName;
+	
+	@Value("${postgres.url}")
+	private String url;
+	
+	@Value("${postgres.username}")
+	private String username;
+	
+	@Value("${postgres.password}")
+	private String password;
+	
+	@Value("${postgres.dialect}")
+	private String hibernateDialect;
+	
+	@Value("${hibernate.show_sql}")
+	private String hibernateShowSql;
+	
+	@Value("${hibernate.hbm2ddl.auto}")
+	private String hibernateHbm2ddlAuto;
 
 	@Autowired
 	private LocalSessionFactoryBean sessionFactory;
 
-	// @Bean
-	// public AnnotationSessionFactoryBean getSessionFactory() {
-	// AnnotationSessionFactoryBean asfb = new AnnotationSessionFactoryBean();
-	// asfb.setDataSource(restDataSource());
-	// asfb.setHibernateProperties(getHibernateProperties());
-	// asfb.setPackagesToScan(new String[] { "br.com.async.a.example" });
-	// return asfb;
-	// }
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -81,6 +87,11 @@ public class HibernateConfig {
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
+	
+	@Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
 	public Properties getHibernateProperties() {
 		return new Properties() {
