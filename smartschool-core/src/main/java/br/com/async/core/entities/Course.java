@@ -27,7 +27,7 @@ public class Course extends AbstractEntity implements Serializable {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "course_seq", sequenceName = "course_seq")
 	@GeneratedValue(generator = "course_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	private String name;
 

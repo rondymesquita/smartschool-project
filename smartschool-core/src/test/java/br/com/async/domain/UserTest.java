@@ -39,11 +39,16 @@ public class UserTest {
 	@Test
 	public void saveUserTest() throws Exception{
 		UserApplication userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
-//		User user = populator.populateBean(User.class);
 		
-		Person person = new Person("Rondy","123");
-        User user = new User(person, "username", "123");
-        
+		
+		User user = new User();
+		user.setPassword("123");
+		user.setUsername("admin");
+		Person person = new Person();
+		person.setCpf("123");
+		person.setName("Rondy");
+		user.setPerson(person);
+		
 		boolean result = userApplication.
 				save(user);
 		Assert.assertEquals(true, result);

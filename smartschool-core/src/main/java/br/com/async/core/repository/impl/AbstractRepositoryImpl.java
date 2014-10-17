@@ -1,38 +1,38 @@
 package br.com.async.core.repository.impl;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import br.com.async.core.entities.Professor;
 import br.com.async.core.repository.AbstractRepository;
 
 @Repository
-public abstract class AbstractRepositoryImpl<E, T> implements AbstractRepository<E, T>{
+public abstract class AbstractRepositoryImpl<T, E extends Serializable> implements AbstractRepository<T, E> {
 
-	private final E entity;
-	
+	protected final Class<T> entity;
+
 	@Autowired
 	protected HibernateTemplate hibernateTemplate;
 
-	public AbstractRepositoryImpl(E entity) {
+	public AbstractRepositoryImpl(Class<T> entity) {
 		this.entity = entity;
 	}
 
-	@SuppressWarnings("unchecked")
-	public AbstractRepositoryImpl(Class<?> classe) {
-		this.entity = (E) classe;
-	}
-
-	public E getEntity() {
+	public Class<T> getEntity() {
 		return this.entity;
 	}
-	
+
 	@Transactional
-	public boolean save(E transientInstance) {
+	public boolean save(T entity) {
 		try {
-			hibernateTemplate.save(transientInstance);
+			hibernateTemplate.save(entity);
 			return true;
 		} catch (RuntimeException re) {
 			System.err.println(re);
@@ -41,20 +41,45 @@ public abstract class AbstractRepositoryImpl<E, T> implements AbstractRepository
 	}
 
 	@Override
-	public void update(E entity) {
-		// TODO Auto-generated method stub
-		
+	public boolean update(T entity) {
+		try {
+			hibernateTemplate.update(entity);
+			return true;
+		} catch (RuntimeException re) {
+			System.err.println(re);
+			return false;
+		}
 	}
 
 	@Override
-	public void delete(E entity) {
-		// TODO Auto-generated method stub
+	public boolean delete(T entity) {
+		
+		try {
+			hibernateTemplate.delete(entity);
+			return true;
+		} catch (RuntimeException re) {
+			System.err.println(re);
+			return false;
+		}
 		
 	}
 
-	@Override
-	public T findByCode(T code) {
-		// TODO Auto-generated method stub
-		return null;
+	public T findByCode(E code) {
+		try {
+			return hibernateTemplate.get(entity, code);
+		} catch (RuntimeException re) {
+			System.err.println(re);
+			return null;
+		}
+	}
+
+	public List<T> list() {
+		try {
+			Criteria criteria = hibernateTemplate.getSessionFactory().getCurrentSession().createCriteria(entity);
+			return criteria.list();
+		} catch (RuntimeException re) {
+			System.err.println(re);
+			return null;
+		}
 	}
 }

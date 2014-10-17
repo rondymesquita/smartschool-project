@@ -26,7 +26,7 @@ public class Manager extends AbstractEntity implements Serializable {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "manager_seq", sequenceName = "manager_seq")
 	@GeneratedValue(generator = "manager_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	private Professor professor;
 

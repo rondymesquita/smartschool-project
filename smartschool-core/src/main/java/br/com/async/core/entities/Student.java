@@ -30,7 +30,7 @@ public class Student extends AbstractEntity implements Serializable {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "student_seq", sequenceName = "student_seq")
 	@GeneratedValue(generator = "student_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "person")

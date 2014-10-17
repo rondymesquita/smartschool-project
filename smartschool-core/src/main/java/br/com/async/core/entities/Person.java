@@ -31,10 +31,10 @@ public class Person extends AbstractEntity implements Serializable {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "person_seq", sequenceName = "person_seq")
 	@GeneratedValue(generator = "person_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	private String name;
-	@NonNull
+	
 	@Getter
 	private String cpf;
 }

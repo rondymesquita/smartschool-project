@@ -1,10 +1,13 @@
 package br.com.async.core.repository;
 
-public interface AbstractRepository<E, T> {
+import java.util.List;
 
-	boolean save(E entity);
-	void update(E entity);
-	void delete(E entity);
-	T findByCode(T code);
+public interface AbstractRepository<T, E> {
+
+	boolean save(T entity);
+	boolean update(T entity);
+	boolean delete(T entity);
+	T findByCode(E code);
+	public List<T> list();
 	
 }

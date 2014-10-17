@@ -26,7 +26,7 @@ public class Contact extends AbstractEntity implements Serializable {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "contact_seq", sequenceName = "contact_seq")
 	@GeneratedValue(generator = "contact_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	private String email;
 }

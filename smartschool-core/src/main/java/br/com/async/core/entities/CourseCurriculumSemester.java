@@ -26,22 +26,22 @@ public class CourseCurriculumSemester extends AbstractEntity{
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "coursecurriculumsemester_seq", sequenceName = "coursecurriculumsemester_seq")
 	@GeneratedValue(generator = "coursecurriculumsemester_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "manager")
 	private Manager manager;
-	@NonNull
+	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "course")
 	private Course course;
-	@NonNull
+	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "semester")
 	private Semester semester;
-	@NonNull
+	
 	@Getter
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private	List<Professorship> professorshipList;

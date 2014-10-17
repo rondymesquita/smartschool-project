@@ -23,7 +23,7 @@ public class Attendance extends AbstractEntity{
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "attendance_seq", sequenceName = "attendance_seq")
 	@GeneratedValue(generator = "attendance_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "student")
