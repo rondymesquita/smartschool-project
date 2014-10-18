@@ -31,18 +31,18 @@ public class Professor extends AbstractEntity implements Serializable {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "professor_seq", sequenceName = "professor_seq")
 	@GeneratedValue(generator = "professor_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "person")
 	private Person person;
-	@NonNull
+	
 	@Getter
 	private String enrollments;
-	@NonNull
+	
 	@Getter
 	private String registry;
-	@NonNull
+	
 	@Getter
 	private String formation;
 }

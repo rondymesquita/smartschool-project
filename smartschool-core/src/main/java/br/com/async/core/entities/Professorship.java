@@ -26,21 +26,21 @@ public class Professorship extends AbstractEntity {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "professorship_seq", sequenceName = "professorship_seq")
 	@GeneratedValue(generator = "professorship_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Student> studentList;
-	@NonNull
+	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "professor")
 	private Professor professor;
-	@NonNull
+	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "discipline")
 	private Discipline discipline;
-	@NonNull
+	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "diary")

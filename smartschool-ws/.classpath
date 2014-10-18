@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container" exported="true"/>
+	<classpathentry kind="output" path="bin"/>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-webmvc/3.2.2.RELEASE/source/e304b61946aaef6929c1f96e0c2a01a93f6352a3/spring-webmvc-3.2.2.RELEASE-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-webmvc/3.2.2.RELEASE/jar/dd962b49d731a69c4ca0c4ec67b71076742657cc/spring-webmvc-3.2.2.RELEASE.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
@@ -54,12 +55,37 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.slf4j/jcl-over-slf4j/1.6.1/source/dbc80dfd897e3bc528199ff97e29e44a0ac4b462/jcl-over-slf4j-1.6.1-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.slf4j/jcl-over-slf4j/1.6.1/jar/99c61095a14dfc9e47a086068033c286bf236475/jcl-over-slf4j-1.6.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-log4j12/1.6.1/source/7a26b08b265f55622fa1fed3bda68bbd37a465ba/slf4j-log4j12-1.6.1-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-log4j12/1.6.1/jar/bd245d6746cdd4e6203e976e21d597a46f115802/slf4j-log4j12-1.6.1.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/log4j/log4j/1.2.16/source/bf945d1dc995be7fe64923625f842fbb6bf443be/log4j-1.2.16-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/log4j/log4j/1.2.16/bundle/7999a63bfccbc7c247a9aea10d83d4272bd492c6/log4j-1.2.16.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.projectlombok/lombok/1.14.8/source/ae5d70b49f5522a5c63abee50d9e9ad7a1cfce4e/lombok-1.14.8-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.projectlombok/lombok/1.14.8/jar/8ac073941721e0b521ec8e8bad088b1e7b8cd332/lombok-1.14.8.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/javax.servlet/servlet-api/2.5/source/21599814ad9a605b86f3e6381571beccd861a32/servlet-api-2.5-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/javax.servlet/servlet-api/2.5/jar/5959582d97d8b61f4d154ca9e495aafd16726e34/servlet-api-2.5.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/javax.servlet/jstl/1.1.2/source/4e00791e2808d648c5f519fea019016edfba6fe7/jstl-1.1.2-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/javax.servlet/jstl/1.1.2/jar/3375e43c620df4f1114959400ff9bb90d12a2feb/jstl-1.1.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/source/acd62e31cc314266e73eebed0b6dd7ea974a0ed/slf4j-api-1.7.7-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/jar/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
@@ -139,11 +165,6 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/source/acd62e31cc314266e73eebed0b6dd7ea974a0ed/slf4j-api-1.7.7-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.slf4j/slf4j-api/1.7.7/jar/2b8019b6249bb05d81d3a3094e468753e2b21311/slf4j-api-1.7.7.jar" exported="true">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
-		</attributes>
-	</classpathentry>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-tx/4.1.1.RELEASE/source/9ce6cc2a5557191548aad6e08ad323eea424ab0f/spring-tx-4.1.1.RELEASE-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-tx/4.1.1.RELEASE/jar/7025c6f9736feed7893a59730b56fa0a1569580c/spring-tx-4.1.1.RELEASE.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
@@ -160,11 +181,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-context-support/4.1.1.RELEASE/source/8dfca38a57a3f9d3756472ac661052220482a407/spring-context-support-4.1.1.RELEASE-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.springframework/spring-context-support/4.1.1.RELEASE/jar/4c64d5931235a01bef0cc76366113705357e97eb/spring-context-support-4.1.1.RELEASE.jar" exported="true">
-		<attributes>
-			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
-		</attributes>
-	</classpathentry>
-	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.projectlombok/lombok/1.14.8/source/ae5d70b49f5522a5c63abee50d9e9ad7a1cfce4e/lombok-1.14.8-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.projectlombok/lombok/1.14.8/jar/8ac073941721e0b521ec8e8bad088b1e7b8cd332/lombok-1.14.8.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
@@ -225,6 +241,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.hibernate/hibernate-entitymanager/4.3.6.Final/source/663e3ba681d8b68c458471118cc31b4d8317529c/hibernate-entitymanager-4.3.6.Final-sources.jar" kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/org.hibernate/hibernate-entitymanager/4.3.6.Final/jar/f6865e88cbd03bda05d42e1696269921719c173d/hibernate-entitymanager-4.3.6.Final.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/rondymesquita/.gradle/caches/artifacts-26/filestore/mysql/mysql-connector-java/5.1.6/jar/380ef5226de2c85ff3b38cbfefeea881c5fce09d/mysql-connector-java-5.1.6.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>

@@ -30,15 +30,15 @@ public class User extends AbstractEntity implements Serializable {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "user_seq", sequenceName = "user_seq")
 	@GeneratedValue(generator = "user_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "person")
 	private Person person;
-	@NonNull
+	
 	@Getter
 	private String username;
-	@NonNull
+	
 	@Getter
 	private String password;
 	

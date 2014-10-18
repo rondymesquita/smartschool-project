@@ -16,19 +16,19 @@ public class ContainerTest {
 //	private static UserApplication userApplication;
 	
 	public static void main(String[] args) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		Populator populator = new PopulatorBuilder().build();
-		ctx.scan("br.com.async");
-		ctx.refresh();
-		System.out.println(ctx);
-        UserApplication userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
-//        User user = populator.populateBean(User.class);
-        Person person = new Person("Rondy","123");
-        User user = new User(person, "username", "123");
-		boolean result = userApplication.save(user);
-		if(result)
-			System.out.println("Done!");
-		else
-			System.out.println("Ops!");
+//		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+//		Populator populator = new PopulatorBuilder().build();
+//		ctx.scan("br.com.async");
+//		ctx.refresh();
+//		System.out.println(ctx);
+//        UserApplication userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
+////        User user = populator.populateBean(User.class);
+//        Person person = new Person("Rondy","123");
+//        User user = new User(person, "username", "123");
+//		boolean result = userApplication.save(user);
+//		if(result)
+//			System.out.println("Done!");
+//		else
+//			System.out.println("Ops!");
 	}
 }

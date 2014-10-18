@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.annotations.Authenticate;
+import br.com.async.config.ApplicationContext;
+import br.com.async.core.application.ProfessorApplication;
+import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Professor;
 import br.com.async.util.Constants;
 import br.com.async.util.ResponseData;
@@ -23,44 +26,86 @@ public class ProfessorController extends BaseController{
 	
 	Logger logger = Logger.getLogger(ProfessorController.class.getName());
 	
+	private ProfessorApplication professorApplication = ApplicationContext.getInstance().getBean("professorApplicationImpl", ProfessorApplication.class);
+	
+	/**
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors", method = RequestMethod.GET)
-	public @ResponseBody List<Professor> list(HttpServletRequest request, HttpServletResponse response){
-//		return professorApplication.list();
-		return null;
+	public @ResponseBody List<Professor> list(){
+		return professorApplication.list();
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.GET)
 	public @ResponseBody Professor find(@PathVariable String id){
-//		return professorApplication.find(Integer.parseInt(id));
-		return null;
+		return professorApplication.findByCode(Integer.parseInt(id));
 	}
 	
+	/**
+	 * @param professor
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors", method = RequestMethod.POST)
 	public @ResponseBody ResponseData save(@RequestBody Professor professor){
-//		professorApplication.save(professor);
-//		ResponseData responseData = new ResponseData(Constants.REGISTRY_SAVED, ResponseData.SUCCESS);
-		return null;
+		
+		boolean resultQuery = professorApplication.save(professor);
+		ResponseData responseData;
+		
+		if(resultQuery)
+			responseData = new ResponseData(Constants.REGISTRY_SAVED, ResponseData.SUCCESS);
+		else
+			responseData = new ResponseData(Constants.ERROR, ResponseData.ERROR);
+		
+		return responseData;
+		
 	}
 	
+	/**
+	 * @param professor
+	 * @return
+	 */
 	@Authenticate
-	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value="/api/professors", method = RequestMethod.PUT)
 	public @ResponseBody ResponseData update(@RequestBody Professor professor){
-//		professorApplication.update(professor);
-//		ResponseData responseData = new ResponseData(Constants.REGISTRY_UPDATED, ResponseData.SUCCESS);
-//		return responseData;
-		return null;
+		boolean resultQuery = professorApplication.update(professor);
+		ResponseData responseData;
+		
+		if(resultQuery)
+			responseData = new ResponseData(Constants.REGISTRY_UPDATED, ResponseData.SUCCESS);
+		else
+			responseData = new ResponseData(Constants.ERROR, ResponseData.ERROR);
+		
+		return responseData;
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseData delete(@PathVariable String id){
-//		professorApplication.delete(Integer.parseInt(id));
-//		ResponseData responseData = new ResponseData(Constants.REGISTRY_REMOVED, ResponseData.SUCCESS);
-//		return responseData;
-		return null;
+		Professor professor = new Professor();
+		professor.setCode(Integer.parseInt(id));
+		
+		boolean resultQuery = professorApplication.delete(professor);
+		ResponseData responseData;
+		
+		if(resultQuery)
+			responseData = new ResponseData(Constants.REGISTRY_REMOVED, ResponseData.SUCCESS);
+		else
+			responseData = new ResponseData(Constants.ERROR, ResponseData.ERROR);
+		
+		return responseData;
 	}
 	
 }

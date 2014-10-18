@@ -20,7 +20,7 @@ public class Semester extends AbstractEntity {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "semester_seq", sequenceName = "semester_seq")
 	@GeneratedValue(generator = "semester_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	private String name;
 	

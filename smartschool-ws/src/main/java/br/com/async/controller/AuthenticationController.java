@@ -1,6 +1,8 @@
 package br.com.async.controller;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.async.core.application.UserApplication;
 import br.com.async.config.ApplicationContext;
+import br.com.async.core.application.UserApplication;
+import br.com.async.core.entities.Person;
+import br.com.async.core.entities.User;
 import br.com.async.entities.AuthUser;
 import br.com.async.util.Constants;
 import br.com.async.util.HttpUtils;
@@ -33,6 +37,8 @@ public class AuthenticationController extends BaseController{
 	private HttpSession httpSession;
 	
 	private UserApplication userApplication = ApplicationContext.getInstance().getBean("userApplicationImpl", UserApplication.class);
+	
+	private Logger logger = Logger.getLogger(AuthenticationController.class.getName());
 	
 	@RequestMapping(value="/must-be-logged")
 	public @ResponseBody ResponseData mustBeLogged(){
@@ -63,6 +69,60 @@ public class AuthenticationController extends BaseController{
 			String json = ow.writeValueAsString(responseData);
 			return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
 		}
+		
+	}
+//		{
+//		  "person" : {
+//		    "name" : "Rondy",
+//		    "cpf" : "123"
+//		  },
+//		  "username" : "admin",
+//		  "password" : "123"
+//		}
+	@RequestMapping(value="/api/users", method = RequestMethod.POST)
+	public @ResponseBody ResponseData saveUser(@RequestBody User user) throws Exception{
+		
+		logger.info("Chegou Aqui");
+		System.out.println("Chegou!");
+		
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		String json = ow.writeValueAsString(user);
+		
+		logger.info(json);
+		
+		ResponseData responseData = null;
+		try{
+			boolean resultQuery = userApplication.save(user);
+			if(resultQuery){
+				responseData = new ResponseData(Constants.USER_SAVED, HttpStatus.OK.toString());
+				return responseData;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			responseData = new ResponseData(Constants.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString());
+		}
+		return responseData;
+		
+		
+	}
+	
+	public static void main(String[] args) throws JsonGenerationException, JsonMappingException, IOException {
+		
+//		Person person = new Person("Rondy","123");
+//        User user = new User(person, "username", "123");
+		
+		User user = new User();
+		user.setPassword("123");
+		user.setUsername("admin");
+		Person person = new Person();
+		person.setCpf("123");
+		person.setName("Rondy");
+		user.setPerson(person);
+		
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		String json = ow.writeValueAsString(user);
+		
+		System.out.println(json);
 		
 	}
 	

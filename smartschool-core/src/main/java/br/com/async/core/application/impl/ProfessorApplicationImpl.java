@@ -1,39 +1,47 @@
 package br.com.async.core.application.impl;
 
-import br.com.async.core.application.ProfessorApplication;
-import br.com.async.core.application.UserApplication;
-import br.com.async.core.entities.Professor;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import br.com.async.core.application.ProfessorApplication;
+import br.com.async.core.entities.Professor;
+import br.com.async.core.repository.ProfessorRepository;
+
+@Service("professorApplicationImpl")
+@Transactional
 public class ProfessorApplicationImpl implements ProfessorApplication{
 
-	@Override
+	@Autowired
+	@Qualifier("professorRepositoryImpl")
+	private ProfessorRepository repository;
+	
+	@Transactional
 	public boolean save(Professor entity) {
-		// TODO Auto-generated method stub
-		return false;
+		 return repository.save(entity);
 	}
 
-	@Override
+	@Transactional
 	public boolean update(Professor entity) {
-		// TODO Auto-generated method stub
-		return false;
+		return repository.update(entity);
 	}
 
-	@Override
+	@Transactional
 	public boolean delete(Professor entity) {
-		// TODO Auto-generated method stub
-		return false;
+		return repository.delete(entity);
 	}
 
-	@Override
-	public boolean findByCode(Integer code) {
-		// TODO Auto-generated method stub
-		return false;
+	@Transactional
+	public Professor findByCode(Integer code) {
+		return repository.findByCode(code);
 	}
 
-	@Override
-	public Iterable<Integer> list() {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public List<Professor> list() {
+		return repository.list();
 	}
 
 }

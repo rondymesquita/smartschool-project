@@ -24,10 +24,10 @@ public class SchoolClass extends AbstractEntity {
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "schoolclass_seq", sequenceName = "schoolclass_seq")
 	@GeneratedValue(generator = "schoolclass_seq", strategy = GenerationType.AUTO)
 	private Integer code;
-	@NonNull
+	
 	@Getter
 	private String content;
-	@NonNull
+	
 	@Getter
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Attendance> attendanceList;

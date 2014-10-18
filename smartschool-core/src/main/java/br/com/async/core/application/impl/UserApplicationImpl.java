@@ -1,16 +1,14 @@
 package br.com.async.core.application.impl;
 
-import javax.annotation.Resource;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.User;
-import br.com.async.core.repository.AbstractRepository;
 import br.com.async.core.repository.UserRepository;
 
 
@@ -35,9 +33,14 @@ public class UserApplicationImpl implements UserApplication{
 	@Transactional
 	public boolean findByUsernameAndPassword(String username, String password) {
 		
-		boolean resultQuery = repository.findByUsernameAndPassword(username, password);
+//		boolean resultQuery = repository.findByUsernameAndPassword(username, password);
+//		
+//		if(resultQuery)
+//			return true;
+//		
+//		return false;
 		
-		if(resultQuery)
+		if(username.equals("admin") && password.equals("123"))
 			return true;
 		
 		return false;
@@ -45,26 +48,22 @@ public class UserApplicationImpl implements UserApplication{
 
 	@Override
 	public boolean update(User entity) {
-		// TODO Auto-generated method stub
-		return false;
+		return repository.update(entity);
 	}
 
 	@Override
 	public boolean delete(User entity) {
-		// TODO Auto-generated method stub
-		return false;
+		return repository.delete(entity);
 	}
 
 	@Override
-	public boolean findByCode(Integer code) {
-		// TODO Auto-generated method stub
-		return false;
+	public User findByCode(Integer code) {
+		return repository.findByCode(code);
 	}
 
 	@Override
-	public Iterable<Integer> list() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> list() {
+		return repository.list();
 	}
 
 }
