@@ -1,5 +1,6 @@
 package br.com.async.domain;
 
+import java.io.IOException;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -12,19 +13,19 @@ import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professor;
 
-public class ProfessorTest {
+public class ProfessorTest extends BaseTest{
 
 	private ProfessorApplication professorApplication;
 
 	private AnnotationConfigApplicationContext ctx;
 
 	@Before
-	public void before() {
+	public void before() throws IOException {
 
 		ctx = new AnnotationConfigApplicationContext();
 		ctx.scan("br.com.async.core");
 		ctx.refresh();
-
+		
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
 	}
 
