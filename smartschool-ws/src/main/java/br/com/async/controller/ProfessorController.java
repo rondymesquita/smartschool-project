@@ -28,18 +28,31 @@ public class ProfessorController extends BaseController{
 	
 	private ProfessorApplication professorApplication = ApplicationContext.getInstance().getBean("professorApplicationImpl", ProfessorApplication.class);
 	
+	/**
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors", method = RequestMethod.GET)
-	public @ResponseBody List<Professor> list(HttpServletRequest request, HttpServletResponse response){
+	public @ResponseBody List<Professor> list(){
 		return professorApplication.list();
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.GET)
 	public @ResponseBody Professor find(@PathVariable String id){
 		return professorApplication.findByCode(Integer.parseInt(id));
 	}
 	
+	/**
+	 * @param professor
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors", method = RequestMethod.POST)
 	public @ResponseBody ResponseData save(@RequestBody Professor professor){
@@ -56,6 +69,10 @@ public class ProfessorController extends BaseController{
 		
 	}
 	
+	/**
+	 * @param professor
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors", method = RequestMethod.PUT)
 	public @ResponseBody ResponseData update(@RequestBody Professor professor){
@@ -70,6 +87,10 @@ public class ProfessorController extends BaseController{
 		return responseData;
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseData delete(@PathVariable String id){

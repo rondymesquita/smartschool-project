@@ -57,6 +57,13 @@ cargo{
 		canonicalPath = file("../apache-tomcat-7.0.55")
 	}
 }
+
+javadoc {
+source = sourceSets.main.allJava
+classpath = configurations.compile
+exclude "**/application/**","**/repository/**"
+}
+
 //
 //task downloadTomcat(type: Copy){
 //	def f = new File('../apache-tomcat-7.0.55.zip')
