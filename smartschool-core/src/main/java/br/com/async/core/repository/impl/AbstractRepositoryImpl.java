@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import br.com.async.core.entities.Professor;
 import br.com.async.core.repository.AbstractRepository;
 
 @Repository

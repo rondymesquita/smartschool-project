@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.annotations.Authenticate;
 import br.com.async.config.ApplicationContext;
-import br.com.async.core.application.ProfessorApplication;
-import br.com.async.core.entities.Professor;
+import br.com.async.core.application.StudentApplication;
+import br.com.async.core.entities.Student;
 import br.com.async.util.Constants;
 import br.com.async.util.ResponseData;
 
 @Controller
-public class ProfessorController extends BaseController{
+public class StudentController extends BaseController{
 	
-	private ProfessorApplication professorApplication = ApplicationContext.getInstance().getBean("professorApplicationImpl", ProfessorApplication.class);
+	private StudentApplication studentApplication = ApplicationContext.getInstance().getBean("studentApplicationImpl", StudentApplication.class);
+	
 	
 	/**
 	 * @param request
@@ -27,9 +28,9 @@ public class ProfessorController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
-	@RequestMapping(value="/api/professors", method = RequestMethod.GET)
-	public @ResponseBody List<Professor> list(){
-		return professorApplication.list();
+	@RequestMapping(value="/api/students", method = RequestMethod.GET)
+	public @ResponseBody List<Student> list(){
+		return studentApplication.list();
 	}
 	
 	/**
@@ -37,20 +38,20 @@ public class ProfessorController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
-	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.GET)
-	public @ResponseBody Professor find(@PathVariable String id){
-		return professorApplication.findByCode(Integer.parseInt(id));
+	@RequestMapping(value="/api/students/{id}", method = RequestMethod.GET)
+	public @ResponseBody Student find(@PathVariable String id){
+		return studentApplication.findByCode(Integer.parseInt(id));
 	}
 	
 	/**
-	 * @param professor
+	 * @param student
 	 * @return
 	 */
 	@Authenticate
-	@RequestMapping(value="/api/professors", method = RequestMethod.POST)
-	public @ResponseBody ResponseData save(@RequestBody Professor professor){
+	@RequestMapping(value="/api/students", method = RequestMethod.POST)
+	public @ResponseBody ResponseData save(@RequestBody Student student){
 		
-		boolean resultQuery = professorApplication.save(professor);
+		boolean resultQuery = studentApplication.save(student);
 		ResponseData responseData;
 		
 		if(resultQuery)
@@ -63,13 +64,13 @@ public class ProfessorController extends BaseController{
 	}
 	
 	/**
-	 * @param professor
+	 * @param student
 	 * @return
 	 */
 	@Authenticate
-	@RequestMapping(value="/api/professors", method = RequestMethod.PUT)
-	public @ResponseBody ResponseData update(@RequestBody Professor professor){
-		boolean resultQuery = professorApplication.update(professor);
+	@RequestMapping(value="/api/students", method = RequestMethod.PUT)
+	public @ResponseBody ResponseData update(@RequestBody Student student){
+		boolean resultQuery = studentApplication.update(student);
 		ResponseData responseData;
 		
 		if(resultQuery)
@@ -85,12 +86,12 @@ public class ProfessorController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
-	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value="/api/students/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseData delete(@PathVariable String id){
-		Professor professor = new Professor();
-		professor.setCode(Integer.parseInt(id));
+		Student student = new Student();
+		student.setCode(Integer.parseInt(id));
 		
-		boolean resultQuery = professorApplication.delete(professor);
+		boolean resultQuery = studentApplication.delete(student);
 		ResponseData responseData;
 		
 		if(resultQuery)
@@ -100,5 +101,5 @@ public class ProfessorController extends BaseController{
 		
 		return responseData;
 	}
-	
+
 }
