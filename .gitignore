@@ -8,3 +8,4 @@ build/
 apache*
 .gradle
 **/*.bin
+**/.settings/**
