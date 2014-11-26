@@ -25,19 +25,19 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan({ "br.com.async.core" })
 public class HibernateConfig {
 
-	@Value("${postgres.driverClassName}")
+	@Value("${mysql.driverClassName}")
 	private String driverClassName;
 	
-	@Value("${postgres.url}")
+	@Value("${mysql.url.estevao}")
 	private String url;
 	
-	@Value("${postgres.username}")
+	@Value("${mysql.username}")
 	private String username;
 	
-	@Value("${postgres.password}")
+	@Value("${mysql.password}")
 	private String password;
 	
-	@Value("${postgres.dialect}")
+	@Value("${mysql.dialect}")
 	private String hibernateDialect;
 	
 	@Value("${hibernate.show_sql}")
