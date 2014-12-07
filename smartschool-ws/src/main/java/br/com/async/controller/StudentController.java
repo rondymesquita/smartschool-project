@@ -44,7 +44,7 @@ public class StudentController extends BaseController{
 	}
 	
 	/**
-	 * @param student
+	 * @param {"person":{"name":"Name","cpf":"123"},"registry":"123"}
 	 * @return
 	 */
 	@Authenticate
@@ -64,7 +64,7 @@ public class StudentController extends BaseController{
 	}
 	
 	/**
-	 * @param student
+	 * @param {"code":3,"person":{"name":"Name","cpf":"123"},"registry":"123"}
 	 * @return
 	 */
 	@Authenticate

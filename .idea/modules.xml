@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/smartschool-core/smartschool-core.iml" filepath="$PROJECT_DIR$/smartschool-core/smartschool-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartschool-ws/smartschool-ws.iml" filepath="$PROJECT_DIR$/smartschool-ws/smartschool-ws.iml" />
+    </modules>
+  </component>
+</project>

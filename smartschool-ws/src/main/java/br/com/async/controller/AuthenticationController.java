@@ -1,7 +1,6 @@
 package br.com.async.controller;
 
 import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import br.com.async.annotations.Authenticate;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Person;
@@ -47,7 +47,7 @@ public class AuthenticationController extends BaseController{
 	
 	/**
 	 * @param {"username":"johndoe","password":"123"}
-	 * @return
+	 * @return {"Token":"d1721d27-50e2-49fa-bbfa-2f62946a34b8","Login":"TRUE"}
 	 * @throws IOException 
 	 * @throws JsonMappingException 
 	 * @throws JsonGenerationException 
@@ -71,14 +71,13 @@ public class AuthenticationController extends BaseController{
 		}
 		
 	}
-//		{
-//		  "person" : {
-//		    "name" : "Rondy",
-//		    "cpf" : "123"
-//		  },
-//		  "username" : "admin",
-//		  "password" : "123"
-//		}
+
+	/**
+	 * @param { "person" : { "name" : "Nome", "cpf" : "123" }, "username" : "admin", "password" : "123" }
+	 * @return {"message":"Usuário salvo com sucesso","status":"200"}
+	 * @throws Exception
+	 */
+	@Authenticate
 	@RequestMapping(value="/api/users", method = RequestMethod.POST)
 	public @ResponseBody ResponseData saveUser(@RequestBody User user) throws Exception{
 		

@@ -22,9 +22,9 @@ public class ProfessorController extends BaseController{
 	private ProfessorApplication professorApplication = ApplicationContext.getInstance().getBean("professorApplicationImpl", ProfessorApplication.class);
 	
 	/**
-	 * @param request
+	 * @param Header Token
 	 * @param response
-	 * @return
+	 * @return [{"code":1,"person":{"code":1,"name":"Name","cpf":"123"},"enrollments":"Enrollment","registry":"123","formation":"msc"}]
 	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors", method = RequestMethod.GET)
@@ -43,8 +43,8 @@ public class ProfessorController extends BaseController{
 	}
 	
 	/**
-	 * @param professor
-	 * @return
+	 * @param {"person":{"name":"Name","cpf":"123"},"enrollments":"Enrollment","registry":"123","formation":"msc"}
+	 * @return {"message":"Salvo!","status":"sucess"}
 	 */
 	@Authenticate
 	@RequestMapping(value="/api/professors", method = RequestMethod.POST)
@@ -63,7 +63,7 @@ public class ProfessorController extends BaseController{
 	}
 	
 	/**
-	 * @param professor
+	 * @param {"code":2,"person":{"code":1,"name":"Rondy","cpf":"123"},"enrollments":"xxx","registry":"123","formation":"msc"}
 	 * @return
 	 */
 	@Authenticate
@@ -81,7 +81,7 @@ public class ProfessorController extends BaseController{
 	}
 	
 	/**
-	 * @param id
+	 * @param path id
 	 * @return
 	 */
 	@Authenticate

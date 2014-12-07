@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import lombok.Data;
 import lombok.Getter;
-import lombok.NonNull;
 
 @Data
 public class AuthUser implements Serializable{
@@ -16,5 +15,25 @@ public class AuthUser implements Serializable{
 	private String password;
 	@Getter
 	private String authToken;
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getAuthToken() {
+		return authToken;
+	}
+	public void setAuthToken(String authToken) {
+		this.authToken = authToken;
+	}
+	
+	
 
 }
