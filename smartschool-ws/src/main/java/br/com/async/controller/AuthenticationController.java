@@ -77,7 +77,6 @@ public class AuthenticationController extends BaseController{
 	 * @return {"message":"Usuário salvo com sucesso","status":"200"}
 	 * @throws Exception
 	 */
-	@Authenticate
 	@RequestMapping(value="/api/users", method = RequestMethod.POST)
 	public @ResponseBody ResponseData saveUser(@RequestBody User user) throws Exception{
 		

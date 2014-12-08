@@ -29,7 +29,7 @@ public class Professorship extends AbstractEntity {
 	
 	@Getter
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Student> studentList;
+	private List<Student> students;
 	
 	@Getter
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

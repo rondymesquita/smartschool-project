@@ -1,6 +1,5 @@
 package br.com.async.application;
 
-import java.util.List;
 
 public interface AbstractApplication <T> {
 

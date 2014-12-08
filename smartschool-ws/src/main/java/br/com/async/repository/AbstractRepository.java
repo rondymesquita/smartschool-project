@@ -1,6 +1,5 @@
 package br.com.async.repository;
 
-import java.util.List;
 
 public interface AbstractRepository <T> {
 	
