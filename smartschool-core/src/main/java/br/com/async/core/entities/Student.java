@@ -32,7 +32,7 @@ public class Student extends AbstractEntity implements Serializable {
 	private Integer code;
 	
 	@Getter
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "person")
 	private Person person;
 	@Getter

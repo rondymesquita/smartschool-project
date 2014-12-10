@@ -1,6 +1,7 @@
 package br.com.async.core.entities;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -16,36 +18,43 @@ import javax.persistence.SequenceGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.IndexColumn;
 @Data
 @Entity(name = "tb_professorship")
 @EqualsAndHashCode(callSuper=false)
-public class Professorship extends AbstractEntity {
-	@Getter
+public class Professorship extends AbstractEntity implements Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//	@Getter
 	@Id
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "professorship_seq", sequenceName = "professorship_seq")
 	@GeneratedValue(generator = "professorship_seq", strategy = GenerationType.AUTO)
 	private Integer code;
 	
 	@Getter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Student> students;
+	@OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Student> students;
 	
 	@Getter
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "professor")
 	private Professor professor;
 	
 	@Getter
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "discipline")
 	private Discipline discipline;
 	
 	@Getter
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
 	@JoinColumn(name = "diary")
 	private Diary diary;
-	
-	
+
 	
 }
