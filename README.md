@@ -1,29 +1,25 @@
-# README #
+# Smartschool Project
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Requirements
+- Gradle 1.8+
+- Maven 7
+- Tomcat 7+
+- Mysql or Postgres Database
 
-### What is this repository for? ###
+#### Building and Running
+* Configure you database credentials in **smartschool-core/src/main/resources/application.properties**
+* Go to **smartschool-core** via terminal and execute
+```
+$ gradle install
+```
+* Go to **smartschool-ws** via terminal and execute
+```
+$ gradle eclipse
+```
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+- Now, run you project in Tomcat Container
+- To generate **war** package, go to **smartschool-ws** and execute
+```
+$ gradle package
+```
+Gradle will generate **war** package at **smartschool-ws/build**
