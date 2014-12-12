@@ -2,9 +2,7 @@ package br.com.async.core.entities;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,11 +26,14 @@ public class SchoolClass extends AbstractEntity {
 	@Getter
 	private String content;
 	
-	@Getter
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Set<Attendance> attendanceList;
-	
 //	@Getter
-//	private Set<Integer> studentsCodes;
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	private Set<Attendance> attendances;
+	
+	@Getter
+	@OneToMany
+	private Set<Student> studentsAttendance;
+	
+	
 	
 }

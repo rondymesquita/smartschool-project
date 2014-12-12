@@ -1,6 +1,8 @@
 package br.com.async.domain;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,14 +56,22 @@ public class ProfessorshipTest extends BaseTest{
 		student.setPerson(person);
 		studentApplication.save(student);
 		
+		student = new Student();
+		student.setRegistry("abc");
+		Person person2 = new Person();
+		person2.setName("Peter");
+		person2.setCpf("123");
+		student.setPerson(person2);
+		studentApplication.save(student);
+		
 		Professor professor = new Professor();
 		professor.setEnrollments("Enrollment");
 		professor.setRegistry("123");
 		professor.setFormation("msc");
-		Person person2 = new Person();
-		person2.setName("John");
-		person2.setCpf("123");
-		professor.setPerson(person2);
+		Person person3 = new Person();
+		person3.setName("John");
+		person3.setCpf("123");
+		professor.setPerson(person3);
 		professorApplication.save(professor);
 		
 		Discipline discipline = new Discipline();
@@ -76,10 +86,9 @@ public class ProfessorshipTest extends BaseTest{
 		Professor professor = new Professor();
 		professor.setCode(1);
 		
-		Student student = new Student();
-		student.setCode(1);
 		Set<Student> students = new HashSet<Student>();
-		students.add(student);
+		students.add(studentApplication.findByCode(1));
+		students.add(studentApplication.findByCode(2));
 		
 		Discipline discipline = new Discipline();
 		discipline.setCode(1);
@@ -88,6 +97,12 @@ public class ProfessorshipTest extends BaseTest{
 		Set<SchoolClass> schoolClasses = new HashSet<SchoolClass>();
 		SchoolClass schoolClass = new SchoolClass();
 		schoolClass.setContent("Aula 1");
+//		List<String> studentsAttendance = new ArrayList<String>();
+//		studentsAttendance.add(student.getCode().toString());
+		Set<Student> studentsAttendance = new HashSet<Student>();
+		studentsAttendance.add(studentApplication.findByCode(1));
+		schoolClass.setStudentsAttendance(studentsAttendance);
+		
 		schoolClasses.add(schoolClass);
 		diary.setSchoolClasses(schoolClasses);
 		
@@ -104,17 +119,28 @@ public class ProfessorshipTest extends BaseTest{
 	@Test
 	public void listTest() {
 		List<Professorship> lista = professorshipApplication.list();
-		for (Professorship ps : lista) {
+//		for (Professorship professorship : lista) {
+		Professorship professorship = professorshipApplication.findByCode(1);
 			
-			System.out.println(ps.getProfessor());
-			System.out.println(ps.getDiscipline());
-			System.out.println(ps.getDiary());
+			System.out.println(professorship.getProfessor());
+			System.out.println(professorship.getDiscipline());
+			System.out.println(professorship.getDiary());
 			
-			Set<Student> students = ps.getStudents();
+			Set<Student> students = professorship.getStudents();
+			System.out.println("==== Estudantes Matriculados ===");
 			for (Student student : students) {
-				System.out.println(student.getPerson().getName());
+				System.out.println(student.getCode());
 			}
-		}
+			
+			Set<SchoolClass> schoolClasses = professorship.getDiary().getSchoolClasses();
+			System.out.println("==== Estudantes Presentes ===");
+			for (SchoolClass schoolClass : schoolClasses) {
+				Set<Student> attendace = schoolClass.getStudentsAttendance();
+				for (Student student : attendace) {
+					System.out.println(student.getCode());
+				}
+			}
+//		}
 
 	}
 	
