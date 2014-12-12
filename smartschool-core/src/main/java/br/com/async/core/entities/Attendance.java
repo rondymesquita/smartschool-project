@@ -25,7 +25,8 @@ public class Attendance extends AbstractEntity{
 	
 	@Getter
 	@OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "student")
 	private Student student;
+	
+	
 
 }

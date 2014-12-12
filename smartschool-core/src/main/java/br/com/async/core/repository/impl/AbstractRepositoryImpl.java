@@ -42,7 +42,7 @@ public abstract class AbstractRepositoryImpl<T, E extends Serializable> implemen
 	@Override
 	public boolean update(T entity) {
 		try {
-			hibernateTemplate.update(entity);
+			hibernateTemplate.merge(entity);
 			return true;
 		} catch (RuntimeException re) {
 			System.err.println(re);

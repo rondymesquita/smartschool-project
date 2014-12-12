@@ -44,6 +44,6 @@ public class CourseCurriculumSemester extends AbstractEntity{
 	
 	@Getter
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private	List<Professorship> professorshipList;
+	private	List<Professorship> professorships;
 	
 }

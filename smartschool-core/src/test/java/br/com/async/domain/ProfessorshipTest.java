@@ -13,10 +13,12 @@ import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.application.StudentApplication;
+import br.com.async.core.entities.Diary;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
+import br.com.async.core.entities.SchoolClass;
 import br.com.async.core.entities.Student;
 
 public class ProfessorshipTest extends BaseTest{
@@ -82,11 +84,18 @@ public class ProfessorshipTest extends BaseTest{
 		Discipline discipline = new Discipline();
 		discipline.setCode(1);
 		
-		Professorship professorship = new Professorship();
+		Diary diary = new Diary();
+		Set<SchoolClass> schoolClasses = new HashSet<SchoolClass>();
+		SchoolClass schoolClass = new SchoolClass();
+		schoolClass.setContent("Aula 1");
+		schoolClasses.add(schoolClass);
+		diary.setSchoolClasses(schoolClasses);
 		
+		Professorship professorship = new Professorship();
 		professorship.setProfessor(professor);
 		professorship.setStudents(students);
 		professorship.setDiscipline(discipline);
+		professorship.setDiary(diary);
 		professorshipApplication.save(professorship);
 		
 		
@@ -95,11 +104,14 @@ public class ProfessorshipTest extends BaseTest{
 	@Test
 	public void listTest() {
 		List<Professorship> lista = professorshipApplication.list();
-		for (Professorship professorship2 : lista) {
-			Set<Student> sets = professorship2.getStudents();
-			System.out.println(professorship2.getProfessor());
-			System.out.println(professorship2.getDiscipline());
-			for (Student student : sets) {
+		for (Professorship ps : lista) {
+			
+			System.out.println(ps.getProfessor());
+			System.out.println(ps.getDiscipline());
+			System.out.println(ps.getDiary());
+			
+			Set<Student> students = ps.getStudents();
+			for (Student student : students) {
 				System.out.println(student.getPerson().getName());
 			}
 		}

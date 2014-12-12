@@ -1,6 +1,6 @@
 package br.com.async.core.entities;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,11 +14,11 @@ import javax.persistence.SequenceGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 @Data
 @Entity(name = "tb_schoolclass")
 @EqualsAndHashCode(callSuper=false)
 public class SchoolClass extends AbstractEntity {
+	
 	@Getter
 	@Id
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "schoolclass_seq", sequenceName = "schoolclass_seq")
@@ -30,6 +30,9 @@ public class SchoolClass extends AbstractEntity {
 	
 	@Getter
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Attendance> attendanceList;
+	private Set<Attendance> attendanceList;
+	
+//	@Getter
+//	private Set<Integer> studentsCodes;
 	
 }

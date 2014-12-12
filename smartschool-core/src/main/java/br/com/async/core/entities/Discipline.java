@@ -33,13 +33,4 @@ public class Discipline extends AbstractEntity implements Serializable {
 	@Getter
 	private Integer workload;
 	
-//	@Getter
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "student")
-//	private Student student;
-//	
-//	@Getter
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "teacher")
-//	private Professor teacher;
 }

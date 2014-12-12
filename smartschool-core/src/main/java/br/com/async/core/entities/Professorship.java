@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -18,10 +17,6 @@ import javax.persistence.SequenceGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.IndexColumn;
 @Data
 @Entity(name = "tb_professorship")
 @EqualsAndHashCode(callSuper=false)
@@ -31,7 +26,7 @@ public class Professorship extends AbstractEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	//	@Getter
+	@Getter
 	@Id
 	@SequenceGenerator(initialValue = 1, allocationSize = 1, name = "professorship_seq", sequenceName = "professorship_seq")
 	@GeneratedValue(generator = "professorship_seq", strategy = GenerationType.AUTO)
@@ -52,7 +47,7 @@ public class Professorship extends AbstractEntity implements Serializable{
 	private Discipline discipline;
 	
 	@Getter
-	@OneToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade =  CascadeType.ALL)
 	@JoinColumn(name = "diary")
 	private Diary diary;
 
