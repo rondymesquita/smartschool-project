@@ -9,3 +9,4 @@ apache*
 .gradle
 **/*.bin
 **/.settings/**
+**/bower_components/**
