@@ -12,44 +12,21 @@ angular.module('SmartschoolApp').service('httpClient', ['$http', 'constants', fu
 		return $http({
 			url: constants.url + constants.loginUri,
 			method: 'POST',
+			// headers : { 'Content-Type': 'application/x-www-form-urlencoded' },
+			// headers : { 'Access-Control-Allow-Origin' :'true'},
+
 			data: JSON.stringify({"username":username,"password":password})
-			// headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-		}).success(function(data, status, header, config) {
-			console.log(data);
-			console.log("Success!");
-		}).error(function(data, status, header, config){
-			console.log(status);
-		})['finally'](function() {
-			console.log("done!");
-		});
 
+		}).success(function(data, status, header, config) {
+			// console.log(data);
+		}).error(function(data, status, header, config){
+			// console.log(data);
+		})['finally'](function() {
+
+		});
 
 
 	};
 
-
-	this.get = function(url, token) {
-
-		url = constants.url + constants.professorsUri
-
-		var defered = new $.Deferred();
-
-		return $http({
-				url: constants.url + constants.professorsUri,
-				method: 'GET',
-				//data: $.param($scope.formData),
-				headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-		}).success(function(data, status, header, config) {
-				console.log(data);
-				console.log("Success!");
-				defered.resolve(data, status, header, config);
-		}).error(function(data, status, header, config){
-				console.log("Error: "+data.error.message + " : " + status);
-				defered.reject(data);
-		})['finally'](function() {
-				// console.log("done!");
-		});
-
-	};
 
 }]);

@@ -1,0 +1,48 @@
+<h3>
+  {{title}}
+</h3>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <div class="navbar-header toolbar">
+        <a type="button" class="btn btn-default navbar-btn">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Novo
+          </a>
+      </div>
+
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Nome ou código da disciplina">
+        </div>
+        <button type="submit" class="btn btn-default">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          Buscar</button>
+      </form>
+
+    </div>
+  </nav>
+
+<div>
+  
+</div>
+
+<div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th data-field="code">Cód</th>
+        <th data-field="name">Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="tr_id_1" class="tr-class-1" ng-repeat="discipline in disciplines">
+        <td id="td_id_1" class="td-class-1">{{discipline.code}}</td>
+        <td>{{discipline.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

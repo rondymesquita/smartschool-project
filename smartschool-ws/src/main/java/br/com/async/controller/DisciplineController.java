@@ -29,7 +29,7 @@ public class DisciplineController extends BaseController{
      * @param response
      * @return
      */
-    @Authenticate
+//    @Authenticate
     @RequestMapping(value="/api/disciplines", method = RequestMethod.GET)
     public @ResponseBody
     List<Discipline> list(){

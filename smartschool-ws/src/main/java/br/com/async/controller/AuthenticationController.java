@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import br.com.async.annotations.Authenticate;
 import br.com.async.config.ApplicationContext;
@@ -41,8 +42,8 @@ public class AuthenticationController extends BaseController{
 	private Logger logger = Logger.getLogger(AuthenticationController.class.getName());
 	
 	@RequestMapping(value="/must-be-logged")
-	public @ResponseBody ResponseData mustBeLogged(){
-		return new ResponseData(Constants.MUST_BE_LOGGED, HttpStatus.NETWORK_AUTHENTICATION_REQUIRED+"");
+	public @ResponseBody ResponseData mustBeLogged() throws Exception{
+		throw new UnauthorizedException();
 	}
 	
 	/**
@@ -121,6 +122,11 @@ public class AuthenticationController extends BaseController{
 		String json = ow.writeValueAsString(user);
 		
 		System.out.println(json);
+		
+	}
+	
+	@ResponseStatus(value=HttpStatus.UNAUTHORIZED)
+	public class UnauthorizedException extends RuntimeException{
 		
 	}
 	

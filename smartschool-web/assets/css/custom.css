@@ -1,0 +1,19 @@
+body{
+  background:#eee;
+}
+.mainContent{
+  background:#fff;
+}
+.container-fluid{
+  max-width:1100px;
+}
+.dashShortcut{
+  color:red;
+}
+.dashShortcut .glyphicon,
+.glyphicon-block{
+  display:block !important;
+}
+.toolbar{
+  /*padding:5px inherit;*/
+}
