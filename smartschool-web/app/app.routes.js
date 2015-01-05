@@ -1,19 +1,20 @@
-angular.module('SmartschoolApp', ['ngRoute']).config(function($routeProvider) {
+angular.module('SmartschoolApp').config(config);
 
+function config($routeProvider) {
     $routeProvider
 
     .when('/', {
-      templateUrl : './../dashboard/dashboardView.html',
-      controller  : 'DashboardController'
+        templateUrl : './../dashboard/dashboardView.html',
+        controller  : 'DashboardController'
     })
 
     .when('/disciplines', {
-      templateUrl : './../discipline/disciplineView.html',
-      controller  : 'DisciplineController'
+        templateUrl : './../discipline/disciplineView.html',
+        controller  : 'DisciplineController'
     })
 
     .otherwise({
-      templateUrl : './../dashboard/dashboardView.html'
-    })
+        templateUrl : './../dashboard/dashboardView.html'
+    });
 
-});
+}
