@@ -1,6 +1,4 @@
-angular.module('SmartschoolApp', [])
-
-//post init
-.run(function(){
-  console.log($location.path());
-});
+function ResponseData(message, status){
+    this.message = message;
+    this.status = status;
+}

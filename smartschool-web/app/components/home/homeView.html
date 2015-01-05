@@ -9,10 +9,12 @@
 
   <!-- Styles -->
   <link  href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link  href="../../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link  href="../../../assets/css/custom.css" rel="stylesheet" type="text/css">
 
   <!-- Libraries -->
   <script src="../../../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../../../bower_components/angular/angular.js"></script>
   <script src="../../../bower_components/angular-resource/angular-resource.js"></script>
   <script src="../../../bower_components/angular-route/angular-route.js"></script>
@@ -25,8 +27,9 @@
   <script src="../../app.routes.js"></script>
   <script src="../home/homeController.js"></script>
   <script src="../dashboard/dashboardController.js"></script>
-  
+
   <script src="../discipline/disciplineService.js"></script>
+  <script src="../discipline/disciplineCreateDirective.js"></script>
   <script src="../discipline/disciplineController.js"></script>
 
 
@@ -39,10 +42,10 @@
 
   <div class="container-fluid mainContent">
 
-    <ul>
+    <!-- <ul>
       <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
       <li><a href="#disciplines">Discipline</a></li>
-    </ul>
+    </ul> -->
 
     <div ng-view ng-init="formData.name = 'Rondy'">
     </div>

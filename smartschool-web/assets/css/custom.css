@@ -3,12 +3,15 @@ body{
 }
 .mainContent{
   background:#fff;
+  padding-top:20px;
+  padding-bottom:20px;
 }
 .container-fluid{
   max-width:1100px;
 }
 .dashShortcut{
-  color:red;
+  /*color:red;*/
+  margin-bottom:20px;
 }
 .dashShortcut .glyphicon,
 .glyphicon-block{
@@ -16,4 +19,35 @@ body{
 }
 .toolbar{
   /*padding:5px inherit;*/
+}
+
+/*
+    Font Awesome Custom
+*/
+.fa-spin{
+  -webkit-animation: fa-spin 0.7s infinite linear;
+}
+.fa-danger:before {
+    content: "\f06a";
+}
+.fa-info:before {
+    content: "\f05a";
+}
+.fa-warning:before {
+    content: "\f071";
+}
+.fa-success:before {
+    content: "\f058";
+}
+.fa-loading:before {
+    content: "\f110";
+}
+.fa-loading{
+-webkit-animation: fa-spin 0.7s infinite linear;
+}
+.loading{
+    background-color:#d9edf7
+}
+.text-loading{
+    color:#31708f;
 }

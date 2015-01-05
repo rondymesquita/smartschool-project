@@ -1,0 +1,32 @@
+<form ng-submit="saveDiscipline()">
+
+    <div class="modal fade" id="disciplineCreateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Novo Registro</h4>
+                </div>
+                    <div class="modal-body">
+
+                        <div class="alert alert-{{responseDataModal.status}} alert-dismissible" role="alert"  ng-show="onResponse && !onTransaction ">
+                            {{responseDataModal.message}}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fieldName">Nome da Disciplina</label>
+                            <input id="fieldName" ng-model="formData.name" ng-init="formData.name = 'Rondy'" type="text" class="form-control square" placeholder="" required>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="onTransaction">Salvar</button>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+</form>
