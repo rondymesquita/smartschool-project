@@ -1,7 +1,7 @@
 
-angular.module('SmartschoolApp').controller('DisciplineController', ['$scope', 'DisciplineService','constants', function ($scope, disciplineService, constants) {
+angular.module('SmartschoolApp').controller('DisciplineController', ['$scope', 'DisciplineService','constants','toast',function ($scope, disciplineService, constants, toast) {
 
-
+  $scope.controllerName = "dsadaslidjqwo";
   $scope.title = "Disciplinas";
   $scope.disciplines = [];
   $scope.onTransaction = false;
@@ -52,9 +52,11 @@ angular.module('SmartschoolApp').controller('DisciplineController', ['$scope', '
       },function(data){
 
           if(data.status == 0)
-              $scope.responseDataModal = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
+              //$scope.responseDataModal = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
+              toast.error(constants.message.CONNECTION_ERROR);
           else
-              $scope.responseDataModal = new ResponseData(constants.message.ERROR, constants.status.DANGER);
+              //$scope.responseDataModal = new ResponseData(constants.message.ERROR, constants.status.DANGER);
+              toast.error(constants.message.ERROR);
 
           $scope.onTransaction = false;
           $scope.onResponse = true;

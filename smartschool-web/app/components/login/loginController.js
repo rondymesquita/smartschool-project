@@ -26,10 +26,12 @@ angular.module('SmartschoolApp').controller('LoginController', ['$scope', 'httpC
 
 		},function(data){
 
-				console.log("Login Error");
-				console.log(data);
+			if(data.status == 0)
+			$scope.responseDataLogin = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
+				else
+			$scope.responseDataLogin = new ResponseData(constants.message.ERROR, constants.status.DANGER);
+
 				$scope.onTransaction = false;
-				$scope.alertMessage = data.data.message;
 				$scope.onResponse = true;
 		});
 
