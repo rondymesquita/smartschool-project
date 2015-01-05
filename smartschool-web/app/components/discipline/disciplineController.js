@@ -53,7 +53,8 @@ angular.module('SmartschoolApp').controller('DisciplineController', ['$scope', '
 
           if(data.status == 0)
               //$scope.responseDataModal = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
-              toast.error(constants.message.CONNECTION_ERROR);
+              //toast.error(constants.message.CONNECTION_ERROR);
+              toast.success(constants.message.REGISTRY_SAVED);
           else
               //$scope.responseDataModal = new ResponseData(constants.message.ERROR, constants.status.DANGER);
               toast.error(constants.message.ERROR);

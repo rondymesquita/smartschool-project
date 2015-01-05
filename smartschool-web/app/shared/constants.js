@@ -16,6 +16,8 @@ angular.module('SmartschoolApp').constant('constants',{
       LOADING: "Carregando registros",
       ERROR: "Erro ao carregar registros",
       EMPTY:"Nenhum registro encontrado",
-      CONNECTION_ERROR: "Não foi possível conectar-se ao servidor"
+      CONNECTION_ERROR: "Não foi possível conectar-se ao servidor",
+      REGISTRY_SAVED: "Registro salvo com sucesso!",
+      REGISTRY_UPDATED: "Registro atualizado com sucesso!",
   }
 });

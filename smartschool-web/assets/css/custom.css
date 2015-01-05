@@ -1,5 +1,24 @@
+@font-face{
+    src: url("../fonts/Lato.ttf");
+    font-family:Lato;
+}
+@font-face{
+    src: url("../fonts/Lato-Bol.ttf");
+    font-family:Lato-Bold;
+}
+@font-face{
+    src: url("../fonts/Russo_One.ttf");
+    font-family:Russo;
+}
+body, h1,h2,h3,h4,h5,h6{
+    font-family:Lato;
+}
+
 body{
   background:#eee;
+}
+.navbar-brand{
+    font-family:Russo;
 }
 .mainContent{
   background:#fff;
@@ -14,8 +33,15 @@ body{
   margin-bottom:20px;
 }
 .dashShortcut .glyphicon,
-.glyphicon-block{
+.dashShortcut .fa,
+.glyphicon-block,
+.fa-block{
   display:block !important;
+}
+.dashShortcut .glyphicon,
+.dashShortcut .fa{
+    font-size:40px;
+    border:1px solid transparent;
 }
 .toolbar{
   /*padding:5px inherit;*/

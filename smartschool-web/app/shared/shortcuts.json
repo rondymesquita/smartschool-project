@@ -1,10 +1,28 @@
 [
-  {
-  "title": "Disciplinas",
-  "url": "#disciplines"
-  },
-  {
-    "title": "Professores",
-    "url": "#professors"
-  }
+    {
+        "title": "Disciplinas",
+        "url": "#disciplines",
+        "icon": "book"
+    },
+    {
+        "title": "Professores",
+        "url": "#professors",
+        "icon": "university"
+    },
+    {
+        "title": "Cadeiras",
+        "url": "#professorships",
+        "icon": "book"
+    },
+    {
+        "title": "Alunos",
+        "url": "#students",
+        "icon": "graduation-cap"
+    },
+    {
+        "title": "Semestres",
+        "url": "#semesters",
+        "icon": "book"
+    }
+
 ]

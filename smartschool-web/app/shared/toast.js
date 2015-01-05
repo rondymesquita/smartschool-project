@@ -8,8 +8,8 @@ angular.module('SmartschoolApp').factory('toast', function () {
         "onclick": null,
         "showDuration": "300",
         "hideDuration": "1000",
-        "timeOut": "0",
-        "extendedTimeOut": "0",
+        "timeOut": "6000",
+        "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
@@ -25,7 +25,7 @@ angular.module('SmartschoolApp').factory('toast', function () {
     return {
         success: function (text) {
             toastr.options = options;
-            toastr.success(text,"Success");
+            toastr.success(text,"Successo");
         },
         error: function (text) {
             toastr.options = options;
