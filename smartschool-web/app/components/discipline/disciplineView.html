@@ -37,9 +37,19 @@
 <div>
   <table class="table table-striped" ng-table="tableParams">
     <tbody>
-      <tr ng-repeat="discipline in $data">
-        <td data-title="'Cód'" sortable="'code'" >{{discipline.code}}</td>
-        <td data-title="'Nome'" sortable="'name'">{{discipline.name}}</td>
+      <tr ng-repeat="discipline in $data"  ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false">
+        <td data-title="'Cód'" sortable="'code'" width="20%">{{discipline.code}}</td>
+        <td data-title="'Nome'" sortable="'name'" width="60%">{{discipline.name}}</td>
+        <td width="20%">
+            <form ng-show="showButtons" style="margin-bottom:0;" ng-submit="updateDiscipline">
+                <input type="text" ng-model="formData.code" value="{{discipline.code}}"/>
+                <input type="text" ng-model="formData.name" value="{{discipline.name}}"/>
+                <input type="text" ng-model="formData.workload" value="{{discipline.workload}}"/>
+
+                <input type="submit" value="Editar" class="btn btn-primary btn-sm"/>
+            </form>
+
+        </td>
       </tr>
 
       <tr ng-show="onResponse || onTransaction" ng-hide="onResponse">

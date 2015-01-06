@@ -10,6 +10,7 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.onTransaction = false;
     $scope.onResponse = false;
     $scope.formData;
+    $scope.saveAndNew;
 
 
     $scope.searchDisciplines = function(){
@@ -27,10 +28,10 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
             }
 
             $scope.tableParams = new ngTableParams({
-                page: 1,            // show first page
-                count: 10,           // count per page
+                page: constants.table.FIRST_PAGE,            // show first page
+                count: constants.table.COUNTS_PER_PAGE,           // count per page
                 sorting: {
-                    code: 'desc'     // initial sorting
+                    code: constants.table.SORTING
                 }
             }, {
                 total: $scope.disciplines.length, // length of data
@@ -47,22 +48,32 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
             console.log(data.status)
 
             if(data.status == 0)
-                $scope.responseData = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
-                else
-                    $scope.responseData = new ResponseData(constants.message.ERROR, constants.status.DANGER);
+                toast.error(constants.message.CONNECTION_ERROR);
+            else
+                toast.error(data.status + " " +data.statusText);
 
-                    $scope.onTransaction = false;
-                    $scope.onResponse = true;
-                });
+            $scope.onTransaction = false;
+            $scope.onResponse = true;
+        });
     }
 
     $scope.saveDiscipline = function(){
 
         $scope.onTransaction = true;
-
-        disciplineService.save()
+        console.log($scope.formData);
+        disciplineService.save($scope.formData)
         .then(function(data){
 
+
+            toast.success(constants.message.REGISTRY_SAVED);
+            console.log($scope.saveAndNew);
+
+            if($scope.saveAndNew == undefined){
+                $("#disciplineCreateModal").modal("hide");
+            }
+
+
+            $scope.formData = {};
             $scope.onTransaction = false;
             $scope.onResponse = true;
 
@@ -78,6 +89,10 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
             $scope.onResponse = true;
 
         });
+    }
+
+    $scope.updateDiscipline = function(){
+        
     }
 
 }

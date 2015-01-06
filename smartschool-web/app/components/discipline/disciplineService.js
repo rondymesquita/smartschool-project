@@ -20,16 +20,17 @@ angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constan
     });
   };
 
-  this.save = function() {
+  this.save = function(formData) {
 
       url = constants.url + constants.disciplinesUri;
       console.log(url);
 
       return $http({
           url: url,
-          method: 'POST'
+          method: 'POST',
+          data:formData
       }).success(function(data, status, header, config) {
-
+          
       }).error(function(data, status, header, config){
 
       })['finally'](function() {
