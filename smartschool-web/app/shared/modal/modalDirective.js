@@ -1,23 +1,19 @@
-angular.module('SmartschoolApp').directive('smModal',function(){
+angular.module('SmartschoolApp').directive('modal', function () {
     return {
-        restrict: 'A',
-        scope:{
-            title:'=modalTitle',
+        restrict: 'EA',
+        scope: {
+            title: '=modalTitle',
             header: '=modalHeader',
             body: '=modalBody',
             footer: '=modalFooter',
             callbackbuttonleft: '&ngClickLeftButton',
-            callbackbuttonright: '&ngClick',
+            callbackbuttonright: '&ngClickRightButton',
             handler: '=lolo'
         },
-        controller: function($scope){
-            $scope.defaultButtonHandler = function(){
-
-            };
-
-            $scope.primaryButtonHandler = function(){
-
-            };
-        }
+        templateUrl: '../../shared/modal/modalView.html',
+        transclude: true,
+        controller: function ($scope) {
+            $scope.handler = 'pop';
+        },
     };
 });

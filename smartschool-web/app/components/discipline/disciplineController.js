@@ -12,6 +12,17 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.formData;
     $scope.saveAndNew;
 
+    //
+    $scope.header = 'Put here your header';
+    $scope.body = 'Put here your body';
+    $scope.footer = 'Put here your footer';
+
+    $scope.myRightButton = function (bool) {
+        alert('!!! first function call!');
+    };
+
+    //
+
 
     $scope.searchDisciplines = function(){
 
@@ -92,7 +103,7 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     }
 
     $scope.updateDiscipline = function(){
-        
+
     }
 
 }
