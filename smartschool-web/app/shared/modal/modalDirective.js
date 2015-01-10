@@ -9,8 +9,6 @@ angular.module('SmartschoolApp').directive('modal', ['$sce', '$http', function (
         templateUrl: '../../shared/modal/modalView.html',
         transclude: true,
         controller: function ($scope, $element, $attrs) {
-            console.log("attrs");
-            console.log($attrs);
             $scope.handler = new Date().getTime(); //previous 'customModal'
 
         },

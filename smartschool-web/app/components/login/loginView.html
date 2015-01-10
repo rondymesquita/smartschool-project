@@ -9,12 +9,20 @@
 
   <!-- Styles -->
   <link  href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link  href="../../../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link  href="../../../bower_components/toastr/toastr.css" rel="stylesheet" type="text/css">
+  <link  href="../../../bower_components/ng-table/ng-table.css" rel="stylesheet" type="text/css">
+  <link  href="../../../assets/css/custom.css" rel="stylesheet" type="text/css">
+
 
   <!-- Libraries -->
   <script src="../../../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../../../bower_components/angular/angular.js"></script>
   <script src="../../../bower_components/angular-resource/angular-resource.js"></script>
   <script src="../../../bower_components/angular-route/angular-route.js"></script>
+  <script src="../../../bower_components/ng-table/ng-table.js"></script>
+  <script src="../../../bower_components/toastr/toastr.min.js"></script>
 
   <!-- External Libraries -->
   <script src="../../../assets/js/jquery.cookie.js"></script>
@@ -27,6 +35,9 @@
   <!-- Shared -->
   <script src="../../shared/constants.js"></script>
   <script src="../../shared/http-client.js"></script>
+  <script src="../../shared/toastFactory.js"></script>
+  <script src="../../shared/header/appHeaderDirective.js"></script>
+  <script src="../../shared/modal/modalDirective.js"></script>
 
 
   <style>
@@ -42,6 +53,32 @@
     border-radius:4px;
 
   }
+  #email{
+      border-radius:6px 6px 0 0;
+      border-bottom: none !important;
+
+  }
+  #email:focus{
+      border-bottom: none !important;
+  }
+  #password{
+      border-radius:0 0 6px 6px;
+
+  }
+  .form-control{
+      box-shadow: none;
+      /*height:68px;*/
+
+  }
+  .form-control:focus{
+       border-color: none;
+      outline: 0;
+       -webkit-box-shadow: none;
+       box-shadow: none;
+       border-color: #ccc;
+       color:#337ab7;
+  }
+
   </style>
 
 </head>
@@ -64,11 +101,11 @@
           <span>{{responseDataLogin.message}}</span>
         </div>
 
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="text" ng-model="formData.email" class="form-control input-lg" placeholder="Email address" required autofocus ng-init="formData.email = 'admin'">
+      <label for="email" class="sr-only">Email address</label>
+      <input id="email" type="text" ng-model="formData.email" class="form-control input-lg" placeholder="Email address" required autofocus ng-init="formData.email = 'admin'" ng-disabled="onTransaction">
 
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" ng-model="formData.password" class="form-control input-lg" placeholder="Password" required ng-init="formData.password = '123'">
+      <label for="password" class="sr-only">Password</label>
+      <input id="password" type="password" ng-model="formData.password" class="form-control input-lg" placeholder="Password" required ng-init="formData.password = '123'" ng-disabled="onTransaction">
 
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="onTransaction">Sign in</button>

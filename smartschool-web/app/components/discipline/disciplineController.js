@@ -96,7 +96,7 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     }
 
     $scope.updateDiscipline = function(){
-
+        console.log($scope.discipline);
     }
 
 }

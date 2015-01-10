@@ -1,4 +1,4 @@
-// app = angular.module('SmartschoolApp', []);
+
 angular.module('SmartschoolApp').controller('LoginController', ['$scope', 'httpClient','constants','$location', function ($scope, httpClient, constants, $location) {
 
 	$scope.formData = {};
