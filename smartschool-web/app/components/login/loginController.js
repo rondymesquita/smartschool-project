@@ -1,5 +1,5 @@
 
-angular.module('SmartschoolApp').controller('LoginController', ['$scope', 'httpClient','constants','$location', function ($scope, httpClient, constants, $location) {
+angular.module('SmartschoolApp').controller('LoginController', ['$scope','$rootScope', 'httpClient','constants','$location', function ($scope, $rootScope, httpClient, constants, $location) {
 
 	$scope.formData = {};
 	$scope.onTransaction = false;
@@ -10,26 +10,28 @@ angular.module('SmartschoolApp').controller('LoginController', ['$scope', 'httpC
 
 		var email = $scope.formData.email;
 		var password = $scope.formData.password;
-
+		console.log("Eita");
 		$scope.onTransaction = true;
 		httpClient.login(email, password)
 		.then(function(data, status){
 
 				console.log("Token: "+data.data.Token);
 				$.cookie(constants.authTokenKey, data.data.Token);
-				console.log($.cookie());
-				window.location = "../home/homeView.html";
-				//$location.url()
+				$.cookie(constants.usernameKey, email);
+				console.log("Cookie: "+$.cookie(constants.usernameKey));
 				console.log("Login Successful");
 				$scope.onTransaction = false;
 				$scope.onResponse = true;
 
+				window.location = "../home/homeView.html";
+				
+
 		},function(data){
 
 			if(data.status == 0)
-			$scope.responseDataLogin = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
-				else
-			$scope.responseDataLogin = new ResponseData(constants.message.ERROR, constants.status.DANGER);
+				$scope.responseDataLogin = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
+			else
+				$scope.responseDataLogin = new ResponseData(constants.message.ERROR, constants.status.DANGER);
 
 				$scope.onTransaction = false;
 				$scope.onResponse = true;

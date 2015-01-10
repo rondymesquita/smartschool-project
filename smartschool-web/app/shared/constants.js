@@ -1,9 +1,6 @@
 angular.module('SmartschoolApp').constant('constants',{
   authTokenKey: 'X-Auth-Token',
-  url: 'http://localhost:8080/smartschool-ws/',
-  loginUri: 'api/login/',
-  professorsUri: 'api/professors',
-  disciplinesUri: 'api/disciplines',
+  usernameKey: 'username',
   status: {
       WARNING: "warning",
       SUCCESS: "success",
