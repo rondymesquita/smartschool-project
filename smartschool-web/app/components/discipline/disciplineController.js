@@ -10,16 +10,11 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.onTransaction = false;
     $scope.onResponse = false;
     $scope.discipline;
-    $scope.saveAndNew;
+    $scope.saveAndNew = false;
 
-    //
-    // $scope.header = 'Put here your header';
-    // $scope.body = '<a>eita</a>';
-    // $scope.footer = 'Put here your footer';
     $scope.deleteDiscipline = function (bool) {
         alert("Discipline removed");
     };
-    //
 
 
     $scope.searchDisciplines = function(){
@@ -69,15 +64,16 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.saveDiscipline = function(){
 
         $scope.onTransaction = true;
-        console.log($scope.discipline);
+        console.log("Discipline: "+$scope.discipline);
         disciplineService.save($scope.discipline)
         .then(function(data){
 
 
             toast.success(constants.message.REGISTRY_SAVED);
-
-            if($scope.saveAndNew == undefined){
-                $("#disciplineCreateModal").modal("hide");
+            console.log($scope.saveAndNew);
+            if(!$scope.saveAndNew){
+                console.log("Hiding!");
+                $("#disciplineCreateModal").find(".modal").modal("hide");
             }
 
 
