@@ -1,8 +1,8 @@
-angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constants', function($http, constants) {
+angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constants', 'config', function($http, constants, config) {
 
   this.list = function() {
 
-    url = constants.url + constants.disciplinesUri;
+    url = config.url + config.disciplinesUri;
     console.log(url);
 
     return $http({
@@ -22,7 +22,7 @@ angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constan
 
   this.save = function(formData) {
 
-      url = constants.url + constants.disciplinesUri;
+      url = config.url + config.disciplinesUri;
       console.log(url);
 
       return $http({
@@ -30,7 +30,7 @@ angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constan
           method: 'POST',
           data:formData
       }).success(function(data, status, header, config) {
-          
+
       }).error(function(data, status, header, config){
 
       })['finally'](function() {
