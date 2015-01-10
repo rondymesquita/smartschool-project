@@ -9,7 +9,7 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.disciplines = [];
     $scope.onTransaction = false;
     $scope.onResponse = false;
-    $scope.formData;
+    $scope.discipline;
     $scope.saveAndNew;
 
     //
@@ -69,20 +69,19 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.saveDiscipline = function(){
 
         $scope.onTransaction = true;
-        console.log($scope.formData);
-        disciplineService.save($scope.formData)
+        console.log($scope.discipline);
+        disciplineService.save($scope.discipline)
         .then(function(data){
 
 
             toast.success(constants.message.REGISTRY_SAVED);
-            console.log($scope.saveAndNew);
 
             if($scope.saveAndNew == undefined){
                 $("#disciplineCreateModal").modal("hide");
             }
 
 
-            $scope.formData = {};
+            $scope.discipline = {};
             $scope.onTransaction = false;
             $scope.onResponse = true;
 
