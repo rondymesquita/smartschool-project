@@ -12,6 +12,7 @@ angular.module('SmartschoolApp').constant('constants',{
       NOT_LOADED: "Não carregado",
       LOADING: "Carregando registros",
       ERROR: "Erro ao carregar registros",
+      LOGIN_ERROR: "Usuário ou senhas inválidos",
       EMPTY:"Nenhum registro encontrado",
       CONNECTION_ERROR: "Não foi possível conectar-se ao servidor",
       REGISTRY_SAVED: "Registro salvo com sucesso!",

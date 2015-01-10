@@ -24,7 +24,6 @@ angular.module('SmartschoolApp').controller('LoginController', ['$scope','$rootS
 				$scope.onTransaction = false;
 				$scope.onResponse = true;
 
-				//window.location = "../home/homeView.html";
 				$location.url('/dashboard');
 
 
@@ -33,7 +32,7 @@ angular.module('SmartschoolApp').controller('LoginController', ['$scope','$rootS
 			if(data.status == 0)
 				$scope.responseDataLogin = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
 			else
-				$scope.responseDataLogin = new ResponseData(constants.message.ERROR, constants.status.DANGER);
+				$scope.responseDataLogin = new ResponseData(constants.message.LOGIN_ERROR, constants.status.DANGER);
 
 				$scope.onTransaction = false;
 				$scope.onResponse = true;
