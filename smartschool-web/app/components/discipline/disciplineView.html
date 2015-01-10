@@ -1,13 +1,15 @@
 <app-header>
 </app-header>
 
-<modal lolo="modal1" modal-body="body" modal-footer="footer" modal-header="header" data-ng-click-right-button="myRightButton()"></modal>
+<!-- <modal id="modal1" modal-body="body" modal-footer="footer" modal-header="header" data-ng-click-right-button="myRightButton()"></modal>
+<a data-toggle="modal" data-target="#{{modal1}}" role="button" class="btn btn-success" >Launch Demo Modal</a> -->
+
+<modal id="modal1" data-ng-click-primary-button="deleteDiscipline()" modal-title="Meu titulo" modal-body="../discipline/testView.html"></modal>
 <a data-toggle="modal" data-target="#{{modal1}}" role="button" class="btn btn-success" >Launch Demo Modal</a>
 
 <ol class="breadcrumb">
     <li><a href="#/"><span class="fa fa-home" aria-hidden="true"></span> Dashboard</a></li>
     <li class="active"><span class="fa fa-book" aria-hidden="true"></span> {{title}}</li>
-    <li><a href="*" ng-click="showModal()" ><span class="fa fa-book" aria-hidden="true"></span> show modal</a></li>
 </ol>
 
 <h3>

@@ -1,9 +1,9 @@
 
 angular
 .module('SmartschoolApp')
-.controller('DisciplineController', ['$scope', '$filter', 'DisciplineService','constants','toast','ngTableParams', disciplineController]);
+.controller('DisciplineController', ['$scope', '$filter', 'DisciplineService','constants','toast','ngTableParams', '$http', disciplineController]);
 
-function disciplineController($scope, $filter, disciplineService,  constants,  toast, ngTableParams) {
+function disciplineController($scope, $filter, disciplineService,  constants,  toast, ngTableParams, $http) {
 
     $scope.title = "Disciplinas";
     $scope.disciplines = [];
@@ -13,14 +13,12 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.saveAndNew;
 
     //
-    $scope.header = 'Put here your header';
-    $scope.body = 'Put here your body';
-    $scope.footer = 'Put here your footer';
-
-    $scope.myRightButton = function (bool) {
-        alert('!!! first function call!');
+    // $scope.header = 'Put here your header';
+    // $scope.body = '<a>eita</a>';
+    // $scope.footer = 'Put here your footer';
+    $scope.deleteDiscipline = function (bool) {
+        alert("Discipline removed");
     };
-
     //
 
 
