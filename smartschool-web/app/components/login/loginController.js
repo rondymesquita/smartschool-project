@@ -5,8 +5,9 @@ angular.module('SmartschoolApp').controller('LoginController', ['$scope','$rootS
 	$scope.onTransaction = false;
 	$scope.onResponse = false;
 	$scope.alertMessage = "";
+	$scope.username = ";"
 
-	this.submit = function() {
+	$scope.login = function() {
 
 		var email = $scope.formData.email;
 		var password = $scope.formData.password;
@@ -18,13 +19,14 @@ angular.module('SmartschoolApp').controller('LoginController', ['$scope','$rootS
 				console.log("Token: "+data.data.Token);
 				$.cookie(constants.authTokenKey, data.data.Token);
 				$.cookie(constants.usernameKey, email);
-				console.log("Cookie: "+$.cookie(constants.usernameKey));
+
 				console.log("Login Successful");
 				$scope.onTransaction = false;
 				$scope.onResponse = true;
 
-				window.location = "../home/homeView.html";
-				
+				//window.location = "../home/homeView.html";
+				$location.url('/dashboard');
+
 
 		},function(data){
 
@@ -38,5 +40,6 @@ angular.module('SmartschoolApp').controller('LoginController', ['$scope','$rootS
 		});
 
 	};
+
 
 }]);

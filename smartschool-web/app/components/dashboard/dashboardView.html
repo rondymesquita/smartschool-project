@@ -1,16 +1,25 @@
+<div class="container-fluid mainContent">
+
 <app-header>
 </app-header>
 
-<div ng-controller="DashboardController">
+    <div>
 
-<div class="row" ng-repeat="shortcut in shortcuts">
-  <div class="col-sm-2">
-    <a href="{{shortcut.url}}" class="btn btn-primary btn-lg dashShortcut" style="min-width:100%">
-      <span class="fa fa-{{shortcut.icon}}" aria-hidden="true"></span>
-      {{shortcut.title}}
-    </a>
-  </div>
+    <div class="row" ng-repeat="shortcut in shortcuts">
+      <div class="col-sm-2">
+        <a href="{{shortcut.url}}" class="btn btn-primary btn-lg dashShortcut" style="min-width:100%">
+          <span class="fa fa-{{shortcut.icon}}" aria-hidden="true"></span>
+          {{shortcut.title}}
+        </a>
+      </div>
+    </div>
+
+
+    </div>
 </div>
 
-
-</div>
+<script>
+    $(window).load(function(){
+        location.reload();
+    });
+</script>

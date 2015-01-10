@@ -3,7 +3,7 @@ angular.module('SmartschoolApp').config(config);
 function config($routeProvider) {
     $routeProvider
 
-    .when('/', {
+    .when('/dashboard', {
         templateUrl : './../dashboard/dashboardView.html',
         controller  : 'DashboardController'
     })
@@ -11,6 +11,11 @@ function config($routeProvider) {
     .when('/disciplines', {
         templateUrl : './../discipline/disciplineView.html',
         controller  : 'DisciplineController'
+    })
+
+    .when('/login', {
+        templateUrl : './../login/loginView.html',
+        controller  : 'LoginController'
     })
 
     .otherwise({
