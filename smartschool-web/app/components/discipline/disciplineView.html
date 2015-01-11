@@ -17,7 +17,7 @@
 
       <div class="navbar-left toolbar">
         <!-- <discipline-create-view></discipline-create-view> -->
-        <modal id="disciplineCreateModal" on-primary-button-click-event="saveDiscipline()" primary-button-text="Salvar" modal-title="Novo Registro" modal-body="../discipline/disciplineCreateModal.html"></modal>
+        <modal id="disciplineCreateModal" on-primary-button-click-event="saveDiscipline()" primary-button-text="Salvar" secondary-button-text="Cancelar" modal-title="Novo Registro" modal-body="../discipline/disciplineCreateModal.html" modal-dismissible="true"></modal>
         <a data-target="#{{disciplineCreateModal}}" type="button" class="btn btn-primary navbar-btn" data-toggle="modal">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           Novo
@@ -46,7 +46,7 @@
       <tr ng-repeat="discipline in $data"  ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false">
         <td data-title="'Cód'" sortable="'code'" width="20%">{{discipline.code}}</td>
         <td data-title="'Nome'" sortable="'name'" width="40%">{{discipline.name}}</td>
-        <td data-title="'Carga Horária'" sortable="'name'" width="20%">{{discipline.workload}}</td>
+        <td data-title="'Carga Horária'" sortable="'workload'" width="20%">{{discipline.workload}}</td>
         <td width="20%">
             <form ng-show="showButtons" style="margin-bottom:0;" ng-submit="updateDiscipline()">
                 <input type="text" ng-model="discipline.code"/>

@@ -1,8 +1,8 @@
-<div id="{{handler}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-keyboard="true">
+<div id="{{handler}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="{{dataBackdrop}}" data-keyboard="{{dataKeyboard}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-show="{{modalDismissible}}">&times;</button>
                 <h4 class="modal-title">{{modalTitle}}</h4>
             </div>
             <!-- <div class="modal-body" ng-bind-html="modalBody">
@@ -15,12 +15,12 @@
 
                 <p class="text-left">{{modalFooter}}</p>
 
-                <label style="margin-right:10px;" ng-show="showSaveOptions">
+                <!-- <label style="margin-right:10px;" ng-show="showSaveOptions">
                     <input type="checkbox" ng-model="parentScope.saveAndNew"> Salvar e novo
-                </label>
+                </label> -->
 
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-ng-click="onPrimaryButtonClick(); $event.stopPropagation()" ng-disabled="onTransaction">{{primaryButtonText}}</button>
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" ng-show="secondaryButtonText">{{secondaryButtonText}}</button>
+                <button type="button" class="btn btn-primary" data-ng-click="onPrimaryButtonClick(); $event.stopPropagation()" ng-disabled="onTransaction" ng-show="primaryButtonText">{{primaryButtonText}}</button>
 
             </div>
         </div>
