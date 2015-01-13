@@ -38,4 +38,41 @@ angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constan
       });
   };
 
+
+  this.update = function(formData) {
+
+      url = config.url + config.disciplinesUri;
+      console.log(url);
+
+      return $http({
+          url: url,
+          method: 'PUT',
+          data:formData
+      }).success(function(data, status, header, config) {
+
+      }).error(function(data, status, header, config){
+
+      })['finally'](function() {
+
+      });
+  };
+
+    this.delete = function(code) {
+
+      url = config.url + config.disciplinesUri + code;
+      console.log(url);
+
+      return $http({
+          url: url,
+          method: 'DELETE',
+      }).success(function(data, status, header, config) {
+
+      }).error(function(data, status, header, config){
+
+      })['finally'](function() {
+
+      });
+    };
+
+
 }]);

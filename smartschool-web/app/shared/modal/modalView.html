@@ -1,4 +1,4 @@
-<div id="{{handler}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="{{dataBackdrop}}" data-keyboard="{{dataKeyboard}}">
+<div id="{{handler}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" data-backdrop="{{modalDismissible != undefined && modalDismissible ? 'true' : 'static' }}" data-keyboard="{{modalDismissible != undefined && modalDismissible ? 'true' : 'false'}}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,7 +9,9 @@
 
             </div> -->
             <div class="modal-body" ng-include="modalBody">
-
+            </div>
+            <div class="modal-body" ng-show="modalBodyHtml != undefined">
+                <h4>{{modalBodyHtml}}</h4>
             </div>
             <div class="modal-footer">
 
@@ -20,7 +22,7 @@
                 </label> -->
 
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal" ng-show="secondaryButtonText">{{secondaryButtonText}}</button>
-                <button type="button" class="btn btn-primary" data-ng-click="onPrimaryButtonClick(); $event.stopPropagation()" ng-disabled="onTransaction" ng-show="primaryButtonText">{{primaryButtonText}}</button>
+                <button type="button" class="btn btn-primary btn-{{primaryButtonContext}}" data-ng-click="onPrimaryButtonClick(); $event.stopPropagation()" ng-disabled="onTransaction" ng-show="primaryButtonText">{{primaryButtonText}}</button>
 
             </div>
         </div>

@@ -5,6 +5,7 @@ angular
 
         $scope.appName = "Smartschool";
         $scope.username = $.cookie(constants.usernameKey);
+        $scope.started = false;
 
 
         $scope.logout = function() {

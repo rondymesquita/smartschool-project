@@ -4,6 +4,7 @@ angular.module('SmartschoolApp').directive('modal', ['$sce', '$http', function (
         scope: {
             onPrimaryButtonClick: '&onPrimaryButtonClickEvent',
             handler: '=id',
+            modalDismissible: '=?'
 
         },
         templateUrl: '../../shared/modal/modalView.html',
@@ -12,40 +13,32 @@ angular.module('SmartschoolApp').directive('modal', ['$sce', '$http', function (
             $scope.handler = new Date().getTime(); //previous 'customModal'
 
         },
-        link: function(scope, element, attrs){
+        compile: function(element, attrs){
 
-            scope.parentScope = scope.$parent;
+                // console.log(attrs);
 
-            console.log(attrs['onPrimaryButtonClickEvent'].indexOf("save"));
-            if(attrs['onPrimaryButtonClickEvent'].indexOf("save") > -1);
+            return function(scope, element, attrs){
+
+                scope.parentScope = scope.$parent;
+
+                if(attrs['onPrimaryButtonClickEvent'].indexOf("save") > -1);
                 scope.showSaveOptions = true;
 
-            scope.modalId = attrs['id'];
-            scope.modalTitle = attrs['modalTitle'];
-            console.log(attrs['modalDismissible']);
+                scope.modalId = attrs['id'];
+                scope.modalTitle = attrs['modalTitle'];
 
-            if(attrs['modalDismissible'])
-                scope.modalDismissible = attrs['modalDismissible'];
+                scope.primaryButtonText = attrs['primaryButtonText'];
+                scope.primaryButtonContext = attrs['primaryButtonContext'];
+                scope.secondaryButtonText = attrs['secondaryButtonText'];
+                scope.modalBody = attrs['modalBody'];
+                scope.modalBodyHtml = $sce.trustAsHtml(attrs['modalBodyHtml']);
 
-            if(scope.modalDismissible == 'true'){
-                scope.dataBackdrop = "true";
-                scope.dataKeyboard = "true";
-                console.log("Fechavel! "+scope.modalId);
-            }else{
-                scope.dataBackdrop = "static";
-                scope.dataKeyboard = "false";
-                console.log("nao fechavel "+scope.modalId);
-            }
+                    // $http.get(attrs['modalBody']).success (function(data){
+                    //     scope.modalBody = $sce.trustAsHtml(data);
+                    // });
 
+                }
+        },
 
-            scope.primaryButtonText = attrs['primaryButtonText'];
-            scope.secondaryButtonText = attrs['secondaryButtonText'];
-            scope.modalBody = attrs['modalBody'];
-
-            // $http.get(attrs['modalBody']).success (function(data){
-            //     scope.modalBody = $sce.trustAsHtml(data);
-            // });
-
-        }
     };
 }]);

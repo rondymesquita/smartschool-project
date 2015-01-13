@@ -22,6 +22,7 @@
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           Novo
           </a>
+
       </div>
 
       <form class="navbar-form navbar-left" role="search" ng-submit="searchDisciplines()">
@@ -44,16 +45,30 @@
   <table class="table table-striped" ng-table="tableParams">
     <tbody>
       <tr ng-repeat="discipline in $data"  ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false">
+
         <td data-title="'Cód'" sortable="'code'" width="20%">{{discipline.code}}</td>
         <td data-title="'Nome'" sortable="'name'" width="40%">{{discipline.name}}</td>
         <td data-title="'Carga Horária'" sortable="'workload'" width="20%">{{discipline.workload}}</td>
         <td width="20%">
-            <form ng-show="showButtons" style="margin-bottom:0;" ng-submit="updateDiscipline()">
-                <input type="text" ng-model="discipline.code"/>
-                <input type="text" ng-model="discipline.name"/>
-                <input type="text" ng-model="discipline.workload"/>
-                <input type="submit" value="Editar" class="btn btn-primary btn-sm"/>
-            </form>
+
+
+            <div class="registryOptions" ng-show="showButtons">
+
+                <!-- DELETE REGISTRY -->
+                <modal id="disciplineDeleteModal" on-primary-button-click-event="deleteDiscipline(discipline)" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
+                <a data-target="#{{disciplineDeleteModal}}" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
+                    <i class="fa fa-times-circle"></i>
+                    Apagar
+                </a>
+
+                <!-- UPDATE REGISTRY -->
+                <modal id="disciplineUpdateModal" on-primary-button-click-event="updateDiscipline(discipline)" primary-button-text="Atualizar" primary-button-context="primary" secondary-button-text="Cancelar" modal-title="Atualizar Registro" modal-body="../discipline/disciplineCreateModal.html" modal-dismissible="true"></modal>
+                <a data-target="#{{disciplineUpdateModal}}" type="button" class="btn btn-primary btn-sm" data-toggle="modal">
+                    <i class="fa fa-pencil"></i>
+                    Editar
+                </a>
+
+            </div>
 
         </td>
       </tr>

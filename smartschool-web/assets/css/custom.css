@@ -96,3 +96,8 @@ body{
 form{
     margin-bottom:0 !important;
 }
+.dialogImage{
+    font-size:48px;
+    display: block;
+    text-align:center;
+}

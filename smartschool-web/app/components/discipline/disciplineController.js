@@ -27,6 +27,7 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
 
             $scope.disciplines = data.data;
 
+
             if($scope.disciplines.length == 0){
                 $scope.responseData = new ResponseData(constants.message.EMPTY, constants.status.WARNING);
             }
@@ -68,7 +69,6 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
         disciplineService.save($scope.discipline)
         .then(function(data){
 
-
             toast.success(constants.message.REGISTRY_SAVED);
             console.log($scope.saveAndNew);
             if(!$scope.saveAndNew){
@@ -95,8 +95,60 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
         });
     }
 
-    $scope.updateDiscipline = function(){
-        console.log($scope.discipline);
+    $scope.updateDiscipline = function(discipline){
+        $scope.discipline = discipline;
+        console.log(discipline);
+
+        $scope.onTransaction = true;
+
+        disciplineService.update($scope.discipline)
+        .then(function(data){
+            toast.success(constants.message.REGISTRY_UPDATED);
+            $("#disciplineUpdateModal").find(".modal").modal("hide");
+            $scope.discipline = {};
+            $scope.onTransaction = false;
+            $scope.onResponse = true;
+        },function(data){
+            if(data.status == 0){
+                toast.error(constants.message.CONNECTION_ERROR);
+            }else{
+                toast.error(data.status + " " +data.statusText);
+            }
+
+            $scope.onTransaction = false;
+            $scope.onResponse = true;
+        });
+
+    }
+
+    $scope.deleteDiscipline = function(discipline){
+        console.log(discipline);
+
+        $scope.onTransaction = true;
+
+        disciplineService.delete(discipline.code)
+        .then(function(data){
+            toast.success(constants.message.REGISTRY_DELETED);
+            $("#disciplineDeleteModal").find(".modal").modal("hide");
+
+
+            $scope.discipline = {};
+            $scope.onTransaction = false;
+            $scope.onResponse = true;
+            $scope.searchDisciplines();
+        },function(data){
+
+            if(data.status == 0){
+                toast.error(constants.message.CONNECTION_ERROR);
+            }else{
+                toast.error(data.status + " " +data.statusText);
+            }
+
+            $scope.onTransaction = false;
+            $scope.onResponse = true;
+        });
+
+
     }
 
 }

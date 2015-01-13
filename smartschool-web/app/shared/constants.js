@@ -17,6 +17,7 @@ angular.module('SmartschoolApp').constant('constants',{
       CONNECTION_ERROR: "Não foi possível conectar-se ao servidor",
       REGISTRY_SAVED: "Registro salvo com sucesso!",
       REGISTRY_UPDATED: "Registro atualizado com sucesso!",
+      REGISTRY_DELETED: "Registro apagado com sucesso!",
   },
   table:{
       FIRST_PAGE: 1,
