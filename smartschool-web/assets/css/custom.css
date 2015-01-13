@@ -21,6 +21,9 @@ body{
 .form-signin-heading{
     font-family:Russo;
 }
+.footer{
+    margin-top:20px;
+}
 .mainContent{
   background:#fff;
   padding-top:20px;

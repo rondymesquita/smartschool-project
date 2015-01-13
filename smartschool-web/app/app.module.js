@@ -10,14 +10,15 @@ angular
 var interceptor = function ($q, $location, constants) {
     return {
         request: function (request) {
-            // console.log("Request");
-            // console.log(request);
 
             if($.cookie(constants.usernameKey) == undefined){
                 // console.log("Not logged");
                 $("#authRequiredModal").find(".modal").modal("show");
+
             }else{
                 // console.log("logged");
+                request.headers[constants.authTokenKey] = $.cookie(constants.authTokenKey);
+
             }
 
             return request;

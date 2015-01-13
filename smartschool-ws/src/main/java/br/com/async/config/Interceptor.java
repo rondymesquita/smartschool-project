@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -15,6 +16,7 @@ import br.com.async.annotations.Authenticate;
 import br.com.async.controller.AuthenticationController;
 import br.com.async.util.Constants;
 
+@Component
 public class Interceptor extends HandlerInterceptorAdapter {
 
 	@Autowired

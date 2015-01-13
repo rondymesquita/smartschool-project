@@ -12,11 +12,6 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.discipline;
     $scope.saveAndNew = false;
 
-    $scope.deleteDiscipline = function (bool) {
-        alert("Discipline removed");
-    };
-
-
     $scope.searchDisciplines = function(){
 
         $scope.onTransaction = true;
@@ -103,9 +98,10 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
 
         disciplineService.update($scope.discipline)
         .then(function(data){
+            
             toast.success(constants.message.REGISTRY_UPDATED);
             $("#disciplineUpdateModal").find(".modal").modal("hide");
-            $scope.discipline = {};
+
             $scope.onTransaction = false;
             $scope.onResponse = true;
         },function(data){

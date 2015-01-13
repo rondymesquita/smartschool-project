@@ -21,6 +21,6 @@ public class Constants {
 	/*
 	 * 
 	 */
-	public static final String AUTH_TOKEN = "Token";
+	public static final String AUTH_TOKEN = "X-Auth-Token";
 
 }

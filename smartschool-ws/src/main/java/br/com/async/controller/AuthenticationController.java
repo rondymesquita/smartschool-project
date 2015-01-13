@@ -62,7 +62,9 @@ public class AuthenticationController extends BaseController{
 		if(result){
 			String token = HttpUtils.generateToken();
 			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
-			httpSession.setMaxInactiveInterval(10*60);
+			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
+			
+			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
 			return new ResponseEntity<String>("{\"Token\":\""+token+"\",\"Login\":\"TRUE\"}", HttpStatus.OK);
 		}else{
 			responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");

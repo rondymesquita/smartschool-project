@@ -1,14 +1,25 @@
-# Smartschool Project
+# Smartschool Web
 
-## Requirements
+## Requisitos
 - Bower
-- Javascript enabled in browser
+- Browser (Chrome, Firefox ou Safari) com javascript e cookies ativado
+- Servidor Apache
 
-#### Building and Running
-* Configure the url server in **smartschool-web/shared/config.js** , property **url**
-* Go to **smartschol-web** via terminal and execute
+
+### Infomações
+- Recomendamos **NÃO** utilizar o Internet Explorer
+
+#### Configurando e executando
+* Configure a url no servidor no arquivo **smartschool-web/shared/config.js** , propriedade **url**
+
+#####Não altere as outras propriedades ou a aplicação não irá funcionar.
+* Instale o Bower
+* Instale o NodeJS em [http://nodejs.org](http://nodejs.org)
+* Instale o Bower em [http://bower.io](http://bower.io)
+
+* Vá para a pasta **smartschol-web** via terminal e execute
 ```
 bower install -f
 ```
-* Now, open **smartschool-web/app/index.html**
-* The default user is **(username: admin, password: admin)** (remember to change this after login)
+* Agora abra **smartschool-web/app/index.html**
+* O usuário padrão é **(username: admin, password: admin)** (Lembre-se de mudar depois do primeiro login)

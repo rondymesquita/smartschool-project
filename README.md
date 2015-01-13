@@ -1,25 +1,26 @@
 # Smartschool Project
 
-## Requirements
+## Requisitos
 - Gradle 1.8+
-- Maven 7
 - Tomcat 7+
-- Mysql or Postgres Database
+- Banco de dados Mysql or Postgres
 
-#### Building and Running
-* Configure you database credentials in **smartschool-core/src/main/resources/application.properties**
-* Go to **smartschool-core** via terminal and execute
+#### Configurando e executando
+* Instale o Gradle em [https://www.gradle.org](https://www.gradle.org)
+
+* Configure suas credenciais do banco de dados em **smartschool-core/src/main/resources/application.properties**
+* Vá para **smartschool-core** via terminal e execute
 ```
 $ gradle install
 ```
-* Go to **smartschool-ws** via terminal and execute
+* Vá para **smartschool-ws** via terminal e execute
 ```
 $ gradle eclipse
 ```
 
-- Now, run you project in Tomcat Container
-- To generate **war** package, go to **smartschool-ws** and execute
+- Agora, execute **smartschool-ws** no Tomcat
+	- Para gerar o pacote **war**, vá para **smartschool-ws** e execute
 ```
 $ gradle package
 ```
-Gradle will generate **war** package at **smartschool-ws/build**
+. Gradle irá gerar o pacote **war** em **smartschool-ws/build**
