@@ -6,7 +6,7 @@
 
 
 
-    <div class="row" ng-repeat="shortcut in shortcuts">
+    <div class="row hide" ng-repeat="shortcut in shortcuts">
       <div class="col-sm-2">
         <a href="{{shortcut.url}}" class="btn btn-primary btn-lg dashShortcut" style="min-width:100%">
           <span class="fa fa-{{shortcut.icon}}" aria-hidden="true"></span>
@@ -15,21 +15,16 @@
       </div>
     </div>
 
-
-    
-     <script>
-    // $(window).load(function(){
-    //     var started = angular.element(document.querySelector('[ng-controller="IndexController"]')).scope().started;
-    //     console.log(started);
-    //
-    //     if(!started){
-    //         location.reload();
-    //         angular.element(document.querySelector('[ng-controller="IndexController"]')).scope().started = true;
-    //     }
-    //
-    //
-    // });
-     </script>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="list-group">
+                <a ng-repeat="shortcut in shortcuts" href="{{shortcut.url}}" class="list-group-item">
+                    <span class="fa fa-{{shortcut.icon}}" aria-hidden="true"></span>
+                    {{shortcut.title}}
+                </a>
+            </div>
+        </div>
+    </div>
 
 
 </div>
