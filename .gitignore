@@ -11,3 +11,4 @@ apache*
 **/.settings/**
 **/bower_components/**
 **/*.sh
+**/*.DS_Store
