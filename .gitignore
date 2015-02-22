@@ -12,3 +12,7 @@ apache*
 **/bower_components/**
 **/*.sh
 **/*.DS_Store
+**/.classpath
+**/.metadata
+**/RemoteSystemsTempFiles/
+
