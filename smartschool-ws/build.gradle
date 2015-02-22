@@ -48,20 +48,17 @@ dependencies {
    
 }
 
-
-cargo{
-	containerId = "tomcat7x"
-	port = 9090
-	local{
-		homeDir = file("../apache-tomcat-7.0.55")
-		canonicalPath = file("../apache-tomcat-7.0.55")
-	}
+javadoc {
+	source = sourceSets.main.allJava
+	classpath = configurations.compile
+	exclude "**/application/**","**/repository/**"
 }
 
-javadoc {
-source = sourceSets.main.allJava
-classpath = configurations.compile
-exclude "**/application/**","**/repository/**"
+task compileCore(type: Exec){
+	description 'Install core as dependency'
+	workingDir '../smartschool-core'
+	executable 'gradle' 
+	args 'install' //,'package' 
 }
 
 //
