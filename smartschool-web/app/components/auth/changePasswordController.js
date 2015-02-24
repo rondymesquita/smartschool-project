@@ -1,27 +1,25 @@
 
-angular.module('SmartschoolApp').controller('LoginController', ['$scope','$rootScope', 'httpClient','constants','$location', function ($scope, $rootScope, httpClient, constants, $location) {
+angular.module('SmartschoolApp').controller('ChangePasswordController', ['$scope','$rootScope', 'httpClient','constants','$location', function ($scope, $rootScope, httpClient, constants, $location) {
 
 	$scope.formData = {};
 	$scope.onTransaction = false;
 	$scope.onResponse = false;
 	$scope.alertMessage = "";
-	$scope.username = ";"
+	$scope.title = "Mudar senha";
 
-	$scope.login = function() {
+	$scope.changePassword = function() {
 
 		var email = $scope.formData.email;
 		var password = $scope.formData.password;
-		console.log("Eita");
+		var newPassword = $scope.formData.newPassword;
+
+
 		$scope.onTransaction = true;
-		httpClient.login(email, password)
+
+		httpClient.changePassword(email, password, newPassword)
 		.then(function(data, status){
 
-				console.log("Token: "+data.data.authToken);
-				$.cookie(constants.authTokenKey, data.data.authToken);
-				$.cookie(constants.usernameKey, data.data.username);
-				$.cookie(constants.personType, data.data.personType);
 
-				console.log("Login Successful");
 				$scope.onTransaction = false;
 				$scope.onResponse = true;
 

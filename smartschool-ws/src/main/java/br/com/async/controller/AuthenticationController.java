@@ -21,12 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import br.com.async.annotations.Authenticate;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.UserApplication;
-import br.com.async.core.entities.Person;
 import br.com.async.core.entities.User;
 import br.com.async.entities.AuthUser;
+import br.com.async.entities.ChangePasswordUser;
 import br.com.async.util.Constants;
 import br.com.async.util.HttpUtils;
 import br.com.async.util.ResponseData;
@@ -41,8 +40,8 @@ public class AuthenticationController extends BaseController{
 	
 	private Logger logger = Logger.getLogger(AuthenticationController.class.getName());
 	
-	@RequestMapping(value="/must-be-logged")
-	public @ResponseBody ResponseData mustBeLogged() throws Exception{
+	@RequestMapping(value="/unauthorized")
+	public @ResponseBody ResponseData unauthorized() throws Exception{
 		throw new UnauthorizedException();
 	}
 	
@@ -65,7 +64,14 @@ public class AuthenticationController extends BaseController{
 			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
 			
 			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
-			return new ResponseEntity<String>("{\"Token\":\""+token+"\",\"Login\":\"TRUE\"}", HttpStatus.OK);
+			
+			login.setAuthToken(tokenSession);
+			login.setPersonType(user.getPerson().getPersonType());
+			login.setPassword("");
+			
+			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+			String json = ow.writeValueAsString(login);
+			return new ResponseEntity<String>(json, HttpStatus.OK);
 		}else{
 			responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
 			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
@@ -107,25 +113,26 @@ public class AuthenticationController extends BaseController{
 		
 	}
 	
-	public static void main(String[] args) throws JsonGenerationException, JsonMappingException, IOException {
+	@RequestMapping(value="api/change-password")
+	public @ResponseBody ResponseData changePassword(@RequestBody ChangePasswordUser login, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
-//		Person person = new Person("Rondy","123");
-//        User user = new User(person, "username", "123");
+		ResponseData responseData = null;
+		User user = userApplication.findByUsernameAndPassword(login.getUsername(), login.getPassword());
+		if(user != null){
+			user.setPassword(login.getNewPassword());
+			boolean result = userApplication.update(user);
+			if(result)
+				responseData = new ResponseData(Constants.PASSWORD_CHANGED, HttpStatus.OK.toString());
+			else
+				responseData = new ResponseData(Constants.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString());
+		}else{
+			throw new UnauthorizedException();
+		}
+		return responseData;
 		
-		User user = new User();
-		user.setPassword("123");
-		user.setUsername("admin");
-		Person person = new Person();
-		person.setCpf("123");
-		person.setName("Rondy");
-		user.setPerson(person);
-		
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-		String json = ow.writeValueAsString(user);
-		
-		System.out.println(json);
 		
 	}
+	
 	
 	@ResponseStatus(value=HttpStatus.UNAUTHORIZED)
 	public class UnauthorizedException extends RuntimeException{

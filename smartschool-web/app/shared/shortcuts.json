@@ -23,6 +23,11 @@
         "title": "Semestres",
         "url": "#semesters",
         "icon": "book"
+    },
+    {
+        "title": "Mudar senha",
+        "url": "#change-password",
+        "icon": "book"
     }
 
 ]

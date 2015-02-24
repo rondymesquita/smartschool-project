@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.Getter;
 
 @Data
-public class AuthUser implements Serializable{
+public class ChangePasswordUser implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Getter
@@ -14,10 +14,7 @@ public class AuthUser implements Serializable{
 	@Getter
 	private String password;
 	@Getter
-	private String authToken;
-	@Getter
-	private String personType;
-	
+	private String newPassword;
 	
 
 }

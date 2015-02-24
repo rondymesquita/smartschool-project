@@ -52,11 +52,11 @@ div.loginContainer{
           <span>{{responseDataLogin.message}}</span>
         </div>
 
-      <label for="email" class="sr-only">Email address</label>
+      <label for="email" class="sr-only">Email</label>
       <input id="email" type="text" ng-model="formData.email" class="form-control input-lg" placeholder="Email address" required autofocus ng-init="formData.email = 'admin'" ng-disabled="onTransaction">
 
-      <label for="password" class="sr-only">Password</label>
-      <input id="password" type="password" ng-model="formData.password" class="form-control input-lg" placeholder="Password" required ng-init="formData.password = '123'" ng-disabled="onTransaction">
+      <label for="password" class="sr-only">Senha</label>
+      <input id="password" type="password" ng-model="formData.password" class="form-control input-lg" placeholder="Password" required ng-init="formData.password = 'admin'" ng-disabled="onTransaction">
 
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="onTransaction">Sign in</button>

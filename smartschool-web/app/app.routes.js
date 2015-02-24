@@ -18,6 +18,12 @@ function config($routeProvider) {
         controller  : 'LoginController'
     })
 
+    .when('/change-password', {
+        templateUrl : './../auth/changePasswordView.html',
+        controller  : 'ChangePasswordController'
+    })
+
+
     .otherwise({
         templateUrl : './../dashboard/dashboardView.html'
     });

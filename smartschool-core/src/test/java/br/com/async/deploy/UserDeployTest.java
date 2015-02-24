@@ -33,14 +33,15 @@ public class UserDeployTest {
 	public void saveUserTest() throws Exception{
 		
 		User user = new User();
-		user.setUsername("admin");
+		user.setUsername("admin@admin");
 		user.setPassword("admin");
 		Person person = new Person();
 		person.setCpf("12345678900");
 		person.setName("John Doe");
+		person.setPersonType(Person.MANAGER);
 		user.setPerson(person);
 		
-		User u = userApplication.findByUsernameAndPassword("admin", "admin");
+		User u = userApplication.findByUsernameAndPassword("admin@admin", "admin");
 		if(u==null){
 			boolean result = userApplication.save(user);
 			Assert.assertEquals(true, result);
@@ -49,12 +50,12 @@ public class UserDeployTest {
 	
 	@Test
 	public void loginWithUsernameAndPasswordTest(){
-        User user = userApplication.findByUsernameAndPassword("admin", "admin");
+        User user = userApplication.findByUsernameAndPassword("admin@admin", "admin");
 		Assert.assertNotNull(user);
 	}
 	@Test
 	public void loginWithWrongUsernameAndPasswordTest(){
-		User user = userApplication.findByUsernameAndPassword("admin", "123");
+		User user = userApplication.findByUsernameAndPassword("admin@admin", "123");
 		Assert.assertNull(user);
 	}
 

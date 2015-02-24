@@ -36,4 +36,7 @@ public class Person extends AbstractEntity implements Serializable {
 	
 	@Getter
 	private String cpf;
+	
+	@Getter
+	private String personType;
 }

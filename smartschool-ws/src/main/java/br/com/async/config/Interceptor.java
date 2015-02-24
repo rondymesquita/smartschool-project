@@ -45,13 +45,13 @@ public class Interceptor extends HandlerInterceptorAdapter {
 
 			if (token == null || tokenSession == null) {
 				System.out.println("nulos");
-				response.sendRedirect("/smartschool-ws/must-be-logged");
+				response.sendRedirect("/smartschool-ws/unauthorized");
 				return false;
 			} else {
 				if (token.equals(tokenSession)) {
 					return true;
 				}else{
-					response.sendRedirect("/smartschool-ws/must-be-logged");
+					response.sendRedirect("/smartschool-ws/unauthorized");
 					return false;
 				}
 			}
