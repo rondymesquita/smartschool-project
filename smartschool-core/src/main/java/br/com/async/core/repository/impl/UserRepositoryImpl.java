@@ -2,7 +2,9 @@ package br.com.async.core.repository.impl;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import br.com.async.core.entities.User;
@@ -18,15 +20,21 @@ public class UserRepositoryImpl extends AbstractRepositoryImpl<User, Integer> im
 
 	@Override
 	public boolean login(String username, String password) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean findByUsernameAndPassword(String username, String password) {
-		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
-		hibernateTemplate.findByCriteria(criteria);
-		return true;
+	public User findByUsernameAndPassword(String username, String password) {
+		Criteria criteria = hibernateTemplate.getSessionFactory().getCurrentSession().createCriteria(entity);
+
+		criteria.add(Restrictions.eq("username",username));
+		criteria.add(Restrictions.eq("password",password));
+		return (User)criteria.uniqueResult();
+		
+		
+//		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
+//		hibernateTemplate.findByCriteria(criteria);
+//		return true;
 	}
 	
 }

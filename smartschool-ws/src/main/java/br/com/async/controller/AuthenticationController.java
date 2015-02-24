@@ -58,8 +58,8 @@ public class AuthenticationController extends BaseController{
 		
 		ResponseData responseData;
 		
-		boolean result = userApplication.findByUsernameAndPassword(login.getUsername(), login.getPassword());
-		if(result){
+		User user = userApplication.findByUsernameAndPassword(login.getUsername(), login.getPassword());
+		if(user != null){
 			String token = HttpUtils.generateToken();
 			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
 			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana

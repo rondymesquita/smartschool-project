@@ -61,6 +61,12 @@ task compileCore(type: Exec){
 	args 'install' //,'package' 
 }
 
+task runDeployTests(type: Exec){
+	workingDir '../smartscholl-core'
+	executable 'gradle'
+	args 'gradle -Dtest.single=User test'
+}
+
 //
 //task downloadTomcat(type: Copy){
 //	def f = new File('../apache-tomcat-7.0.55.zip')

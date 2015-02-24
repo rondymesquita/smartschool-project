@@ -31,19 +31,11 @@ public class UserApplicationImpl implements UserApplication{
 	}
 
 	@Transactional
-	public boolean findByUsernameAndPassword(String username, String password) {
+	public User findByUsernameAndPassword(String username, String password) {
 		
-//		boolean resultQuery = repository.findByUsernameAndPassword(username, password);
-//		
-//		if(resultQuery)
-//			return true;
-//		
-//		return false;
+		User user = repository.findByUsernameAndPassword(username, password);
+		return user;
 		
-		if(username.equals("admin") && password.equals("123"))
-			return true;
-		
-		return false;
 	}
 
 	@Override

@@ -26,11 +26,6 @@ public class DisciplineTest extends BaseTest{
 		ctx.refresh();
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
 		
-		Discipline discipline = new Discipline();
-		discipline.setName("Prog 1");
-		discipline.setWorkload(120);
-		disciplineApplication.save(discipline);
-		code = discipline.getCode();
 	}
 	
 	@AfterClass
@@ -51,10 +46,17 @@ public class DisciplineTest extends BaseTest{
 	}
 	
 	@Test
-	public void findByCodeDisciplineTest() throws Exception{
+	public void findDisciplineByCodeTest() throws Exception{
 		
-		Discipline discipline = disciplineApplication.findByCode(code);
-		Assert.assertNotNull(discipline);
+		Discipline discipline = new Discipline();
+		discipline.setName("Prog 1");
+		discipline.setWorkload(120);
+		System.out.println("Code: "+discipline.getCode());
+		Assert.assertTrue(disciplineApplication.save(discipline));
+		System.out.println("Code: "+discipline.getCode());
+		
+		Discipline discipline2 = disciplineApplication.findByCode(discipline.getCode());
+		Assert.assertNotNull(discipline2);
 	}
 	
 	@Test
@@ -71,9 +73,14 @@ public class DisciplineTest extends BaseTest{
 	
 	@Test
 	public void listDisciplineTest() throws Exception{
+		Discipline discipline = new Discipline();
+		discipline.setName("Prog 1");
+		discipline.setWorkload(120);
+		Assert.assertTrue(disciplineApplication.save(discipline));
+		
 		List<Discipline> list = disciplineApplication.list();
-		for (Discipline discipline : list) {
-			System.out.println(discipline.getCode());
+		for (Discipline d : list) {
+			Assert.assertNotNull(d);
 		} 
 	}
 	
