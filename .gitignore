@@ -15,4 +15,5 @@ apache*
 **/.classpath
 **/.metadata
 **/RemoteSystemsTempFiles/
+ **/.idea/workspace.xml
 
