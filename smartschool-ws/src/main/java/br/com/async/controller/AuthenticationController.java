@@ -1,6 +1,7 @@
 package br.com.async.controller;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,34 +53,38 @@ public class AuthenticationController extends BaseController{
 	 * @throws JsonMappingException 
 	 * @throws JsonGenerationException 
 	 */
-	@RequestMapping(value="/api/login", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<String> login(@RequestBody AuthUser login, HttpServletRequest request, HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
-		
-		ResponseData responseData;
-		
-		User user = userApplication.findByUsernameAndPassword(login.getUsername(), login.getPassword());
-		if(user != null){
-			String token = HttpUtils.generateToken();
-			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
-			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
-			
-			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
-			
-			login.setAuthToken(tokenSession);
-			login.setPersonType(user.getPerson().getPersonType());
-			login.setPassword("");
-			
-			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-			String json = ow.writeValueAsString(login);
-			return new ResponseEntity<String>(json, HttpStatus.OK);
-		}else{
-			responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
-			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-			String json = ow.writeValueAsString(responseData);
-			return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
-		}
-		
-	}
+//	@RequestMapping(value="/api/login", method = RequestMethod.POST)
+//	public @ResponseBody ResponseEntity<String> login(@RequestBody Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
+//		
+//		ResponseData responseData;
+//		
+//		String username = (String) map.get("username");
+//		String password = (String) map.get("password");
+//		
+//		User user = userApplication.findByUsernameAndPassword(username, password);
+//		if(user != null){
+//			String token = HttpUtils.generateToken();
+//			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
+//			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
+//			
+//			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
+//			
+//			AuthUser login = new AuthUser();
+//			login.setAuthToken(tokenSession);
+//			login.setPersonType(user.getPerson().getPersonType());
+//			login.setPassword("");
+//			
+//			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+//			String json = ow.writeValueAsString(login);
+//			return new ResponseEntity<String>(json, HttpStatus.OK);
+//		}else{
+//			responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
+//			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+//			String json = ow.writeValueAsString(responseData);
+//			return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
+//		}
+//		
+//	}
 
 	/**
 	 * @param { "person" : { "name" : "Nome", "cpf" : "123" }, "username" : "admin", "password" : "123" }

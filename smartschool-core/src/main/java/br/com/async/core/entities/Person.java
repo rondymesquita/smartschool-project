@@ -24,6 +24,10 @@ public class Person extends AbstractEntity implements Serializable {
 	public static final String TEACHER = "TEACHER";
 	public static final String MANAGER = "MANAGER";
 	public static final String STUDENT = "STUDENT";
+	
+	public static final String ROLE_TEACHER = "ROLE_TEACHER";
+	public static final String ROLE_MANAGER = "ROLE_MANAGER";
+	public static final String ROLE_STUDENT = "ROLE_STUDENT";
 
 	@Getter
 	@Id
