@@ -51,10 +51,7 @@ public class DisciplineTest extends BaseTest{
 		Discipline discipline = new Discipline();
 		discipline.setName("Prog 1");
 		discipline.setWorkload(120);
-		System.out.println("Code: "+discipline.getCode());
 		Assert.assertTrue(disciplineApplication.save(discipline));
-		System.out.println("Code: "+discipline.getCode());
-		
 		Discipline discipline2 = disciplineApplication.findByCode(discipline.getCode());
 		Assert.assertNotNull(discipline2);
 	}
@@ -62,12 +59,15 @@ public class DisciplineTest extends BaseTest{
 	@Test
 	public void updateDisciplineTest() throws Exception{
 		Discipline discipline = new Discipline();
-		discipline.setCode(code);
-		discipline.setName("Prog 2");
-		discipline.setWorkload(120); 
-		Assert.assertTrue(disciplineApplication.update(discipline));
+		discipline.setName("Prog 1");
+		discipline.setWorkload(120);
+		Assert.assertTrue(disciplineApplication.save(discipline));
 		
-		Discipline disciplineUpdated = disciplineApplication.findByCode(discipline.getCode());
+		Discipline discipline2 = disciplineApplication.findByCode(discipline.getCode());
+		discipline2.setName("Prog 2");
+		Assert.assertTrue(disciplineApplication.update(discipline2));
+		
+		Discipline disciplineUpdated = disciplineApplication.findByCode(discipline2.getCode());
 		Assert.assertEquals(disciplineUpdated.getName(), "Prog 2");
 	}
 	
