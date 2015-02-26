@@ -17,6 +17,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import br.com.async.annotations.Authenticate;
 import br.com.async.controller.AuthenticationController;
 import br.com.async.entities.AuthUser;
+import br.com.async.entities.Permission;
 import br.com.async.util.Constants;
 
 @Component
@@ -37,15 +38,15 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		Method method = handlerMethod.getMethod();
 		AuthUser authUser = (AuthUser) httpSession.getAttribute(Constants.USER_KEY);
 		
-		if(!PermissionManager.permissionChecker(authUser.getRole(), request.getRequestURI())){
+		
+		Permission permission = new Permission(request.getRequestURI(), request.getMethod(), authUser.getRole());
+		if(!PermissionManager.getInstance().checkPermission()){
 			return false; 
 		}
 		
 		if (method.isAnnotationPresent(Authenticate.class)) {
 
 			token = request.getHeader(Constants.AUTH_TOKEN);
-
-			
 			tokenSession = authUser.getAuthToken();
 			
 			if (token == null || tokenSession == null) {
@@ -75,12 +76,5 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 	}
 	
-	static class PermissionManager{
-		
-		public static boolean permissionChecker(String role, String route){
-			return true;
-		}
-		
-	}
 
 }
