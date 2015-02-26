@@ -1,7 +1,6 @@
 package br.com.async.controller;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +12,19 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -39,6 +45,10 @@ public class AuthenticationController extends BaseController{
 	
 	private UserApplication userApplication = ApplicationContext.getInstance().getBean("userApplicationImpl", UserApplication.class);
 	
+	@Autowired
+	@Qualifier("authenticationManager")
+	AuthenticationManager authenticationManager;
+	
 	private Logger logger = Logger.getLogger(AuthenticationController.class.getName());
 	
 	@RequestMapping(value="/unauthorized")
@@ -53,9 +63,40 @@ public class AuthenticationController extends BaseController{
 	 * @throws JsonMappingException 
 	 * @throws JsonGenerationException 
 	 */
-//	@RequestMapping(value="/api/login", method = RequestMethod.POST)
-//	public @ResponseBody ResponseEntity<String> login(@RequestBody Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
-//		
+	@RequestMapping(value="/api/login", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<String> login(
+			@RequestParam("j_username") String username,
+            @RequestParam("j_password") String password, 
+            HttpServletRequest request, 
+            HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
+		
+		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+	    AuthUser login = new AuthUser();
+	    token.setDetails(login);
+	    
+	    
+	    ResponseData responseData;
+	    try {
+	        Authentication auth = authenticationManager.authenticate(token);
+	        SecurityContextHolder.getContext().setAuthentication(auth);
+	        
+			String tokenString = HttpUtils.generateToken();
+			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
+			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
+			login.setAuthToken(tokenString);
+//			login.setPersonType(user.getPerson().getPersonType());
+			login.setPassword("");
+	        
+	        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+			String json = ow.writeValueAsString(login);
+			return new ResponseEntity<String>(json, HttpStatus.OK);
+	      } catch (BadCredentialsException e) {
+				responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
+				ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+				String json = ow.writeValueAsString(responseData);
+				return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
+	      }
+		
 //		ResponseData responseData;
 //		
 //		String username = (String) map.get("username");
@@ -83,8 +124,8 @@ public class AuthenticationController extends BaseController{
 //			String json = ow.writeValueAsString(responseData);
 //			return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
 //		}
-//		
-//	}
+		
+	}
 
 	/**
 	 * @param { "person" : { "name" : "Nome", "cpf" : "123" }, "username" : "admin", "password" : "123" }

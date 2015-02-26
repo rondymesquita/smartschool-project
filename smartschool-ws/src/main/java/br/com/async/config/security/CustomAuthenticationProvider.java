@@ -1,6 +1,7 @@
 package br.com.async.config.security;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 import br.com.async.config.ApplicationContext;
 import br.com.async.controller.AuthenticationController;
 import br.com.async.core.application.UserApplication;
+import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
 
 @Component
@@ -39,6 +41,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         User user = userApplication.findByUsernameAndPassword(username, password);
     	if(user != null){
     		List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
+    		Role role = new Role(); 
+			role.setAuthority(Role.ROLE_MANAGER);
+			
+			List<Role> roles = new ArrayList<Role>();
+			roles.add(role);
+			user.setAuthorities(roles);
+			
+			Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
     		return new UsernamePasswordAuthenticationToken(username, password, grantedAuths);
     	}else{
     		return null;
@@ -47,7 +57,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public boolean supports(Class<?> authentication) {
-		return authentication.equals(UsernamePasswordAuthenticationToken.class);
+//		return authentication.equals(UsernamePasswordAuthenticationToken.class);
+		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
 	}
 
 }

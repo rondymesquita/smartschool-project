@@ -1,6 +1,7 @@
 package br.com.async.core.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,10 +16,16 @@ import javax.persistence.SequenceGenerator;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 @Data
 @Entity (name = "tb_user")
 @EqualsAndHashCode(callSuper=false)
-public class User extends AbstractEntity implements Serializable {
+public class User extends AbstractEntity implements Serializable, UserDetails {
 
 	/**
 	 * 
@@ -40,6 +47,26 @@ public class User extends AbstractEntity implements Serializable {
 	
 	@Getter
 	private String password;
+	
+	@Getter
+	private boolean accountNonExpired = true;
+	
+	@Getter
+	private boolean accountNonLocked = true;
+	
+	@Getter
+	private boolean credentialsNonExpired = true;
+	
+	@Getter
+	private boolean enabled = true;
+	
+	@Getter
+	private Collection<? extends GrantedAuthority> authorities;
+	
+	public static boolean isAuthenticated(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+		return authentication != null && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
+	}
 	
 
 }
