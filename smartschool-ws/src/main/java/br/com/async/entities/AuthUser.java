@@ -16,7 +16,7 @@ public class AuthUser implements Serializable{
 	@Getter
 	private String authToken;
 	@Getter
-	private String personType;
+	private String role;
 	
 	
 

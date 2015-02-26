@@ -20,10 +20,6 @@ public class Person extends AbstractEntity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	public static final String TEACHER = "TEACHER";
-	public static final String MANAGER = "MANAGER";
-	public static final String STUDENT = "STUDENT";
 
 	@Getter
 	@Id
@@ -38,5 +34,5 @@ public class Person extends AbstractEntity implements Serializable {
 	private String cpf;
 	
 	@Getter
-	private String personType;
+	private String role;
 }

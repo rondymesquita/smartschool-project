@@ -1,6 +1,8 @@
 package br.com.async.config;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import br.com.async.annotations.Authenticate;
 import br.com.async.controller.AuthenticationController;
+import br.com.async.entities.AuthUser;
 import br.com.async.util.Constants;
 
 @Component
@@ -32,17 +35,19 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
-
+		AuthUser authUser = (AuthUser) httpSession.getAttribute(Constants.USER_KEY);
+		
+		if(!PermissionManager.permissionChecker(authUser.getRole(), request.getRequestURI())){
+			return false; 
+		}
+		
 		if (method.isAnnotationPresent(Authenticate.class)) {
 
 			token = request.getHeader(Constants.AUTH_TOKEN);
-			System.out.println("Token Request : " + token);
 
-			tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
-			System.out.println("Token Session : " + tokenSession);
-
-			System.out.println("");
-
+			
+			tokenSession = authUser.getAuthToken();
+			
 			if (token == null || tokenSession == null) {
 				System.out.println("nulos");
 				response.sendRedirect("/smartschool-ws/unauthorized");
@@ -68,6 +73,14 @@ public class Interceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+	}
+	
+	static class PermissionManager{
+		
+		public static boolean permissionChecker(String role, String route){
+			return true;
+		}
+		
 	}
 
 }

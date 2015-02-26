@@ -53,24 +53,27 @@ public class AuthenticationController extends BaseController{
 	 * @throws JsonGenerationException 
 	 */
 	@RequestMapping(value="/api/login", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<String> login(@RequestBody AuthUser login, HttpServletRequest request, HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
+	public @ResponseBody ResponseEntity<String> login(@RequestBody AuthUser auth, HttpServletRequest request, HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
 		
 		ResponseData responseData;
 		
-		User user = userApplication.findByUsernameAndPassword(login.getUsername(), login.getPassword());
+		User user = userApplication.findByUsernameAndPassword(auth.getUsername(), auth.getPassword());
 		if(user != null){
 			String token = HttpUtils.generateToken();
-			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
+//			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
+			
 			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
 			
-			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
+//			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
 			
-			login.setAuthToken(tokenSession);
-			login.setPersonType(user.getPerson().getPersonType());
-			login.setPassword("");
+			auth.setAuthToken(token);
+			auth.setRole(user.getPerson().getRole());
+			auth.setPassword("");
+			
+			httpSession.setAttribute(Constants.USER_KEY, auth);
 			
 			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-			String json = ow.writeValueAsString(login);
+			String json = ow.writeValueAsString(auth);
 			return new ResponseEntity<String>(json, HttpStatus.OK);
 		}else{
 			responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
