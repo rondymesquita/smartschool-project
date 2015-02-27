@@ -1,5 +1,8 @@
 package br.com.async.deploy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.github.benas.jpopulator.api.Populator;
 import io.github.benas.jpopulator.impl.PopulatorBuilder;
 
@@ -10,6 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Person;
+import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
 
 public class UserDeployTest {
@@ -40,6 +44,12 @@ public class UserDeployTest {
 		person.setName("John Doe");
 		person.setPersonType(Person.MANAGER);
 		user.setPerson(person);
+		
+		Role role = new Role();
+		role.setAuthority(Role.ROLE_MANAGER);
+		List<Role> roles = new ArrayList<Role>();
+		roles.add(role);
+		user.setAuthorities(roles);
 		
 		User u = userApplication.findByUsernameAndPassword("admin@admin", "admin");
 		if(u==null){

@@ -1,7 +1,7 @@
 package br.com.async.core.entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -61,7 +62,8 @@ public class User extends AbstractEntity implements Serializable, UserDetails {
 	private boolean enabled = true;
 	
 	@Getter
-	private Collection<? extends GrantedAuthority> authorities;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Role> authorities;
 	
 	public static boolean isAuthenticated(){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 

@@ -22,8 +22,8 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private HttpSession httpSession;
 
-	@Autowired
-	private AuthenticationController authenticationController;
+//	@Autowired
+//	private AuthenticationController authenticationController;
 
 	private String token = "";
 	private String tokenSession = "";
@@ -33,30 +33,30 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
 
-		if (method.isAnnotationPresent(Authenticate.class)) {
-
-			token = request.getHeader(Constants.AUTH_TOKEN);
-			System.out.println("Token Request : " + token);
-
-			tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
-			System.out.println("Token Session : " + tokenSession);
-
-			System.out.println("");
-
-			if (token == null || tokenSession == null) {
-				System.out.println("nulos");
-				response.sendRedirect("/smartschool-ws/unauthorized");
-				return false;
-			} else {
-				if (token.equals(tokenSession)) {
-					return true;
-				}else{
-					response.sendRedirect("/smartschool-ws/unauthorized");
-					return false;
-				}
-			}
-
-		}
+//		if (method.isAnnotationPresent(Authenticate.class)) {
+//
+//			token = request.getHeader(Constants.AUTH_TOKEN);
+//			System.out.println("Token Request : " + token);
+//
+//			tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
+//			System.out.println("Token Session : " + tokenSession);
+//
+//			System.out.println("");
+//
+//			if (token == null || tokenSession == null) {
+//				System.out.println("nulos");
+//				response.sendRedirect("/smartschool-ws/unauthorized");
+//				return false;
+//			} else {
+//				if (token.equals(tokenSession)) {
+//					return true;
+//				}else{
+//					response.sendRedirect("/smartschool-ws/unauthorized");
+//					return false;
+//				}
+//			}
+//
+//		}
 
 		return true;
 

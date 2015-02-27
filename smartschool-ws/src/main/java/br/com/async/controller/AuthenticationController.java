@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import br.com.async.config.ApplicationContext;
+import br.com.async.config.security.CustomAuthenticationProvider;
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.User;
 import br.com.async.entities.AuthUser;
@@ -46,8 +46,7 @@ public class AuthenticationController extends BaseController{
 	private UserApplication userApplication = ApplicationContext.getInstance().getBean("userApplicationImpl", UserApplication.class);
 	
 	@Autowired
-	@Qualifier("authenticationManager")
-	AuthenticationManager authenticationManager;
+	protected CustomAuthenticationProvider authenticationManager;
 	
 	private Logger logger = Logger.getLogger(AuthenticationController.class.getName());
 	
@@ -65,65 +64,42 @@ public class AuthenticationController extends BaseController{
 	 */
 	@RequestMapping(value="/api/login", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<String> login(
-			@RequestParam("j_username") String username,
-            @RequestParam("j_password") String password, 
+			@RequestBody AuthUser user,
             HttpServletRequest request, 
             HttpServletResponse response) throws JsonGenerationException, JsonMappingException, IOException{
 		
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
-	    AuthUser login = new AuthUser();
-	    token.setDetails(login);
+			String username = user.getUsername();
+			String password = user.getPassword();
+		
+			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+			AuthUser login = new AuthUser();
+			token.setDetails(login);
 	    
+			ResponseData responseData;
 	    
-	    ResponseData responseData;
-	    try {
 	        Authentication auth = authenticationManager.authenticate(token);
-	        SecurityContextHolder.getContext().setAuthentication(auth);
 	        
-			String tokenString = HttpUtils.generateToken();
-			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
-			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
-			login.setAuthToken(tokenString);
-//			login.setPersonType(user.getPerson().getPersonType());
-			login.setPassword("");
-	        
-	        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-			String json = ow.writeValueAsString(login);
-			return new ResponseEntity<String>(json, HttpStatus.OK);
-	      } catch (BadCredentialsException e) {
+	        if(auth != null){
+		        SecurityContextHolder.getContext().setAuthentication(auth);
+		        
+				String tokenString = HttpUtils.generateToken();
+				
+				login.setAuthToken(tokenString);
+				login.setPassword("");
+				
+				httpSession.setAttribute(Constants.USER_KEY, login);
+				httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
+				
+		        
+		        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+				String json = ow.writeValueAsString(login);
+				return new ResponseEntity<String>(json, HttpStatus.OK);
+	    	}else{
 				responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
 				ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 				String json = ow.writeValueAsString(responseData);
 				return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
 	      }
-		
-//		ResponseData responseData;
-//		
-//		String username = (String) map.get("username");
-//		String password = (String) map.get("password");
-//		
-//		User user = userApplication.findByUsernameAndPassword(username, password);
-//		if(user != null){
-//			String token = HttpUtils.generateToken();
-//			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
-//			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
-//			
-//			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
-//			
-//			AuthUser login = new AuthUser();
-//			login.setAuthToken(tokenSession);
-//			login.setPersonType(user.getPerson().getPersonType());
-//			login.setPassword("");
-//			
-//			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-//			String json = ow.writeValueAsString(login);
-//			return new ResponseEntity<String>(json, HttpStatus.OK);
-//		}else{
-//			responseData = new ResponseData(Constants.INVALID_USER, HttpStatus.BAD_REQUEST+"");
-//			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-//			String json = ow.writeValueAsString(responseData);
-//			return new ResponseEntity<String>(json, HttpStatus.BAD_REQUEST);
-//		}
 		
 	}
 
