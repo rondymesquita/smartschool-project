@@ -39,7 +39,7 @@ public class UserDeployTest {
 		Person person = new Person();
 		person.setCpf("12345678900");
 		person.setName("John Doe");
-		person.setRole(Role.MANAGER);
+		person.setRole(Role.ROLE_MANAGER);
 		user.setPerson(person);
 		
 		User u = userApplication.findByUsernameAndPassword("admin@admin", "admin");

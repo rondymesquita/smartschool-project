@@ -29,11 +29,11 @@ angular.module('SmartschoolApp').controller('LoginController', ['$scope','$rootS
 
 
 		},function(data){
-
+			console.log(data);
 			if(data.status == 0)
 				$scope.responseDataLogin = new ResponseData(constants.message.CONNECTION_ERROR, constants.status.DANGER);
 			else
-				$scope.responseDataLogin = new ResponseData(data.status + " - " + data.statusText, constants.status.DANGER);
+				$scope.responseDataLogin = new ResponseData(data.data.status + " - " + data.data.message, constants.status.DANGER);
 
 				$scope.onTransaction = false;
 				$scope.onResponse = true;

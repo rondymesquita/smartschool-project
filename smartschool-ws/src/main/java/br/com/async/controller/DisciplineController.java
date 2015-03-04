@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.annotations.Authenticate;
+import br.com.async.annotations.RoleManager;
+import br.com.async.annotations.RoleProfessor;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.entities.Discipline;
@@ -30,6 +32,7 @@ public class DisciplineController extends BaseController{
      * @return
      */
     @Authenticate
+    @RoleProfessor
     @RequestMapping(value="/api/disciplines", method = RequestMethod.GET)
     public @ResponseBody
     List<Discipline> list(){
@@ -41,6 +44,7 @@ public class DisciplineController extends BaseController{
      * @return
      */
     @Authenticate
+    @RoleProfessor
     @RequestMapping(value="/api/disciplines/{id}", method = RequestMethod.GET)
     public @ResponseBody Discipline find(@PathVariable String id){
         return disciplineApplication.findByCode(Integer.parseInt(id));
@@ -51,6 +55,7 @@ public class DisciplineController extends BaseController{
      * @return
      */
     @Authenticate
+    @RoleProfessor
     @RequestMapping(value="/api/disciplines", method = RequestMethod.POST)
     public @ResponseBody
     ResponseData save(@RequestBody Discipline discipline){
@@ -72,6 +77,7 @@ public class DisciplineController extends BaseController{
      * @return
      */
     @Authenticate
+    @RoleProfessor
     @RequestMapping(value="/api/disciplines", method = RequestMethod.PUT)
     public @ResponseBody ResponseData update(@RequestBody Discipline discipline){
         boolean resultQuery = disciplineApplication.update(discipline);
@@ -90,6 +96,7 @@ public class DisciplineController extends BaseController{
      * @return
      */
     @Authenticate
+    @RoleManager
     @RequestMapping(value="/api/disciplines/{id}", method = RequestMethod.DELETE)
     public @ResponseBody ResponseData delete(@PathVariable String id){
         Discipline discipline = new Discipline();

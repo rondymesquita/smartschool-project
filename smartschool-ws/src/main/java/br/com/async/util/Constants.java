@@ -13,10 +13,10 @@ public class Constants {
 	/*
 	 * Authentication
 	 */
-	public static final String MUST_BE_LOGGED = "Voc√™ precisa estar logado para ter acesso.";
-	public static final String INVALID_USER = "Usu√°rio inv√°lido";
-	public static final String USER_SAVED = "Usu√°rio salvo com sucesso";
-	public static final String ALREADY_LOGGED_IN = "Voc√™ j√° est√° autenticado!";
+	public static final String MUST_BE_LOGGED = "Você precisa estar logado para ter acesso.";
+	public static final String INVALID_USER = "Usuário inválido";
+	public static final String USER_SAVED = "Usuário salvo com sucesso";
+	public static final String ALREADY_LOGGED_IN = "Você já está autenticado!";
 	public static final String USER_KEY = "user";
 	
 	/*

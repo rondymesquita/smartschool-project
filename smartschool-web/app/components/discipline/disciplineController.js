@@ -19,6 +19,7 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
 
         disciplineService.list()
         .then(function(data, status){
+        	console.log(data);
 
             $scope.disciplines = data.data;
 
@@ -45,7 +46,7 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
             $scope.onResponse = true;
 
         },function(data){
-            console.log(data.status)
+            console.log(data);
 
             if(data.status == 0)
                 toast.error(constants.message.CONNECTION_ERROR);
@@ -98,7 +99,7 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
 
         disciplineService.update($scope.discipline)
         .then(function(data){
-            
+
             toast.success(constants.message.REGISTRY_UPDATED);
             $("#disciplineUpdateModal").find(".modal").modal("hide");
 

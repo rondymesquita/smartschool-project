@@ -26,9 +26,6 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private HttpSession httpSession;
 
-	@Autowired
-	private AuthenticationController authenticationController;
-
 	private String token = "";
 	private String tokenSession = "";
 
@@ -37,15 +34,11 @@ public class Interceptor extends HandlerInterceptorAdapter {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
 		AuthUser authUser = (AuthUser) httpSession.getAttribute(Constants.USER_KEY);
-		
-		
-		Permission permission = new Permission(request.getRequestURI(), request.getMethod(), authUser.getRole());
-		if(!PermissionManager.getInstance().checkPermission()){
-			return false; 
-		}
+		if(authUser == null)
+			authUser = new AuthUser();
 		
 		if (method.isAnnotationPresent(Authenticate.class)) {
-
+			
 			token = request.getHeader(Constants.AUTH_TOKEN);
 			tokenSession = authUser.getAuthToken();
 			
@@ -54,7 +47,16 @@ public class Interceptor extends HandlerInterceptorAdapter {
 				response.sendRedirect("/smartschool-ws/unauthorized");
 				return false;
 			} else {
+				
+				
 				if (token.equals(tokenSession)) {
+					
+					Permission permission = new Permission(method, authUser.getRole());
+					if(!PermissionManager.getInstance().hasPermission(permission)){
+						response.sendRedirect("/smartschool-ws/unauthorized");
+						return false;
+					}
+					
 					return true;
 				}else{
 					response.sendRedirect("/smartschool-ws/unauthorized");
