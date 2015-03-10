@@ -10,6 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Person;
+import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
 
 public class UserDeployTest {
@@ -38,7 +39,7 @@ public class UserDeployTest {
 		Person person = new Person();
 		person.setCpf("12345678900");
 		person.setName("John Doe");
-		person.setPersonType(Person.MANAGER);
+		person.setRole(Role.ROLE_MANAGER);
 		user.setPerson(person);
 		
 		User u = userApplication.findByUsernameAndPassword("admin@admin", "admin");

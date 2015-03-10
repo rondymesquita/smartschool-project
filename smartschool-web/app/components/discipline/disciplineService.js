@@ -9,9 +9,11 @@ angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constan
       url: url,
       method: 'GET'
     }).success(function(data, status, header, config) {
-      // console.log(data);
+    	console.log("Success");
+//       console.log(data);
     }).error(function(data, status, header, config){
-      // console.log(data);
+    	console.log("Error");
+//       console.log(data);
       // console.log(status);
       // console.log(header);
       // console.log(config);
