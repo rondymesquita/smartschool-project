@@ -60,11 +60,8 @@ public class AuthenticationController extends BaseController{
 		User user = userApplication.findByUsernameAndPassword(auth.getUsername(), auth.getPassword());
 		if(user != null){
 			String token = HttpUtils.generateToken();
-//			httpSession.setAttribute(Constants.AUTH_TOKEN, token);
 			
 			httpSession.setMaxInactiveInterval(60*60*24*7); //1 hora * 24 horas * 7 dias = uma semana
-			
-//			String tokenSession = (String) httpSession.getAttribute(Constants.AUTH_TOKEN);
 			
 			auth.setAuthToken(token);
 			auth.setRole(user.getPerson().getRole());
