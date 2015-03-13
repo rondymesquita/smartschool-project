@@ -4,9 +4,9 @@
 
 angular
     .module('SmartschoolApp')
-    .controller('ProfessorController', ['$scope', '$filter', 'ProfessorService','constants','toast','ngTableParams', '$http', professorController]);
+    .controller('ProfessorController', ['$scope','$rootScope', '$filter', 'ProfessorService','constants','toast','ngTableParams', '$http', professorController]);
 
-function professorController($scope, $filter, professorService,  constants,  toast, ngTableParams, $http) {
+function professorController($scope, $rootScope, $filter, professorService,  constants,  toast, ngTableParams, $http) {
 
     $scope.title = "Professores";
     $scope.professors = [];
@@ -20,6 +20,11 @@ function professorController($scope, $filter, professorService,  constants,  toa
             role : 'ROLE_MANAGER'
         }
     }
+
+    $scope.$watch('formModalProfessor', function(formModal) {
+        console.log(formModal);
+        $rootScope.formModal = formModal;
+    });
 
     $scope.searchProfessors = function(){
 
