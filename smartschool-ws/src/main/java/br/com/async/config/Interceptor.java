@@ -41,6 +41,9 @@ public class Interceptor extends HandlerInterceptorAdapter {
 			
 			token = request.getHeader(Constants.AUTH_TOKEN);
 			tokenSession = authUser.getAuthToken();
+			System.out.println("token:========="+token);
+			System.out.println("tokenSession:=="+tokenSession);
+			System.out.println(authUser);
 			
 			if (token == null || tokenSession == null) {
 				System.out.println("nulos");

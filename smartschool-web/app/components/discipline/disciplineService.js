@@ -24,8 +24,10 @@ angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constan
 
   this.save = function(formData) {
 
+
+
       url = config.url + config.disciplinesUri;
-      console.log(url);
+      console.log("Saving: "+url);
 
       return $http({
           url: url,

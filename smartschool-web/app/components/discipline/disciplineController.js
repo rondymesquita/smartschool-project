@@ -23,7 +23,6 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
 
             $scope.disciplines = data.data;
 
-
             if($scope.disciplines.length == 0){
                 $scope.responseData = new ResponseData(constants.message.EMPTY, constants.status.WARNING);
             }
@@ -58,10 +57,20 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
         });
     }
 
+
+
     $scope.saveDiscipline = function(){
+        
+
+        if(!disciplineForm.$valid){
+          toast.error(constants.message.INVALID_FORM_FIELDS);
+          return false;
+        }
 
         $scope.onTransaction = true;
         console.log("Discipline: "+$scope.discipline);
+
+
         disciplineService.save($scope.discipline)
         .then(function(data){
 
@@ -92,6 +101,12 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     }
 
     $scope.updateDiscipline = function(discipline){
+
+      if(!disciplineForm.$valid){
+        toast.error(constants.message.INVALID_FORM_FIELDS);
+        return false;
+      }
+
         $scope.discipline = discipline;
         console.log(discipline);
 

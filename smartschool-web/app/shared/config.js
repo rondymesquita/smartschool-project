@@ -3,6 +3,7 @@ angular.module('SmartschoolApp').constant('config',{
     loginUri: 'api/login/',
     professorsUri: 'api/professors/',
     disciplinesUri: 'api/disciplines/',
+    professorsUri: 'api/professors/',
     changePasswordUri: 'api/change-password'
 
 });

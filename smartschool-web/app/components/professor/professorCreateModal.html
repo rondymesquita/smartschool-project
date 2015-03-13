@@ -1,0 +1,38 @@
+
+<input id="fieldName" ng-model="parentScope.professor.code" type="hidden" class="form-control square" required>
+
+    <div class="form-group">
+        <label for="fieldName">Nome</label>
+        <input id="fieldName" ng-model="parentScope.professor.person.name" type="text" class="form-control square" placeholder="" required  ng-init="parentScope.professor.person.name='Rondy'">
+    </div>
+
+    <div class="form-group">
+        <label for="fieldName">CPF</label>
+        <input id="fieldName" ng-model="parentScope.professor.person.cpf" type="text" class="form-control square" placeholder="" required ng-init="parentScope.professor.person.cpf='12345678900'">
+    </div>
+
+    <div class="form-group">
+        <label for="fieldName">Email</label>
+        <input id="fieldName" ng-model="parentScope.professor.person.email" type="email" class="form-control square" placeholder="" required ng-init="parentScope.professor.person.email='email@email.com'">
+    </div>
+
+    <div class="form-group">
+        <label for="fieldName">Formação</label>
+        <input id="fieldName" ng-model="parentScope.professor.formation" type="text" class="form-control square" placeholder="" required ng-init="parentScope.professor.formation='ESP'">
+    </div>
+
+    <div class="form-group">
+        <label for="fieldName">Matrícula</label>
+        <input id="fieldName" ng-model="parentScope.professor.registry" type="text" class="form-control square" placeholder="" required ng-init="parentScope.professor.registry='111'">
+    </div>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="parentScope.professor.person.role" ng-true-value="'ROLE_MANAGER'" ng-false-value="'ROLE_PROFESSOR'">
+            É um coordenador
+        </label>
+    </div>
+
+<tt>value2 = {{parentScope.professor.person.role}}</tt><br/>
+
+    <!--Checkbos é manager ou professor-->
