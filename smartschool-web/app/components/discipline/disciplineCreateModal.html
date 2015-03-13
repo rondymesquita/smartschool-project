@@ -1,4 +1,4 @@
-<form name="disciplineForm">
+<form name="disciplineForm" ng-controller="DisciplineController">
 <input id="fieldName" ng-model="parentScope.discipline.code" type="hidden" class="form-control square" placeholder="Ex: Programação">
 
 <div class="form-group" ng-class="{'has-error': !disciplineForm.name.$valid && disciplineForm.name.$dirty}">
@@ -11,6 +11,5 @@
     <input id="fieldName" name="workload" ng-model="parentScope.discipline.workload"  type="number" class="form-control square" placeholder="Ex: 40" required>
 </div>
 
-
-<span>{{disciplineForm.$valid}}</span>
+<span>{{formController.$valid}}</span>
 </form>

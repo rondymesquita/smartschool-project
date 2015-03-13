@@ -16,7 +16,7 @@ var interceptor = function ($q, $location, constants) {
                 $("#authRequiredModal").find(".modal").modal("show");
 
             }else{
-                console.log($.cookie(constants.authTokenKey));
+                //console.log($.cookie(constants.authTokenKey));
                 request.headers[constants.authTokenKey] = $.cookie(constants.authTokenKey);
 
 

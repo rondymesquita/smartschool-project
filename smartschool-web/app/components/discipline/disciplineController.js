@@ -1,9 +1,9 @@
 
 angular
 .module('SmartschoolApp')
-.controller('DisciplineController', ['$scope', '$filter', 'DisciplineService','constants','toast','ngTableParams', '$http', disciplineController]);
+.controller('DisciplineController', ['$scope','$rootScope', '$filter', 'DisciplineService','constants','toast','ngTableParams', '$http', disciplineController]);
 
-function disciplineController($scope, $filter, disciplineService,  constants,  toast, ngTableParams, $http) {
+function disciplineController($scope, $rootScope, $filter, disciplineService,  constants,  toast, ngTableParams, $http) {
 
     $scope.title = "Disciplinas";
     $scope.disciplines = [];
@@ -11,6 +11,11 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.onResponse = false;
     $scope.discipline;
     $scope.saveAndNew = false;
+
+    $scope.$watch('disciplineForm', function(formController) {
+        $rootScope.formController = formController;
+    });
+
 
     $scope.searchDisciplines = function(){
 
@@ -60,12 +65,6 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
 
 
     $scope.saveDiscipline = function(){
-        
-
-        if(!disciplineForm.$valid){
-          toast.error(constants.message.INVALID_FORM_FIELDS);
-          return false;
-        }
 
         $scope.onTransaction = true;
         console.log("Discipline: "+$scope.discipline);
@@ -102,10 +101,6 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
 
     $scope.updateDiscipline = function(discipline){
 
-      if(!disciplineForm.$valid){
-        toast.error(constants.message.INVALID_FORM_FIELDS);
-        return false;
-      }
 
         $scope.discipline = discipline;
         console.log(discipline);

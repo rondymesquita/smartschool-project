@@ -20,9 +20,9 @@
                 <!-- <label style="margin-right:10px;" ng-show="showSaveOptions">
                     <input type="checkbox" ng-model="parentScope.saveAndNew"> Salvar e novo
                 </label> -->
-
+                <span>{{rootScope.appName}}</span>
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal" ng-show="secondaryButtonText">{{secondaryButtonText}}</button>
-                <button type="button" class="btn btn-primary btn-{{primaryButtonContext}}" data-ng-click="onPrimaryButtonClick(); $event.stopPropagation()" ng-disabled="parentScope.onTransaction" ng-show="primaryButtonText">{{primaryButtonText}}</button>
+                <button type="button" class="btn btn-primary btn-{{primaryButtonContext}}" data-ng-click="onPrimaryButtonClick(); $event.stopPropagation()" ng-disabled="parentScope.onTransaction || rootScope.formController.$invalid" ng-show="primaryButtonText">{{primaryButtonText}}</button>
 
             </div>
         </div>
