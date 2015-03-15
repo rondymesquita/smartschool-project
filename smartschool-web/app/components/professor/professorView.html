@@ -45,8 +45,8 @@
         <table class="table table-striped" ng-table="tableParams">
             <tbody>
             <tr ng-repeat="professor in $data"  ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false">
-
-                <td data-title="'Matrícula'" sortable="'code'" width="10%">{{professor.registry}}</td>
+                <td data-title="'Cód'" sortable="'code'" width="10%">{{professor.person.code}}</td>
+                <td data-title="'Matrícula'" sortable="'registry'" width="10%">{{professor.registry}}</td>
                 <td data-title="'Nome'" sortable="'name'" width="20%">{{professor.person.name}}</td>
                 <td data-title="'CPF'" sortable="'cpf'" width="20%">{{professor.person.cpf}}</td>
                 <td data-title="'Email'" sortable="'email'" width="20%">{{professor.person.email}}</td>

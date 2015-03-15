@@ -13,7 +13,6 @@ function disciplineController($scope, $rootScope, $filter, disciplineService,  c
     $scope.saveAndNew = false;
 
     $scope.$watch('formModalDiscipline', function(formModal) {
-        console.log(formModal);
         $rootScope.formModal = formModal;
     });
 

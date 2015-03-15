@@ -21,10 +21,12 @@ angular.module('SmartschoolApp').directive('modal', ['$sce', '$http', function (
 
                 scope.parentScope = scope.$parent;
                 scope.rootScope = scope.$root;
-                console.log(scope.$root);
+
+                console.log(scope);
+            
 
                 if(attrs['onPrimaryButtonClickEvent'].indexOf("save") > -1);
-                scope.showSaveOptions = true;
+                    scope.showSaveOptions = true;
 
                 scope.modalId = attrs['id'];
                 scope.modalTitle = attrs['modalTitle'];
@@ -39,7 +41,7 @@ angular.module('SmartschoolApp').directive('modal', ['$sce', '$http', function (
                     //     scope.modalBody = $sce.trustAsHtml(data);
                     // });
 
-                }
+            }
         },
 
     };

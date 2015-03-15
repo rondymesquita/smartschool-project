@@ -22,7 +22,6 @@ function professorController($scope, $rootScope, $filter, professorService,  con
     }
 
     $scope.$watch('formModalProfessor', function(formModal) {
-        console.log(formModal);
         $rootScope.formModal = formModal;
     });
 
@@ -30,6 +29,8 @@ function professorController($scope, $rootScope, $filter, professorService,  con
 
         $scope.onTransaction = true;
         $scope.responseData = new ResponseData(constants.message.LOADING, constants.status.LOADING);
+
+        $scope.professors = [];
 
         professorService.list()
             .then(function(data, status){
