@@ -18,7 +18,8 @@ angular.module('SmartschoolApp').constant('constants',{
       REGISTRY_SAVED: "Registro salvo com sucesso!",
       REGISTRY_UPDATED: "Registro atualizado com sucesso!",
       REGISTRY_DELETED: "Registro apagado com sucesso!",
-      INVALID_FORM_FIELDS: "Preencha corretamente todos os campos"
+      INVALID_FORM_FIELDS: "Preencha corretamente todos os campos",
+      PASSWORD_CHANGED: "Senha alterada com sucesso!"
   },
   table:{
       FIRST_PAGE: 1,

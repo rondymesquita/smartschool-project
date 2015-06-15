@@ -23,7 +23,9 @@ angular.module('SmartschoolApp').controller('ChangePasswordController', ['$scope
 				$scope.onTransaction = false;
 				$scope.onResponse = true;
 
-				$location.url('/dashboard');
+				//$location.url('/dashboard');
+
+				$scope.responseDataLogin = new ResponseData(constants.message.PASSWORD_CHANGED, constants.status.SUCCESS);
 
 
 		},function(data){
