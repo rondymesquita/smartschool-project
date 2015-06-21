@@ -18,6 +18,11 @@ function config($routeProvider) {
         controller  : 'ProfessorController'
     })
 
+        .when('/professorships', {
+            templateUrl : './../professorship/professorshipView.html',
+            controller  : 'ProfessorshipController'
+        })
+
 
     .when('/login', {
         templateUrl : './../login/loginView.html',

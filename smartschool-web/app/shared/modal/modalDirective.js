@@ -22,8 +22,8 @@ angular.module('SmartschoolApp').directive('modal', ['$sce', '$http', function (
                 scope.parentScope = scope.$parent;
                 scope.rootScope = scope.$root;
 
-                console.log(scope);
-            
+                //console.log(scope);
+
 
                 if(attrs['onPrimaryButtonClickEvent'].indexOf("save") > -1);
                     scope.showSaveOptions = true;

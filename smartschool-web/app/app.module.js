@@ -1,5 +1,5 @@
 angular
-.module('SmartschoolApp', ['ngRoute','ngTable'])
+.module('SmartschoolApp', ['ngRoute','ngTable','ui.bootstrap'])
 .run(function(){
     console.log("loaded");
 }).config(function($httpProvider){
