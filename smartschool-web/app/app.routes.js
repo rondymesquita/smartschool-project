@@ -13,6 +13,17 @@ function config($routeProvider) {
         controller  : 'DisciplineController'
     })
 
+    .when('/professors', {
+        templateUrl : './../professor/professorView.html',
+        controller  : 'ProfessorController'
+    })
+
+        .when('/professorships', {
+            templateUrl : './../professorship/professorshipView.html',
+            controller  : 'ProfessorshipController'
+        })
+
+
     .when('/login', {
         templateUrl : './../login/loginView.html',
         controller  : 'LoginController'

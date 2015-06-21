@@ -1,0 +1,25 @@
+<form name="formModalDiscipline" ng-controller="ProfessorshipController">
+
+    <input id="fieldName" ng-model="parentScope.professorship.code" type="hidden" class="form-control square">
+
+    <div class="form-group" ng-class="{'has-error': !formModalProfessorship.name.$valid && formModalProfessorship.name.$dirty}">
+        <label for="fieldName">Selecione Disciplina</label>
+
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': !formModalProfessorship.workload.$valid && formModalProfessorship.workload.$dirty}">
+        <label for="fieldName">Carga Horária <small class="text-danger">&nbsp(Somente números)</small></label>
+
+
+        <pre>Model: {{selected | json}}</pre>
+        <input type="text" ng-model="selectedDiscipline" typeahead="discipline for discipline in disciplines | filter:$viewValue | limitTo:8" class="form-control">
+
+
+    </div>
+
+</form>
+
+<script>
+
+
+</script>

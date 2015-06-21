@@ -1,12 +1,18 @@
+<form name="formModalDiscipline" ng-controller="DisciplineController">
+<input id="fieldName" ng-model="parentScope.discipline.code" type="hidden" class="form-control square" placeholder="Ex: Programação">
 
-<input id="fieldName" ng-model="parentScope.discipline.code" type="hidden" class="form-control square" placeholder="Ex: Programação" required>
-
-<div class="form-group">
+<div class="form-group" ng-class="{'has-error': !formModalDiscipline.name.$valid && formModalDiscipline.name.$dirty}">
     <label for="fieldName">Nome da Disciplina</label>
-    <input id="fieldName" ng-model="parentScope.discipline.name" type="text" class="form-control square" placeholder="Ex: Programação" required>
+    <input id="fieldName" name="name" ng-model="parentScope.discipline.name" type="text" class="form-control square" placeholder="Ex: Programação" required>
 </div>
 
-<div class="form-group">
+<div class="form-group" ng-class="{'has-error': !formModalDiscipline.workload.$valid && formModalDiscipline.workload.$dirty}">
     <label for="fieldName">Carga Horária <small class="text-danger">&nbsp(Somente números)</small></label>
-    <input id="fieldName" ng-model="parentScope.discipline.workload"  type="number" class="form-control square" placeholder="Ex: 40" required>
+    <input id="fieldName" name="workload" ng-model="parentScope.discipline.workload"  type="number" class="form-control square" placeholder="Ex: 40" required>
 </div>
+
+    <!--<span>{{formModalDiscipline.$valid}}</span><br>-->
+    <!--<span>{{parentScope.discipline.code}}</span><br>-->
+    <!--<span>{{parentScope.discipline.name}}</span><br>-->
+    <!--<span>{{parentScope.discipline.workload}}</span>-->
+</form>

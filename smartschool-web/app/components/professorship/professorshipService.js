@@ -1,15 +1,15 @@
-angular.module('SmartschoolApp').service('DisciplineService', ['$http', 'constants', 'config', function($http, constants, config) {
+angular.module('SmartschoolApp').service('ProfessorshipService', ['$http', 'constants', 'config', function($http, constants, config) {
 
   this.list = function() {
 
     url = config.url + config.disciplinesUri;
-    //console.log(url);
+    console.log(url);
 
     return $http({
       url: url,
       method: 'GET'
     }).success(function(data, status, header, config) {
-    	//console.log("Success");
+    	console.log("Success");
 //       console.log(data);
     }).error(function(data, status, header, config){
     	console.log("Error");

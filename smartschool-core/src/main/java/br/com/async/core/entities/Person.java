@@ -35,4 +35,7 @@ public class Person extends AbstractEntity implements Serializable {
 	
 	@Getter
 	private String role;
+	
+	@Getter
+	private String email;
 }

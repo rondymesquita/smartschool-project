@@ -1,9 +1,9 @@
 
 angular
 .module('SmartschoolApp')
-.controller('DisciplineController', ['$scope', '$filter', 'DisciplineService','constants','toast','ngTableParams', '$http', disciplineController]);
+.controller('DisciplineController', ['$scope','$rootScope', '$filter', 'DisciplineService','constants','toast','ngTableParams', '$http', disciplineController]);
 
-function disciplineController($scope, $filter, disciplineService,  constants,  toast, ngTableParams, $http) {
+function disciplineController($scope, $rootScope, $filter, disciplineService,  constants,  toast, ngTableParams, $http) {
 
     $scope.title = "Disciplinas";
     $scope.disciplines = [];
@@ -11,6 +11,11 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     $scope.onResponse = false;
     $scope.discipline;
     $scope.saveAndNew = false;
+
+    $scope.$watch('formModalDiscipline', function(formModal) {
+        $rootScope.formModal = formModal;
+    });
+
 
     $scope.searchDisciplines = function(){
 
@@ -22,7 +27,6 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
         	console.log(data);
 
             $scope.disciplines = data.data;
-
 
             if($scope.disciplines.length == 0){
                 $scope.responseData = new ResponseData(constants.message.EMPTY, constants.status.WARNING);
@@ -58,10 +62,14 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
         });
     }
 
+
+
     $scope.saveDiscipline = function(){
 
         $scope.onTransaction = true;
         console.log("Discipline: "+$scope.discipline);
+
+
         disciplineService.save($scope.discipline)
         .then(function(data){
 
@@ -92,6 +100,8 @@ function disciplineController($scope, $filter, disciplineService,  constants,  t
     }
 
     $scope.updateDiscipline = function(discipline){
+
+
         $scope.discipline = discipline;
         console.log(discipline);
 

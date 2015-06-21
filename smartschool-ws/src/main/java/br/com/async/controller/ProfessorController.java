@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.annotations.Authenticate;
+import br.com.async.annotations.RoleManager;
+import br.com.async.annotations.RoleProfessor;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.entities.Professor;
@@ -27,6 +29,7 @@ public class ProfessorController extends BaseController{
 	 * @return [{"code":1,"person":{"code":1,"name":"Name","cpf":"123"},"enrollments":"Enrollment","registry":"123","formation":"msc"}]
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professors", method = RequestMethod.GET)
 	public @ResponseBody List<Professor> list(){
 		return professorApplication.list();
@@ -37,6 +40,7 @@ public class ProfessorController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.GET)
 	public @ResponseBody Professor find(@PathVariable String id){
 		return professorApplication.findByCode(Integer.parseInt(id));
@@ -47,6 +51,7 @@ public class ProfessorController extends BaseController{
 	 * @return {"message":"Salvo!","status":"sucess"}
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professors", method = RequestMethod.POST)
 	public @ResponseBody ResponseData save(@RequestBody Professor professor){
 		
@@ -67,6 +72,7 @@ public class ProfessorController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professors", method = RequestMethod.PUT)
 	public @ResponseBody ResponseData update(@RequestBody Professor professor){
 		boolean resultQuery = professorApplication.update(professor);
@@ -85,6 +91,7 @@ public class ProfessorController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professors/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseData delete(@PathVariable String id){
 		Professor professor = new Professor();

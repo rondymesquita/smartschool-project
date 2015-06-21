@@ -1,5 +1,5 @@
 angular
-.module('SmartschoolApp', ['ngRoute','ngTable'])
+.module('SmartschoolApp', ['ngRoute','ngTable','ui.bootstrap'])
 .run(function(){
     console.log("loaded");
 }).config(function($httpProvider){
@@ -16,8 +16,9 @@ var interceptor = function ($q, $location, constants) {
                 $("#authRequiredModal").find(".modal").modal("show");
 
             }else{
-                // console.log("logged");
+                //console.log($.cookie(constants.authTokenKey));
                 request.headers[constants.authTokenKey] = $.cookie(constants.authTokenKey);
+
 
             }
 
