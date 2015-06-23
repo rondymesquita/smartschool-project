@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="../includes/header.jsp"/>
 <style>
@@ -45,22 +45,22 @@ div.loginContainer{
     <form class="form-signin" role="form" action="${pageContext.request.contextPath}/auth/login" method="post">
 
       <h2 class="form-signin-heading">Smartschool</h2>
-	
-
-      <div id="loginAlert" class="alert alert-{{responseDataLogin.status}} alert-dismissible" role="alert"  ng-show="onResponse && !onTransaction ">
-          <button type="button" class="close" data-dismiss="loginAlert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <span>{{responseDataLogin.message}}</span>
-       </div>
+	 
+	    <c:if  test="${responseData != null}">
+	       <div id="loginAlert" class="alert alert-danger alert-dismissible" role="alert">
+	          <span>${responseData.message}</span>
+	       </div>
+	    </c:if>
 
 
       <label for="email" class="sr-only">Email</label>
-      <input id="email" name="email" type="text" class="form-control input-lg" placeholder="Email address" required autofocus >
+      <input id="email" name="username" type="text" class="form-control input-lg" placeholder="Email address" required autofocus >
 
       <label for="password" class="sr-only">Senha</label>
       <input id="password" name="password" type="password" class="form-control input-lg" placeholder="Password" required >
 
       <br>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" >Login</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
 </div>
 

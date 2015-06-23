@@ -31,7 +31,7 @@ public class DisciplineController extends BaseController{
     private static String CONTROLLER = "disciplines/";
     
     @RequestMapping(value="/disciplines", method = RequestMethod.GET)
-    public String disciplines(Model model){
+    public String disciplinesPage(Model model){
     	
     	model.addAttribute("disciplines",disciplineApplication.list());
     	
@@ -45,8 +45,8 @@ public class DisciplineController extends BaseController{
      * @param response
      * @return
      */
-    @Authenticate
-    @RoleProfessor
+    //@Authenticate
+    //@RoleProfessor
     @RequestMapping(value="/api/disciplines", method = RequestMethod.GET)
     public @ResponseBody
     List<Discipline> list(){

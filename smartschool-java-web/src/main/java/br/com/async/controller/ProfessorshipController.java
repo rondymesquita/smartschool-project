@@ -1,105 +1,62 @@
 package br.com.async.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.async.annotations.Authenticate;
 import br.com.async.config.ApplicationContext;
+import br.com.async.core.application.DisciplineApplication;
+import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
-import br.com.async.core.entities.Professorship;
-import br.com.async.util.Constants;
-import br.com.async.util.ResponseData;
 
 @Controller
-public class ProfessorshipController extends BaseController{
 
-private ProfessorshipApplication professorshipApplication = ApplicationContext.getInstance().getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
+public class ProfessorshipController extends BaseController{
 	
+	private ProfessorshipApplication professorshipApplication = ApplicationContext.getInstance().getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
+	private ProfessorApplication professorApplication = ApplicationContext.getInstance().getBean("professorApplicationImpl", ProfessorApplication.class);
+	private DisciplineApplication disciplineApplication = ApplicationContext.getInstance().getBean("disciplineApplicationImpl", DisciplineApplication.class);
 	
-	/**
-	 * @param request
-	 * @param response
-	 * @return
-	 */
-	@Authenticate
-	@RequestMapping(value="/api/professorships", method = RequestMethod.GET)
-	public @ResponseBody List<Professorship> list(){
-		return professorshipApplication.list();
+	private static String CONTROLLER = "professorships/";
+	
+
+	@RequestMapping(value="/professorships", method = RequestMethod.GET)
+	public String professorshipsPage(Model model){
+		
+		model.addAttribute("professorships",professorshipApplication.list());
+		return CONTROLLER + "professorships";
 	}
 	
-	/**
-	 * @param id
-	 * @return
-	 */
-	@Authenticate
-	@RequestMapping(value="/api/professorships/{id}", method = RequestMethod.GET)
-	public @ResponseBody Professorship find(@PathVariable String id){
-		return professorshipApplication.findByCode(Integer.parseInt(id));
+	@RequestMapping(value="/professorships/new", method = RequestMethod.GET)
+	public String professorshipsNew(Model model){
+		
+		model.addAttribute("professors",professorApplication.list());
+		model.addAttribute("disciplines",disciplineApplication.list());
+		
+		return CONTROLLER + "professorshipsNew";
 	}
 	
-	/**
-	 * @param {"person":{"name":"Name","cpf":"123"},"registry":"123"}
-	 * @return
-	 */
-	@Authenticate
-	@RequestMapping(value="/api/professorships", method = RequestMethod.POST)
-	public @ResponseBody ResponseData save(@RequestBody Professorship professorship){
+	@RequestMapping(value="/professorships", method = RequestMethod.POST)
+	public String save(Model model, 
+			@RequestParam String professorCode,
+			@RequestParam String disciplineCode,
+			String[] students,
+			HttpServletRequest request, HttpServletResponse response){
 		
-		boolean resultQuery = professorshipApplication.save(professorship);
-		ResponseData responseData;
+		List<String> studentList = Arrays.asList(students);
 		
-		if(resultQuery)
-			responseData = new ResponseData(Constants.REGISTRY_SAVED, ResponseData.SUCCESS);
-		else
-			responseData = new ResponseData(Constants.ERROR, ResponseData.ERROR);
-		
-		return responseData;
-		
+				
+		return CONTROLLER + "professorshipsNew";
 	}
 	
-	/**
-	 * @param {"code":3,"person":{"name":"Name","cpf":"123"},"registry":"123"}
-	 * @return
-	 */
-	@Authenticate
-	@RequestMapping(value="/api/professorships", method = RequestMethod.PUT)
-	public @ResponseBody ResponseData update(@RequestBody Professorship professorship){
-		boolean resultQuery = professorshipApplication.update(professorship);
-		ResponseData responseData;
-		
-		if(resultQuery)
-			responseData = new ResponseData(Constants.REGISTRY_UPDATED, ResponseData.SUCCESS);
-		else
-			responseData = new ResponseData(Constants.ERROR, ResponseData.ERROR);
-		
-		return responseData;
-	}
 	
-	/**
-	 * @param id
-	 * @return
-	 */
-	@Authenticate
-	@RequestMapping(value="/api/professorships/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody ResponseData delete(@PathVariable String id){
-		Professorship professorship = new Professorship();
-		professorship.setCode(Integer.parseInt(id));
-		
-		boolean resultQuery = professorshipApplication.delete(professorship);
-		ResponseData responseData;
-		
-		if(resultQuery)
-			responseData = new ResponseData(Constants.REGISTRY_REMOVED, ResponseData.SUCCESS);
-		else
-			responseData = new ResponseData(Constants.ERROR, ResponseData.ERROR);
-		
-		return responseData;
-	}
 	
 }

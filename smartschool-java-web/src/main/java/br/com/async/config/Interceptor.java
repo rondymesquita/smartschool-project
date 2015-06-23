@@ -16,7 +16,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import br.com.async.annotations.Authenticate;
 import br.com.async.controller.AuthenticationController;
-import br.com.async.entities.AuthUser;
+import br.com.async.entities.UserSession;
 import br.com.async.entities.Permission;
 import br.com.async.util.Constants;
 
@@ -26,47 +26,27 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	private HttpSession httpSession;
 
-	private String token = "";
-	private String tokenSession = "";
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
-		AuthUser authUser = (AuthUser) httpSession.getAttribute(Constants.USER_KEY);
-		if(authUser == null)
-			authUser = new AuthUser();
+		
+		UserSession userSession = (UserSession) httpSession.getAttribute(Constants.USER_KEY);
 		
 		if (method.isAnnotationPresent(Authenticate.class)) {
 			
-			token = request.getHeader(Constants.AUTH_TOKEN);
-			tokenSession = authUser.getAuthToken();
-			System.out.println("token:========="+token);
-			System.out.println("tokenSession:=="+tokenSession);
-			System.out.println(authUser);
-			
-			if (token == null || tokenSession == null) {
-				System.out.println("nulos");
-				response.sendRedirect("/smartschool-ws/unauthorized");
-				return false;
-			} else {
+			if(userSession != null){
+				Permission permission = new Permission(method, userSession.getRole());
 				
-				
-				if (token.equals(tokenSession)) {
-					
-					Permission permission = new Permission(method, authUser.getRole());
-					if(!PermissionManager.getInstance().hasPermission(permission)){
-						response.sendRedirect("/smartschool-ws/unauthorized");
-						return false;
-					}
-					
-					return true;
-				}else{
-					response.sendRedirect("/smartschool-ws/unauthorized");
+				if(!PermissionManager.getInstance().hasPermission(permission)){
+					response.sendRedirect("/smartschool-java-web/auth/login");
 					return false;
 				}
+			}else{
+				response.sendRedirect("/smartschool-java-web/auth/login");
+				return false;
 			}
-
 		}
 
 		return true;

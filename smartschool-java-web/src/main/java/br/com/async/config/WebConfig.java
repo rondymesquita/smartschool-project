@@ -25,7 +25,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	// equivalents for <mvc:resources/> tags
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resouces/**").addResourceLocations("/resouces/").setCachePeriod(31556926);
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
     }
 	
 	public void addInterceptors(InterceptorRegistry registry) {

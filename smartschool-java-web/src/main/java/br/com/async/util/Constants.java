@@ -17,7 +17,7 @@ public class Constants {
 	public static final String INVALID_USER = "Usuário inválido";
 	public static final String USER_SAVED = "Usuário salvo com sucesso";
 	public static final String ALREADY_LOGGED_IN = "Você já está autenticado!";
-	public static final String USER_KEY = "user";
+	public static final String USER_KEY = "userSession";
 	
 	/*
 	 * 

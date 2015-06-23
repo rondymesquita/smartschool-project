@@ -17,7 +17,7 @@
                     Professores
                 </a>
                 
-                <a href="${pageContext.request.contextPath}/professorship" class="list-group-item">
+                <a href="${pageContext.request.contextPath}/professorships" class="list-group-item">
                     <span class="fa fa-book" aria-hidden="true"></span>
                     Cadeiras
                 </a>

@@ -123,3 +123,9 @@ span.twitter-typeahead {
 .input-group.input-group-sm span.twitter-typeahead .tt-dropdown-menu {
     top: 28px !important;
 }
+.table-scroll{
+	height:330px;
+	overflow-y:scroll;
+	display: block;
+	border:1px solid #ddd;
+}
