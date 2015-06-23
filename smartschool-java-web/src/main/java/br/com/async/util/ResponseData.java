@@ -2,8 +2,9 @@ package br.com.async.util;
 
 public class ResponseData {
 
-	public final static String SUCCESS = "sucess";
-	public final static String ERROR = "error";
+	public final static String SUCCESS = "success";
+	public final static String ERROR = "danger";
+	public final static String INFO = "info";
 	
 	private String message;
 	private String status;
