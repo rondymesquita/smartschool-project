@@ -3,7 +3,7 @@
 <jsp:include page="../includes/header.jsp"/>
 <jsp:include page="../includes/headerApp.jsp"/>
 
-<div class="container-fluid mainContent">
+<div class="container-fluid mainContent" ng-controller="DisciplineController">
 
 
  <ol class="breadcrumb">
@@ -14,6 +14,8 @@
     <h3>
       Disciplinas
     </h3>
+    
+    ${search}
     
     <jsp:include page="../includes/alert.jsp"/>
 
@@ -29,51 +31,56 @@
 
           </div>
 
+		
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nome ou código da disciplina" style="min-width:300px;">
+              <input type="text" class="form-control" placeholder="Nome ou código da disciplina" style="min-width:300px;" ng-model="search" ng-redirect-on-enter="${pageContext.request.contextPath}/disciplines/{{search}}">
             </div>
-            <button type="submit" class="btn btn-primary" ng-disabled="onTransaction">
+            <a href="${pageContext.request.contextPath}/disciplines/{{search}}" type="submit" class="btn btn-primary" ng-disabled="onTransaction">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-              Buscar</button>
+              Buscar {{search}} </a
           </form>
 
         </div>
       </nav>
-
-
-
-
+	
 
     <div>
       <table class="table table-striped" ng-table="tableParams">
+      	<thead>
+      		<th>Código</th>
+      		<th>Nome</th>
+      		<th>Carga Horária</th>
+      		<th></th>
+      	</thead>
         <tbody>
         
         <c:forEach var="discipline" items="${disciplines}">
-          <tr>
+          <tr ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false">
 
-            <td data-title="'Cód'" sortable="'code'" width="20%">${discipline.code}</td>
-            <td data-title="'Nome'" sortable="'name'" width="40%">${discipline.name}</td>
-            <td data-title="'Carga Horária'" sortable="'workload'" width="20%">${discipline.workload}</td>
+            <td width="20%">${discipline.code}</td>
+            <td width="40%">${discipline.name}</td>
+            <td width="20%">${discipline.workload}</td>
             <td width="20%">
 
-
-                <div class="registryOptions" ng-show="showButtons">
+                <div class="registryOptions"> <!-- ng-show="showButtons" -->
 
                     <!-- DELETE REGISTRY -->
-                    <modal id="disciplineDeleteModal" on-primary-button-click-event="deleteDiscipline(discipline)" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
-                    <a data-target="" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
+                    <modal handler="disciplineDeleteModal-${discipline.code}" on-primary-button-click-event="deleteDiscipline(${discipline.code})" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
+                    <a data-target="#disciplineDeleteModal-${discipline.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
                         <i class="fa fa-times-circle"></i>
                         Apagar
                     </a>
-
-                    <!-- UPDATE REGISTRY -->
-                    <modal id="disciplineUpdateModal" on-primary-button-click-event="updateDiscipline(discipline)" primary-button-text="Atualizar" primary-button-context="primary" secondary-button-text="Cancelar" modal-title="Atualizar Registro" modal-body="../discipline/disciplineCreateModal.html" modal-dismissible="true"></modal>
-                    <a data-target="" type="button" class="btn btn-primary btn-sm" data-toggle="modal">
-                        <i class="fa fa-pencil"></i>
-                        Editar
-                    </a>
-
+                   
+                    <form action="${pageContext.request.contextPath}/disciplines/edit" method="POST" th:object="${discipline}" class="inline">
+                    	
+                    	<input type="hidden" class="form-control" name="code" th:field="*{code}" value="${discipline.code}" >
+                    
+	                    <button type="submit" data-target="" type="button" class="btn btn-primary btn-sm">
+	                        <i class="fa fa-pencil"></i>
+	                        Editar
+	                    </button>
+					</form>
                 </div>
 
             </td>

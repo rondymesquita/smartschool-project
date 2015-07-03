@@ -1,12 +1,18 @@
 package br.com.async.core.repository.impl;
 
-import br.com.async.core.entities.Discipline;
-import br.com.async.core.entities.Professor;
-import br.com.async.core.repository.DisciplineRepository;
-import br.com.async.core.repository.ProfessorRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
+
+import br.com.async.core.entities.Discipline;
+import br.com.async.core.repository.DisciplineRepository;
 
 /**
  * Created by rondymesquita on 11/27/14.
@@ -18,4 +24,36 @@ public class DisciplineRepositoryImpl  extends AbstractRepositoryImpl<Discipline
     public DisciplineRepositoryImpl() {
         super(Discipline.class);
     }
+    
+    private Integer StringToInteger(String text){
+    	
+    	try{
+    		return Integer.parseInt(text);
+    	}catch(Exception e){
+    		return -1;
+    	}
+    	
+    }
+    
+	@Override
+	public List<Discipline> searchByCodeOrName(String search) {
+		
+		Criteria criteria = getSession().createCriteria(Discipline.class);
+		
+		Integer code = StringToInteger(search);
+		Criterion criterion;
+		if(code != -1)
+			criterion = Restrictions.eq("code", code );
+		else	
+			criterion = Restrictions.ilike("name", search, MatchMode.ANYWHERE);
+			    
+		criteria.add(criterion);
+		
+		try {
+			return criteria.list();
+		} catch (RuntimeException re) {
+			System.err.println(re);
+			return null;
+		}
+	}
 }

@@ -54,10 +54,10 @@ div.loginContainer{
 
 
       <label for="email" class="sr-only">Email</label>
-      <input id="email" name="username" type="text" class="form-control input-lg" placeholder="Email address" required autofocus >
+      <input id="email" name="username" type="text" class="form-control input-lg" placeholder="Email address" required autofocus value="admin">
 
       <label for="password" class="sr-only">Senha</label>
-      <input id="password" name="password" type="password" class="form-control input-lg" placeholder="Password" required >
+      <input id="password" name="password" type="password" class="form-control input-lg" placeholder="Password" required value="admin">
 
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>

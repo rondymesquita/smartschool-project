@@ -44,3 +44,23 @@ function ResponseData(message, status){
     this.message = message;
     this.status = status;
 }
+
+angular.module('SmartschoolApp').directive('ngRedirectOnEnter', function () {
+    return function (scope, element, attrs) {
+    	
+        element.bind("keyup", function (event) {
+        	
+            if(event.which === 13) {
+            	
+            	console.log(attrs);
+            	window.location.replace(attrs.ngRedirectOnEnter);
+            	
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});

@@ -22,6 +22,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/shared/config.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/shared/constants.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/shared/toastFactory.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/shared/modal/modalDirective.js"></script>
   
   <!-- services -->
   <script src="${pageContext.request.contextPath}/resources/js/components/professorship/professorshipService.js"></script>

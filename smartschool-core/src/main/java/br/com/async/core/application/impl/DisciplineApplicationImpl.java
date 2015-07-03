@@ -46,4 +46,9 @@ public class DisciplineApplicationImpl implements DisciplineApplication {
     public List<Discipline> list() {
         return repository.list();
     }
+
+	@Override
+	public List<Discipline> searchByCodeOrName(String search) {
+		 return repository.searchByCodeOrName(search);
+	}
 }
