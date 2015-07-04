@@ -1,5 +1,6 @@
 package br.com.async.config;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,32 @@ public class Interceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
 	private HttpSession httpSession;
-
+	
+	private final String CONTROLLER_NAME = "CONTROLLER_NAME";
+	
+	private void controllerParamsConfig(Method method) throws IllegalArgumentException, IllegalAccessException{
+			Class c = method.getClass();
+			Field heightField;
+			try {
+				heightField = c.getField(CONTROLLER_NAME);
+				 String heightValue = (String) heightField.get(method.getClass().newInstance());
+			      System.out.println("Height: " + heightValue.toString());
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		     
+	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
 		
@@ -60,6 +83,8 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 	}
+	
+	
 	
 
 }

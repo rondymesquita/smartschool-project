@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.entities.Professor;
+import br.com.async.core.entities.User;
 import br.com.async.core.repository.ProfessorRepository;
+import br.com.async.core.repository.UserRepository;
 
 @Service("professorApplicationImpl")
 @Transactional
@@ -18,6 +20,10 @@ public class ProfessorApplicationImpl implements ProfessorApplication{
 	@Autowired
 	@Qualifier("professorRepositoryImpl")
 	private ProfessorRepository repository;
+	
+	@Autowired
+	@Qualifier("userRepositoryImpl")
+	private UserRepository userRepository;
 	
 	@Transactional
 	public boolean save(Professor entity) {
@@ -42,6 +48,20 @@ public class ProfessorApplicationImpl implements ProfessorApplication{
 	@Transactional
 	public List<Professor> list() {
 		return repository.list();
+	}
+
+	@Override
+	public boolean save(Professor entity, User user) {
+		boolean resultQueryProfessor = repository.save(entity);
+		boolean resultQueryUser = userRepository.save(user);
+		
+		if(!resultQueryProfessor || !resultQueryUser){
+			repository.getTransaction().rollback();
+			return false;
+		}
+		
+		return true;
+		
 	}
 
 }

@@ -3,98 +3,96 @@
 <jsp:include page="../includes/header.jsp"/>
 <jsp:include page="../includes/headerApp.jsp"/>
 
-<div class="container-fluid mainContent">
+<div class="container-fluid mainContent" ng-controller="DisciplineController">
 
 
  <ol class="breadcrumb">
         <li><a href="${pageContext.request.contextPath}/dashboard"><span class="fa fa-home" aria-hidden="true"></span> Dashboard</a></li>
-        <li class="active"><span class="fa fa-book" aria-hidden="true"></span> {{title}}</li>
+        <li class="active"><span class="fa fa-book" aria-hidden="true"></span> Professores</li>
     </ol>
 
     <h3>
-      {{title}}
+      Professores
     </h3>
+    
+    
+    <jsp:include page="../includes/alert.jsp"/>
 
       <nav class="navbar navbar-default">
         <div class="container-fluid">
 
           <div class="navbar-left toolbar">
-            <!-- <discipline-create-view></discipline-create-view> -->
             
-            <modal id="disciplineCreateModal" on-primary-button-click-event="saveDiscipline()" primary-button-text="Salvar" secondary-button-text="Cancelar" modal-title="Novo Registro" modal-body="../discipline/disciplineCreateModal.html" modal-dismissible="true"></modal>
-            <a data-target="" type="button" class="btn btn-primary navbar-btn" data-toggle="modal">
+            <a href="${pageContext.request.contextPath}/professors/new"  data-target="" type="button" class="btn btn-primary navbar-btn" data-toggle="modal">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
               Novo
             </a>
 
           </div>
 
-          <form class="navbar-form navbar-left" role="search" ng-submit="searchDisciplines()">
+		
+          <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nome ou código da disciplina" style="min-width:300px;">
+              <input type="text" class="form-control" placeholder="Nome ou código da disciplina" style="min-width:300px;" ng-model="search" ng-redirect-on-enter="${pageContext.request.contextPath}/professors/{{search}}">
             </div>
-            <button type="submit" class="btn btn-primary" ng-disabled="onTransaction">
+            <a href="${pageContext.request.contextPath}/professors/{{search}}" type="submit" class="btn btn-primary" ng-disabled="onTransaction">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-              Buscar</button>
+              Buscar {{search}} </a
           </form>
 
         </div>
       </nav>
-
-
-
-
+	
 
     <div>
       <table class="table table-striped" ng-table="tableParams">
+      	<thead>
+      		<th>Código</th>
+      		<th>Matrícula</th>
+      		<th>Nome</th>
+      		<th>Email</th>
+      		<th></th>
+      	</thead>
         <tbody>
         
         <c:forEach var="professor" items="${professors}">
-        	<tr>
-                <td data-title="'Cód'" sortable="'code'" width="10%">${professor.person.code}</td>
-                <td data-title="'Matrícula'" sortable="'registry'" width="10%">${professor.registry}</td>
-                <td data-title="'Nome'" sortable="'name'" width="20%">${professor.person.name}</td>
-                <td data-title="'CPF'" sortable="'cpf'" width="20%">${professor.person.cpf}</td>
-                <td data-title="'Email'" sortable="'email'" width="20%">${professor.person.email}</td>
+          <tr ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false">
 
-                <td width="20%">
+            <td width="20%">${professor.code}</td>
+            <td width="20%">${professor.registry}</td>
+            <td width="20%">${professor.person.name}</td>
+            <td width="20%">${professor.person.email}</td>
+            <td width="20%">
 
+                <div class="registryOptions"> <!-- ng-show="showButtons" -->
 
-                    <div class="registryOptions" ng-show="showButtons">
+                    <!-- DELETE REGISTRY -->
+                    <modal handler="professorDeleteModal-${professor.code}" on-primary-button-click-event="deleteDiscipline(${professor.code})" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
+                    <a data-target="#professorDeleteModal-${professor.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
+                        <i class="fa fa-times-circle"></i>
+                        Apagar
+                    </a>
+                   
+                    <form action="${pageContext.request.contextPath}/professors/edit" method="POST" th:object="${professor}" class="inline">
+                    	
+                    	<input type="hidden" class="form-control" name="code" th:field="*{code}" value="${professor.code}" >
+                    
+	                    <button type="submit" data-target="" type="button" class="btn btn-primary btn-sm">
+	                        <i class="fa fa-pencil"></i>
+	                        Editar
+	                    </button>
+					</form>
+                </div>
 
-                        <!-- DELETE REGISTRY -->
-                        <modal id="professorDeleteModal" on-primary-button-click-event="deleteProfessor(professor)" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
-                        <a data-target="" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
-                            <i class="fa fa-times-circle"></i>
-                            Apagar
-                        </a>
-
-                        <!-- UPDATE REGISTRY -->
-                        <modal id="professorUpdateModal" on-primary-button-click-event="updateProfessor(professor)" primary-button-text="Atualizar" primary-button-context="primary" secondary-button-text="Cancelar" modal-title="Atualizar Registro" modal-body="../professor/professorCreateModal.html" modal-dismissible="true"></modal>
-                        <a data-target="" type="button" class="btn btn-primary btn-sm" data-toggle="modal">
-                            <i class="fa fa-pencil"></i>
-                            Editar
-                        </a>
-
-                    </div>
-
-                </td>
-                </tr>  
-        </c:forEach>
-          
-
-          <tr ng-show="onResponse || onTransaction" ng-hide="onResponse">
-            <td colspan="3" class="{{responseData.status}} text-{{responseData.status}}">
-              <i class="fa fa-{{responseData.status}}"></i>
-              {{responseData.message}}
             </td>
           </tr>
+          </c:forEach>
 
         </tbody>
       </table>
+      
+      <jsp:include page="../includes/alertQuery.jsp"/>
 
-      <p><strong>Page:</strong> {{tableParams.page()}}
-      <p><strong>Count per page:</strong> {{tableParams.count()}}
 
     </div>
 

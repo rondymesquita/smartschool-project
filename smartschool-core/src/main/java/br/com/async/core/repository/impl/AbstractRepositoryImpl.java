@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,10 @@ public abstract class AbstractRepositoryImpl<T, E extends Serializable> implemen
 	
 	protected Session getSession(){
 		return hibernateTemplate.getSessionFactory().getCurrentSession();
+	}
+	
+	public Transaction getTransaction(){
+		return hibernateTemplate.getSessionFactory().getCurrentSession().getTransaction();
 	}
 
 	@Transactional

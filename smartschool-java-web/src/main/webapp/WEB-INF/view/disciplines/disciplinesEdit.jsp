@@ -13,7 +13,7 @@
     </ol>
 
     <h3>
-      Novo Registro
+      Editar Registro
     </h3>
 
 	

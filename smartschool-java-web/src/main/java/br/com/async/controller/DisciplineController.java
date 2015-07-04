@@ -29,7 +29,6 @@ public class DisciplineController extends BaseController{
 
     private DisciplineApplication disciplineApplication = ApplicationContext.getInstance().getBean("disciplineApplicationImpl", DisciplineApplication.class);
     
-    
     private static String CONTROLLER = "disciplines/";
     
     @Authenticate
