@@ -1,5 +1,7 @@
 package br.com.async.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.ui.Model;
@@ -47,9 +49,18 @@ public class DisciplineController extends BaseController{
     @RoleProfessor
     @RequestMapping(value="/disciplines/{search}", method = RequestMethod.GET)
     public String searchByCodeOrName(Model model, @PathVariable String search){
+    	ResponseData responseData = null;
+    	
     	System.out.println(search);
-    	model.addAttribute("disciplines",disciplineApplication.searchByCodeOrName(search));
+    	List<Discipline> list = disciplineApplication.searchByCodeOrName(search);
+    	if(list.size() == 0){
+    		responseData = new ResponseData(Constants.NO_RESULT, ResponseData.INFO);
+    		model.addAttribute(Constants.RESPONSE_DATA_QUERY , responseData);
+    	}else
+    		model.addAttribute("disciplines",list);
+    	
     	model.addAttribute("search",search);
+    	
     	return CONTROLLER + "disciplines";
     }
 

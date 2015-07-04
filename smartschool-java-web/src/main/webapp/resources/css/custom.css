@@ -132,3 +132,24 @@ span.twitter-typeahead {
 .inline{
 	display:inline;
 }
+
+.alertQuery{
+	padding-left: 15px !important;
+	vertical-align: middle !important;
+	height:47px !important;	
+	
+	width: 100%;
+	line-height: 47px;
+}
+.alertQuery.info{
+	background-color:#d9edf7;
+}
+.alertQuery.success{
+	background-color:#dff0d8
+}
+.alertQuery.danger{
+	background-color:#f2dede
+}
+.alertQuery.warning{
+	background-color:#fcf8e3
+}

@@ -15,7 +15,6 @@
       Disciplinas
     </h3>
     
-    ${search}
     
     <jsp:include page="../includes/alert.jsp"/>
 
@@ -86,20 +85,12 @@
             </td>
           </tr>
           </c:forEach>
-          
-
-          <tr ng-show="onResponse || onTransaction" ng-hide="onResponse">
-            <td colspan="3" class="{{responseData.status}} text-{{responseData.status}}">
-              <i class="fa fa-{{responseData.status}}"></i>
-              {{responseData.message}}
-            </td>
-          </tr>
 
         </tbody>
       </table>
+      
+      <jsp:include page="../includes/alertQuery.jsp"/>
 
-      <p><strong>Page:</strong> {{tableParams.page()}}
-      <p><strong>Count per page:</strong> {{tableParams.count()}}
 
     </div>
 

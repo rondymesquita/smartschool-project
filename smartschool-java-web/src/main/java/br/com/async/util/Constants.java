@@ -25,5 +25,11 @@ public class Constants {
 	public static final String AUTH_TOKEN = "X-Auth-Token";
 	public static final String PASSWORD_CHANGED = "Senha alterada com sucesso!";
 	public static final String RESPONSE_DATA = "responseData";
+	public static final String RESPONSE_DATA_QUERY = "responseDataQuery";
+	
+	/*
+	 * Search
+	 */
+	public static final String NO_RESULT = "Nenhum resultado corresponde a sua busca.";
 
 }
