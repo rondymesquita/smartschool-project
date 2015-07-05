@@ -16,7 +16,7 @@ public class DashboardController extends BaseController{
 
 	@Authenticate
 	@RoleProfessor
-	@RequestMapping(value="/dashboard", method = RequestMethod.GET)
+	@RequestMapping(value={"/dashboard","/"}, method = RequestMethod.GET)
 	public String dashboard(HttpServletRequest request, HttpServletResponse response){
 		
 		return "dashboard/dashboard";

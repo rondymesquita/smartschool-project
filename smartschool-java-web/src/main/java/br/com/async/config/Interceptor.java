@@ -28,26 +28,6 @@ public class Interceptor extends HandlerInterceptorAdapter {
 	private HttpSession httpSession;
 	
 	private final String CONTROLLER_NAME = "CONTROLLER_NAME";
-	
-	private void controllerParamsConfig(Method method) throws IllegalArgumentException, IllegalAccessException{
-			Class c = method.getClass();
-			Field heightField;
-			try {
-				heightField = c.getField(CONTROLLER_NAME);
-				 String heightValue = (String) heightField.get(method.getClass().newInstance());
-			      System.out.println("Height: " + heightValue.toString());
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchFieldException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		     
-	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

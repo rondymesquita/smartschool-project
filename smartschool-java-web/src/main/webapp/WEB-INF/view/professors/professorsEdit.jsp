@@ -3,11 +3,11 @@
 <jsp:include page="../includes/header.jsp"/>
 <%-- <jsp:include page="../includes/headerApp.jsp"/> --%>
 
-<div class="container-fluid mainContent" ng-controller="ProfessorshipController">
+<div class="container-fluid mainContent" ng-controller="ProfessorController">
 
  	<ol class="breadcrumb">
         <li><a href="${pageContext.request.contextPath}/dashboard"><span class="fa fa-home" aria-hidden="true"></span> Dashboard</a></li>
-        <li><a href="${pageContext.request.contextPath}/professors"><span class="fa fa-book" aria-hidden="true"></span> Professors</a></li>
+        <li><a href="${pageContext.request.contextPath}/professors"><span class="fa fa-book" aria-hidden="true"></span> Professoress</a></li>
         <li class="active"><span class="fa fa-book" aria-hidden="true"></span> Novo</li>
     </ol>
 
@@ -19,6 +19,7 @@
 	<form name="formModalDiscipline" action="${pageContext.request.contextPath}/professors/update" method="POST" th:object="${professor}">
 	
 		<input id="fieldName" type="hidden" name="code" class="form-control square" value="${professor.code}">
+		<input id="fieldName" type="hidden" name="person.code" class="form-control square" value="${professor.person.code}">
 		
 		<div class="form-group">
 		    <label for="fieldName">Nome</label>
@@ -27,7 +28,7 @@
 		
 		<div class="form-group">
 		    <label for="fieldName">CPF</label>
-		    <input id="fieldName" name="person.cpf" type="number" class="form-control square" placeholder="" required value="value="${professor.person.cpf }"">
+		    <input id="fieldName" name="person.cpf" type="text" class="form-control square" placeholder="" required value="${professor.person.cpf }"">
 		</div>
 		
 		<div class="form-group">
@@ -49,16 +50,24 @@
 		</fieldset>
 		
 		
+		<c:if test="${professor.person.role == 'ROLE_MANAGER'}">
+			<c:set var="managerChecked" value="checked"/>
+		</c:if>
+		<c:if test="${professor.person.role == 'ROLE_PROFESSOR'}">
+			<c:set var="professorChecked" value="checked"/>
+		</c:if>
+		
+		
 		<div class="radio">
 		  <label>
-		    <input type="radio" name="person.role" th:field="*{person.person.role}" id="ROLE_MANAGER" value="ROLE_MANAGER" checked="checked">
+		    <input type="radio" name="person.role" th:field="*{person.person.role}" id="ROLE_MANAGER" value="ROLE_MANAGER" ${managerChecked}>
 		    Coordenador
 		  </label>
 		</div>
 		
 		<div class="radio">
 		  <label>
-		    <input type="radio" name="person.role" th:field="*{person.person.role}" id="ROLE_PROFESSOR" value="ROLE_PROFESSOR">
+		    <input type="radio" name="person.role" th:field="*{person.person.role}" id="ROLE_PROFESSOR" value="ROLE_PROFESSOR" ${professorChecked}> 
 		    Professor
 		  </label>
 		</div>
