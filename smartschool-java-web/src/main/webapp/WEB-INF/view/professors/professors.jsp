@@ -30,7 +30,7 @@
 
           <div class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nome ou código da disciplina" style="min-width:300px;" ng-model="search" ng-redirect-on-enter="${pageContext.request.contextPath}/professors/{{search}}">
+              <input type="text" class="form-control" placeholder="Nome ou código do professor" style="min-width:300px;" ng-model="search" ng-redirect-on-enter="${pageContext.request.contextPath}/professors/{{search}}">
             </div>
             <a href="${pageContext.request.contextPath}/professors/{{search}}" type="submit" class="btn btn-primary" ng-disabled="onTransaction">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>

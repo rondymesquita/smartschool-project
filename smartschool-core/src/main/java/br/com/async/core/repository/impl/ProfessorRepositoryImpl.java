@@ -1,11 +1,19 @@
 package br.com.async.core.repository.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.repository.ProfessorRepository;
+import br.com.async.utils.SmartUtils;
 
 
 @Repository
@@ -14,6 +22,30 @@ public class ProfessorRepositoryImpl extends AbstractRepositoryImpl<Professor, I
 
 	public ProfessorRepositoryImpl(){
 		super(Professor.class);
+	}
+
+	@Override
+	public List<Professor> searchByCodeOrName(String search) {
+		
+		Criteria criteria = getSession().createCriteria(Professor.class);
+		
+		Integer code = SmartUtils.StringToInteger(search);
+		Criterion criterion;
+		if(code != -1)
+			criterion = Restrictions.eq("code", code );
+		else{
+			criteria.createAlias("person", "p");
+			criterion = Restrictions.ilike("p.name", search, MatchMode.ANYWHERE);
+		}
+			    
+		criteria.add(criterion);
+		
+		try {
+			return criteria.list();
+		} catch (RuntimeException re) {
+			System.err.println(re);
+			return null;
+		}
 	}
 
 	

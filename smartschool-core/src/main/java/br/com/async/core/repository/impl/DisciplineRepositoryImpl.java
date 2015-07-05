@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.repository.DisciplineRepository;
+import br.com.async.utils.SmartUtils;
 
 /**
  * Created by rondymesquita on 11/27/14.
@@ -25,22 +25,12 @@ public class DisciplineRepositoryImpl  extends AbstractRepositoryImpl<Discipline
         super(Discipline.class);
     }
     
-    private Integer StringToInteger(String text){
-    	
-    	try{
-    		return Integer.parseInt(text);
-    	}catch(Exception e){
-    		return -1;
-    	}
-    	
-    }
-    
 	@Override
 	public List<Discipline> searchByCodeOrName(String search) {
 		
 		Criteria criteria = getSession().createCriteria(Discipline.class);
 		
-		Integer code = StringToInteger(search);
+		Integer code = SmartUtils.StringToInteger(search);
 		Criterion criterion;
 		if(code != -1)
 			criterion = Restrictions.eq("code", code );

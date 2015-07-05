@@ -1,11 +1,12 @@
 package br.com.async.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,15 +52,15 @@ public class ProfessorController extends BaseController{
 	    public String searchByCodeOrName(Model model, @PathVariable String search){
 	    	ResponseData responseData = null;
 	    	
-//	    	System.out.println(search);
-//	    	List<Professor> list = professorApplication.searchByCodeOrName(search);
-//	    	if(list.size() == 0){
-//	    		responseData = new ResponseData(Constants.NO_RESULT, ResponseData.INFO);
-//	    		model.addAttribute(Constants.RESPONSE_DATA_QUERY , responseData);
-//	    	}else
-//	    		model.addAttribute("professors",list);
-//	    	
-//	    	model.addAttribute("search",search);
+	    	System.out.println(search);
+	    	List<Professor> list = professorApplication.searchByCodeOrName(search);
+	    	if(list.size() == 0){
+	    		responseData = new ResponseData(Constants.NO_RESULT, ResponseData.INFO);
+	    		model.addAttribute(Constants.RESPONSE_DATA_QUERY , responseData);
+	    	}else
+	    		model.addAttribute("professors",list);
+	    	
+	    	model.addAttribute("search",search);
 	    	
 	    	return CONTROLLER + "professors";
 	    }
