@@ -7,7 +7,7 @@
 
  	<ol class="breadcrumb">
         <li><a href="${pageContext.request.contextPath}/dashboard"><span class="fa fa-home" aria-hidden="true"></span> Dashboard</a></li>
-        <li><a href="${pageContext.request.contextPath}/professors"><span class="fa fa-book" aria-hidden="true"></span> Professoress</a></li>
+        <li><a href="${pageContext.request.contextPath}/professors"><span class="fa fa-book" aria-hidden="true"></span> Professores</a></li>
         <li class="active"><span class="fa fa-book" aria-hidden="true"></span> Novo</li>
     </ol>
 

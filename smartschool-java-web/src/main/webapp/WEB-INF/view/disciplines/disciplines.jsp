@@ -31,14 +31,14 @@
           </div>
 
 		
-          <form class="navbar-form navbar-left" role="search">
+          <div class="navbar-form navbar-left" role="search">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Nome ou código da disciplina" style="min-width:300px;" ng-model="search" ng-redirect-on-enter="${pageContext.request.contextPath}/disciplines/{{search}}">
             </div>
             <a href="${pageContext.request.contextPath}/disciplines/{{search}}" type="submit" class="btn btn-primary" ng-disabled="onTransaction">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
               Buscar {{search}} </a
-          </form>
+          </div>
 
         </div>
       </nav>
@@ -55,14 +55,14 @@
         <tbody>
         
         <c:forEach var="discipline" items="${disciplines}">
-          <tr ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false">
+          <tr ng-mouseover="showButtons_${discipline.code} = true" ng-mouseleave="showButtons_${discipline.code} = false">
 
             <td width="20%">${discipline.code}</td>
             <td width="40%">${discipline.name}</td>
             <td width="20%">${discipline.workload}</td>
             <td width="20%">
 
-                <div class="registryOptions"> <!-- ng-show="showButtons" -->
+                <div class="registryOptions" ng-show="showButtons_${discipline.code}">
 
                     <!-- DELETE REGISTRY -->
                     <modal handler="disciplineDeleteModal-${discipline.code}" on-primary-button-click-event="deleteDiscipline(${discipline.code})" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>

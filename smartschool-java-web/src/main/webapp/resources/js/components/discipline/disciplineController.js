@@ -32,7 +32,6 @@ function disciplineController($scope, $rootScope, $filter, disciplineService,  c
             $scope.onResponse = true;
         });
 
-
     }
   
 

@@ -30,6 +30,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/components/discipline/disciplineService.js"></script>
   
   <!-- controllers -->
+  <script src="${pageContext.request.contextPath}/resources/js/components/base/baseController.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/components/professorship/professorshipController.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/components/professor/professorController.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/components/discipline/disciplineController.js"></script>
@@ -40,4 +41,4 @@
   <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
   
   </head>
-  <body ng-app="SmartschoolApp">
+  <body ng-app="SmartschoolApp" ng-controller="BaseController">
