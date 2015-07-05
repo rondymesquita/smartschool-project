@@ -18,7 +18,6 @@ function disciplineController($scope, $rootScope, $filter, disciplineService,  c
             $scope.onTransaction = false;
             $scope.onResponse = true;
             
-            //$location.url('/dashboard');
             window.location.replace(config.disciplinesUrl);
         },function(data){
 

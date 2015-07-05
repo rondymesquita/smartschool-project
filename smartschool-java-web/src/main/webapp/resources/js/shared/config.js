@@ -13,6 +13,7 @@ angular.module('SmartschoolApp').constant('config',(function(){
 	    professorsUrl: url + 'professors/',
 	    
 	    disciplinesUri: 'disciplines/',
-	    disciplinesUrl: url + 'disciplines',
+	    disciplinesUrl: url + 'disciplines/',
+	    
     }
 })());

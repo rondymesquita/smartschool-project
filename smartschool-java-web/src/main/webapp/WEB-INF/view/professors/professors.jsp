@@ -3,7 +3,7 @@
 <jsp:include page="../includes/header.jsp"/>
 <jsp:include page="../includes/headerApp.jsp"/>
 
-<div class="container-fluid mainContent" ng-controller="DisciplineController">
+<div class="container-fluid mainContent" ng-controller="ProfessorController">
 
  	<ol class="breadcrumb">
         <li><a href="${pageContext.request.contextPath}/dashboard"><span class="fa fa-home" aria-hidden="true"></span> Dashboard</a></li>
@@ -64,11 +64,12 @@
                 <div class="registryOptions" ng-show="showButtons_${professor.code}">
 
                     <!-- DELETE REGISTRY -->
-                    <modal handler="professorDeleteModal-${professor.code}" on-primary-button-click-event="deleteDiscipline(${professor.code})" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
+                    <modal handler="professorDeleteModal-${professor.code}" on-primary-button-click-event="deleteProfessor(${professor.code})" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
                     <a data-target="#professorDeleteModal-${professor.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
                         <i class="fa fa-times-circle"></i>
                         Apagar
                     </a>
+                    
                    
                     <form action="${pageContext.request.contextPath}/professors/edit" method="POST" th:object="${professor}" class="inline">
                     	

@@ -4,19 +4,21 @@
 
 angular
     .module('SmartschoolApp')
-    .controller('ProfessorController', ['$scope','$rootScope', '$filter', 'ProfessorService','constants','toast', '$http', professorController]);
+    .controller('ProfessorController', ['$scope','$rootScope', '$filter', 'ProfessorService','config','constants','toast', '$http', professorController]);
 
-function professorController($scope, $rootScope, $filter, professorService,  constants,  toast, $http) {
+function professorController($scope, $rootScope, $filter, professorService,  config, constants,  toast, $http) {
 
+	console.log(config);
+	
 	$scope.deleteProfessor = function(code){
         console.log(code);
 
         $scope.onTransaction = true;
 
-        disciplineService.delete(code)
+        professorService.delete(code)
         .then(function(data){
             
-            $("#disciplineDeleteModal").modal("hide");
+            $("#professorDeleteModal").modal("hide");
 
             $scope.onTransaction = false;
             $scope.onResponse = true;
@@ -27,7 +29,7 @@ function professorController($scope, $rootScope, $filter, professorService,  con
             if(data.status == 0){
                 toast.error(constants.message.CONNECTION_ERROR);
             }else{
-                toast.error(data.status + " " +data.statusText);
+                toast.error(data.status + " " + data.statusText);
             }
 
             $scope.onTransaction = false;
