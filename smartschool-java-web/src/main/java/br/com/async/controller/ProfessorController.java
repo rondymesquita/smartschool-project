@@ -27,16 +27,14 @@ import br.com.async.util.ResponseData;
 @Controller
 public class ProfessorController extends BaseController{
 	
-	 private ProfessorApplication professorApplication = ApplicationContext.getInstance().getBean("professorApplicationImpl", ProfessorApplication.class);
-	 private UserApplication userApplication = ApplicationContext.getInstance().getBean("userApplicationImpl", UserApplication.class);
+	 	private ProfessorApplication professorApplication = ApplicationContext.getInstance().getBean("professorApplicationImpl", ProfessorApplication.class);
 	    
 	    private static String CONTROLLER = "professors/";
-	    public String CONTROLLER_NAME = "Professores";
 	    
 	    @Authenticate
 	    @RoleProfessor
 	    @RequestMapping(value="/professors", method = RequestMethod.GET)
-	    public String professorsPage(Model model){
+	    public String listPage(Model model){
 	    	
 	    	try{
 	    		model.addAttribute("professors",professorApplication.list());
@@ -68,7 +66,7 @@ public class ProfessorController extends BaseController{
 	    @Authenticate
 	    @RoleProfessor
 	    @RequestMapping(value="/professors/new", method = RequestMethod.GET)
-		public String professorshipsNew(Model model){
+		public String newPage(Model model){
 			return CONTROLLER + "professorsNew";
 		}
 	    
@@ -99,7 +97,7 @@ public class ProfessorController extends BaseController{
 	    @Authenticate
 	    @RoleProfessor
 	    @RequestMapping(value="/professors/edit", method = RequestMethod.POST)
-	    public String editProfessorPage(@ModelAttribute Professor professor, Model model, final RedirectAttributes redirectAttributes){
+	    public String editPage(@ModelAttribute Professor professor, Model model, final RedirectAttributes redirectAttributes){
 	    	System.out.println(professor);
 	    	
 	    	Professor d = professorApplication.findByCode(professor.getCode());

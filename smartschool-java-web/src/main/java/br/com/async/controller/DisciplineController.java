@@ -34,7 +34,7 @@ public class DisciplineController extends BaseController{
     @Authenticate
     @RoleProfessor
     @RequestMapping(value="/disciplines", method = RequestMethod.GET)
-    public String disciplinesPage(Model model){
+    public String listPage(Model model){
     	
     	try{
     		model.addAttribute("disciplines",disciplineApplication.list());
@@ -66,7 +66,7 @@ public class DisciplineController extends BaseController{
     @Authenticate
     @RoleProfessor
     @RequestMapping(value="/disciplines/new", method = RequestMethod.GET)
-	public String professorshipsNew(Model model){
+	public String newPage(Model model){
 		return CONTROLLER + "disciplinesNew";
 	}
     
@@ -91,7 +91,7 @@ public class DisciplineController extends BaseController{
     @Authenticate
     @RoleProfessor
     @RequestMapping(value="/disciplines/edit", method = RequestMethod.POST)
-    public String editDisciplinePage(@ModelAttribute Discipline discipline, Model model, final RedirectAttributes redirectAttributes){
+    public String editPage(@ModelAttribute Discipline discipline, Model model, final RedirectAttributes redirectAttributes){
     	System.out.println(discipline);
     	
     	Discipline d = disciplineApplication.findByCode(discipline.getCode());
