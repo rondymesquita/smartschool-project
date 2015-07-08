@@ -23,7 +23,13 @@
                 <span>{{parentScope.formModal.$valid}}</span>
                 
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal" ng-show="secondaryButtonText">{{secondaryButtonText}}</button>
-                <button type="button" class="btn btn-primary btn-{{primaryButtonContext}}" data-ng-click="onPrimaryButtonClick(); $event.stopPropagation()" ng-disabled="parentScope.onTransaction || parentScope.formModal.$invalid" ng-show="primaryButtonText">{{primaryButtonText}}</button>
+                <button type="button" class="btn btn-primary btn-{{primaryButtonContext}}" data-ng-click="onPrimaryButtonClick(); $event.stopPropagation()" ng-disabled="parentScope.onTransaction || parentScope.formModal.$invalid" ng-show="primaryButtonText && !onPrimaryButtonClickAction">{{primaryButtonText}}</button>
+                
+                
+                <form action="{{onPrimaryButtonClickAction}}" method="POST" >
+                	<input type="hidden" class="form-control" name="code" value="{{code}}" >
+                	<button type="submit" class="btn btn-primary btn-{{primaryButtonContext}}" ng-disabled="parentScope.onTransaction || parentScope.formModal.$invalid" ng-show="primaryButtonText && onPrimaryButtonClickAction">{{primaryButtonText}}-FORM</button>
+                </form>
 
             </div>
         </div>

@@ -7,8 +7,6 @@ angular
     .controller('StudentController', ['$scope','$rootScope', '$filter', 'ProfessorService','config','constants','toast', '$http', studentController]);
 
 function studentController($scope, $rootScope, $filter, professorService,  config, constants,  toast, $http) {
-
-	console.log(config);
 	
 	$scope.deleteStudent = function(code){
         console.log(code);

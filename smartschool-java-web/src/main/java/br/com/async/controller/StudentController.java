@@ -7,6 +7,7 @@ import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -123,10 +124,10 @@ public class StudentController extends BaseController {
 	    
 	    @Authenticate
 	    @RoleManager
-	    @RequestMapping(value="/students/{id}", method = RequestMethod.DELETE)
-	    public @ResponseBody ResponseData delete(@PathVariable String id){
+	    @RequestMapping(value="/students/delete", method = RequestMethod.POST)
+	    public String delete(@RequestBody String code, final RedirectAttributes redirectAttributes){
 	        Student student = new Student();
-	        student.setCode(Integer.parseInt(id));
+	        student.setCode(Integer.parseInt(code.replace("code=","")));
 
 	        boolean resultQuery = studentApplication.delete(student);
 	        ResponseData responseData;
@@ -136,7 +137,8 @@ public class StudentController extends BaseController {
 	        else
 	            responseData = new ResponseData(Constants.ERROR, ResponseData.ERROR);
 
-	        return responseData;
+	        redirectAttributes.addFlashAttribute(Constants.RESPONSE_DATA,responseData);
+	    	return "redirect:/students";
 	    }
 	
 }

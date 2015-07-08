@@ -4,7 +4,17 @@ angular.module('SmartschoolApp').directive('modal', ['$sce', '$http', 'config', 
         scope: {
             onPrimaryButtonClick: '&onPrimaryButtonClickEvent',
             id: '=handler',
-            modalDismissible: '=?'
+            modalDismissible: '=?',
+            onPrimaryButtonClickAction: '@onPrimaryButtonClickAction',
+            primaryButtonText: '@primaryButtonText',
+            modalId: '@modalId',
+            modalTitle: '@modalTitle',
+            primaryButtonContext: '@primaryButtonContext',
+            secondaryButtonText: '@secondaryButtonText',
+            modalBody: '@modalBody',
+            code: '@code',
+            object: '@object'
+            
 
         },
         templateUrl: config.url+'/resources/js/shared/modal/modalView.html',
@@ -22,21 +32,9 @@ angular.module('SmartschoolApp').directive('modal', ['$sce', '$http', 'config', 
 
                 scope.parentScope = scope.$parent;
                 scope.rootScope = scope.$root;
-
-                //console.log(scope);
-
-
-                if(attrs['onPrimaryButtonClickEvent'].indexOf("save") > -1);
-                    scope.showSaveOptions = true;
-
-                scope.modalId = attrs['id'];
-                scope.modalTitle = attrs['modalTitle'];
-
-                scope.primaryButtonText = attrs['primaryButtonText'];
-                scope.primaryButtonContext = attrs['primaryButtonContext'];
-                scope.secondaryButtonText = attrs['secondaryButtonText'];
-                scope.modalBody = attrs['modalBody'];
                 scope.modalBodyHtml = $sce.trustAsHtml(attrs['modalBodyHtml']);
+                
+                //scope.onPrimaryButtonClickAction = attrs['onPrimaryButtonClickAction'];
 
                     // $http.get(attrs['modalBody']).success (function(data){
                     //     scope.modalBody = $sce.trustAsHtml(data);
