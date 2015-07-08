@@ -15,5 +15,9 @@ angular.module('SmartschoolApp').constant('config',(function(){
 	    disciplinesUri: 'disciplines/',
 	    disciplinesUrl: url + 'disciplines/',
 	    
+	    studentsUri: 'students/',
+	    studentsUrl: url + 'students/',
+	    studentsApiUrl: url + 'api/students/',
+	    
     }
 })());

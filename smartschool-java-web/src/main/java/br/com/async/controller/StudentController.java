@@ -1,5 +1,6 @@
 package br.com.async.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,13 @@ public class StudentController extends BaseController {
 	    		System.err.println(e);
 	    	}
 	    	return CONTROLLER + "students";
+	    }
+	    
+	    @Authenticate
+	    @RoleProfessor
+	    @RequestMapping(value="/api/students", method = RequestMethod.GET)
+	    public @ResponseBody List<Student> listJson(Model model){
+	    	return studentApplication.list();
 	    }
 	    
 	    @Authenticate

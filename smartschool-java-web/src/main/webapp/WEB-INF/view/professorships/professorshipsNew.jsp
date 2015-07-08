@@ -18,9 +18,8 @@
 
 	<form name="formNewDiscipline" action="${pageContext.request.contextPath}/professorships" method="POST">
 		
-		<div class="form-group" ng-controller="DisciplineController">
+		<div class="form-group">
 		    <label for="fieldName">Selecione Disciplina
-		    	<small class="text-primary" ng-show="onResponse || onTransaction" ng-hide="onResponse">Carregando</small>
 		    </label>
 		    <select class="combobox form-control square" name="disciplineCode">
 		    	
@@ -52,7 +51,7 @@
 					            <div class="form-group">
 					              <input type="text" ng-model="studentName" class="form-control" placeholder="Nome ou código do aluno" style="min-width:300px;">
 					            </div>
-					            <a class="btn btn-primary" ng-click="searchStudents(studentName)">
+					            <a class="btn btn-primary" ng-click="searchStudents(studentName)" ng-disabled="onTransaction">
 					              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					              Buscar</a>
 					          </div>
@@ -60,34 +59,33 @@
 					        
 					      </nav>
 					      
-					      <table class="table table-striped" ng-table="tableParams">
+					      <table class="table table-striped table-list-student-left" ng-table="tableParams">
 					        <tbody class="table-scroll">
 					        	<tr ng-repeat="student in students">
-					                <td data-title="'Cód'" sortable="'code'" width="10%" ng-click="addStudent(student)">{{student}}</td>
-					            </tr>  
+					                <td  width="10%" ng-click="addStudent(student)">{{student.person.name}}</td>
+					            </tr>
+					            
+					            <tr ng-show="onTransaction || onWarning" ng-hide="onSuccess">
+						            <td colspan="3" class="{{responseData.status}} text-{{responseData.status}}">
+						              <i class="fa fa-{{responseData.status}}"></i>
+						              {{responseData.message}}
+						            </td>
+						        </tr>  
+						        
 					        </tbody>
 					      </table>
-					      
-	      
 									
 					</div><!-- end col -->
 					<div class="col-xs-6">
-						<!-- <table class="table table-striped" ng-table="tableParams">
+					
+						<table class="table table-striped table-list-student-right" ng-table="tableParams">
 					        <tbody class="table-scroll">
 					        	<tr ng-repeat="student in studentsToSave">
-					               <td data-title="'Cód'" sortable="'code'" width="10%" ng-click="removeStudent(student)">{{student}}</td>
+					               <td data-title="'Cód'" sortable="'code'" width="10%" ng-click="removeStudent(student)">{{student.person.name}}</td>
 					            </tr>  
 					        </tbody>
-					      </table> -->
+					      </table>
 					   
-					  	
-					  	<div class="checkbox" ng-repeat="student in studentsToSave" ng-click="removeStudent(student)">
-						  <label>
-						    <input type="checkbox" value="{{student}}" id="students" name="students" class="hide" checked="checked">
-						    {{student}}
-						  </label>
-						</div>
-					  	
 					    
 					</div><!-- end col -->
 				</div>

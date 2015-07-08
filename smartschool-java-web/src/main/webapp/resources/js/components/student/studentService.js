@@ -1,16 +1,16 @@
 /**
  * Created by rondymesquita on 3/11/15.
  */
-angular.module('SmartschoolApp').service('ProfessorService', ['$http', 'constants', 'config', function($http, constants, config) {
+angular.module('SmartschoolApp').service('StudentService', ['$http', 'constants', 'config', function($http, constants, config) {
 
-		this.delete = function(code) {
+		this.list = function(code) {
 
-	      url = config.professorsUrl + code;
+	      url = config.studentsApiUrl;
 	      console.log(url);
 
 	      return $http({
 	          url: url,
-	          method: 'DELETE',
+	          method: 'GET',
 	      }).success(function(data, status, header, config) {
 
 	      }).error(function(data, status, header, config){

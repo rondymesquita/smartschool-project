@@ -1,18 +1,44 @@
 
 angular
 .module('SmartschoolApp')
-.controller('ProfessorshipController', ['$scope','$rootScope', '$filter', 'ProfessorService','DisciplineService','ProfessorshipService','constants','$http', professorshipController]);
+.controller('ProfessorshipController', ['$scope','$rootScope', '$filter', 'ProfessorService','DisciplineService','StudentService','ProfessorshipService','constants','$http', professorshipController]);
 
-function professorshipController($scope, $rootScope, $filter, professorService, disciplineService, professorshipService, constants, $http) {
+function professorshipController($scope, $rootScope, $filter, professorService, disciplineService, studentService, professorshipService, constants, $http) {
 
 
     $scope.onTransaction = false;
     $scope.onResponse = false;
     $scope.studentsToSave = [];
+    $scope.showResponseData = false;
     
-    $scope.searchStudents = function(student){
-    	console.log(student);
-    	$scope.students = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+    $scope.searchStudents = function(){
+  
+    	$scope.onTransaction = true;
+    	$scope.responseData = new ResponseData(constants.message.LOADING, constants.status.LOADING);
+    	
+    	studentService.list()
+    	.then(function(data, status){
+    		
+    		$scope.students = data.data;
+    		if($scope.students.length == 0){
+                $scope.responseData = new ResponseData(constants.message.EMPTY, constants.status.WARNING);
+                $scope.onWarning = true;
+            }else{
+            	$scope.onSuccess = true;	
+            }
+    		
+    	},function(data){
+    		console.log(data);
+
+            if(data.status == 0)
+                toast.error(constants.message.CONNECTION_ERROR);
+            else
+                toast.error(data.status + " " +data.statusText);
+            
+    	}).finally(function(){
+    		$scope.onTransaction = false;
+            $scope.onResponse = true;
+    	});
     }
     
     $scope.addStudent = function(student){
@@ -20,7 +46,6 @@ function professorshipController($scope, $rootScope, $filter, professorService, 
     	if (index == -1) {
     		$scope.studentsToSave.push(student);
     	}
-    	console.log($scope.studentsToSave);
     }
     
     $scope.removeStudent = function(student){
@@ -28,7 +53,6 @@ function professorshipController($scope, $rootScope, $filter, professorService, 
     	if (index > -1) {
     		$scope.studentsToSave.splice(index, 1);
     	}
-    	console.log($scope.studentsToSave);
     }
 
 

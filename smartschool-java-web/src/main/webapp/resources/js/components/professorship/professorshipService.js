@@ -10,13 +10,8 @@ angular.module('SmartschoolApp').service('ProfessorshipService', ['$http', 'cons
       method: 'GET'
     }).success(function(data, status, header, config) {
     	console.log("Success");
-//       console.log(data);
     }).error(function(data, status, header, config){
     	console.log("Error");
-//       console.log(data);
-      // console.log(status);
-      // console.log(header);
-      // console.log(config);
     })['finally'](function() {
 
     });

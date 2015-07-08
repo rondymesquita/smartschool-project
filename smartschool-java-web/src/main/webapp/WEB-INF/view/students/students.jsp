@@ -64,7 +64,6 @@
                 <div class="registryOptions" ng-show="showButtons_${student.code}">
 
                     <!-- DELETE REGISTRY -->
-                    <%-- <modal handler="studentDeleteModal-${student.code}" on-primary-button-click-event="deleteProfessor(${student.code})" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal> --%>
                     <modal handler="studentDeleteModal-${student.code}" object="student" code="${student.code}" on-primary-button-click-action="${pageContext.request.contextPath}/students/delete" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
                     
                     <a data-target="#studentDeleteModal-${student.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
