@@ -20,5 +20,26 @@ angular.module('SmartschoolApp').service('StudentService', ['$http', 'constants'
 	      });
 	    };
 	    
+this.searchByCodeOrName = function(search) {
+	
+	if(search === undefined)
+		url = config.studentsApiUrl;
+	else
+		url = config.studentsApiUrl + search;
+	
+	console.log(url);
+	
+	return $http({
+	    url: url,
+	    method: 'GET',
+	}).success(function(data, status, header, config) {
+	}).error(function(data, status, header, config){
+		
+	})['finally'](function() {
+		
+	});
+	
+};
+	    
 
 }]);

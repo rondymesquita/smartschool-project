@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.async.annotations.Authenticate;
+import br.com.async.annotations.RoleProfessor;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.ProfessorApplication;
@@ -36,7 +38,8 @@ public class ProfessorshipController extends BaseController{
 	
 	private static String CONTROLLER = "professorships/";
 	
-
+	@Authenticate
+    @RoleProfessor
 	@RequestMapping(value="/professorships", method = RequestMethod.GET)
 	public String professorshipsPage(Model model){
 		
@@ -44,6 +47,8 @@ public class ProfessorshipController extends BaseController{
 		return CONTROLLER + "professorships";
 	}
 	
+	@Authenticate
+    @RoleProfessor
 	@RequestMapping(value="/professorships/new", method = RequestMethod.GET)
 	public String professorshipsNew(Model model){
 		
@@ -53,6 +58,8 @@ public class ProfessorshipController extends BaseController{
 		return CONTROLLER + "professorshipsNew";
 	}
 	
+	@Authenticate
+    @RoleProfessor
 	@RequestMapping(value="/professorships", method = RequestMethod.POST)
 	public String save(Model model, 
 			@RequestParam String professorCode,

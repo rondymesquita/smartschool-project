@@ -57,6 +57,13 @@ public class StudentController extends BaseController {
 	    
 	    @Authenticate
 	    @RoleProfessor
+	    @RequestMapping(value="/api/students/{search}", method = RequestMethod.GET)
+	    public @ResponseBody List<Student> searchByCodeOrNameJson(Model model, @PathVariable String search){
+	    	return studentApplication.searchByCodeOrName(search);
+	    }
+	    
+	    @Authenticate
+	    @RoleProfessor
 	    @RequestMapping(value="/students/{search}", method = RequestMethod.GET)
 	    public String searchByCodeOrName(Model model, @PathVariable String search){
 	    	ResponseData responseData = null;

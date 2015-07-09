@@ -48,12 +48,14 @@
 						<nav class="navbar navbar-default">
 					
 					          <div class="navbar-form">
-					            <div class="form-group">
-					              <input type="text" ng-model="studentName" class="form-control" placeholder="Nome ou código do aluno" style="min-width:300px;">
+					            <div class="form-group"> 
+					            <!-- ng-submit-on-enter="${pageContext.request.contextPath}/api/students/{{search}}" -->
+					              <input type="text" class="form-control" placeholder="Nome ou código do aluno" style="min-width:300px;" ng-model="search" ng-enter="searchStudentsByCodeOrName(search)">
 					            </div>
-					            <a class="btn btn-primary" ng-click="searchStudents(studentName)" ng-disabled="onTransaction">
+					            <!--  -->
+					            <a class="btn btn-primary"  ng-disabled="onTransaction" ng-click="searchStudentsByCodeOrName(search)">
 					              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					              Buscar</a>
+					              Buscar {{search}}</a>
 					          </div>
 					
 					        
@@ -135,8 +137,12 @@
 				</div>
 			</div>
 		</div>
-	
-		<button type="submit" class="btn btn-primary btn-primary" >Salvar</button>
+		
+		<div class="row" style="margin-top:12px;">
+			<div class="col-xs-12">
+				<button type="submit" class="btn btn-primary btn-primary" >Salvar</button>
+			</div>
+		</div>
 	
 	</form>
 

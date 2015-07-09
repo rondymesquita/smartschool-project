@@ -8,7 +8,6 @@
 
  <ol class="breadcrumb">
         <li><a href="${pageContext.request.contextPath}/dashboard"><span class="fa fa-home" aria-hidden="true"></span> Dashboard</a></li>
-        
         <li class="active"><span class="fa fa-book" aria-hidden="true"></span> Cadeiras</li>
     </ol>
 

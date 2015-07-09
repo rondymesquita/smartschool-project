@@ -64,3 +64,39 @@ angular.module('SmartschoolApp').directive('ngRedirectOnEnter', function () {
         });
     };
 });
+
+angular.module('SmartschoolApp').directive('ngRedirectOnEnter', function () {
+    return function (scope, element, attrs) {
+    	
+        element.bind("keydown keypress", function (event) {
+        	
+            if(event.which === 13) {
+            	
+            	console.log(attrs);
+            	window.location.replace(attrs.ngRedirectOnEnter);
+            	
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
+
+angular.module('SmartschoolApp').directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+    	
+        element.bind("keydown keypress", function (event) {
+        	
+        	if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+
+                event.preventDefault();
+            }
+        });
+    };
+});
