@@ -16,7 +16,7 @@
       Novo Registro
     </h3>
 
-	<form name="formNewDiscipline" action="${pageContext.request.contextPath}/professorships" method="POST">
+	<form name="formNewDiscipline" action="${pageContext.request.contextPath}/professorships" method="POST" th:object="${professorships}">
 		
 		<div class="form-group">
 		    <label for="fieldName">Selecione Disciplina
@@ -58,33 +58,77 @@
 					
 					        
 					      </nav>
-					      
-					      <table class="table table-striped table-list-student-left" ng-table="tableParams">
-					        <tbody class="table-scroll">
-					        	<tr ng-repeat="student in students">
-					                <td  width="10%" ng-click="addStudent(student)">{{student.person.name}}</td>
-					            </tr>
-					            
-					            <tr ng-show="onTransaction || onWarning" ng-hide="onSuccess">
-						            <td colspan="3" class="{{responseData.status}} text-{{responseData.status}}">
-						              <i class="fa fa-{{responseData.status}}"></i>
-						              {{responseData.message}}
-						            </td>
-						        </tr>  
-						        
-					        </tbody>
-					      </table>
+					      <div class="table-scroll table-list-student-left">
+						      <table class="table table-striped " ng-table="tableParams">
+						      	<thead>
+						      	<tr>
+						      		<th>Código</th>
+						      		<th>Matrícula</th>
+						      		<th>Nome</th>
+						      		<th></th>
+						      		</tr>
+						      	</thead>
+						        <tbody class="">
+						        	<tr ng-repeat="student in students" ng-click="addStudent(student)" ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false" class="mouse-click">
+						        		<td width="10%">{{student.code}}</td>
+							            <td width="20%">{{student.registry}}</td>
+							            <td width="50%">{{student.person.name}}</td>
+						                <td width="10%">
+							                <div class="registryOptions" ng-show="showButtons">
+							                	 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+							                </div>
+						                </td>
+						            </tr>
+						            
+						            <tr ng-show="onTransaction || onWarning" ng-hide="onSuccess" >
+							            <td colspan="3" class="{{responseData.status}} text-{{responseData.status}}">
+							              <i class="fa fa-{{responseData.status}}"></i>
+							              {{responseData.message}}
+							            </td>
+							        </tr>  
+							        
+						        </tbody>
+						      </table>
+					      </div>
 									
 					</div><!-- end col -->
 					<div class="col-xs-6">
-					
-						<table class="table table-striped table-list-student-right" ng-table="tableParams">
-					        <tbody class="table-scroll">
-					        	<tr ng-repeat="student in studentsToSave">
-					               <td data-title="'Cód'" sortable="'code'" width="10%" ng-click="removeStudent(student)">{{student.person.name}}</td>
-					            </tr>  
+						<div class="table-scroll table-list-student-right">
+							<table class="table table-striped" ng-table="tableParams">
+							<thead>
+					      	<tr>
+					      		<th>Código</th>
+					      		<th>Matrícula</th>
+					      		<th>Nome</th>
+					      		<th></th>
+					      		</tr>
+					      	</thead>
+						        
+						        <tbody class="">
+					        	<tr ng-repeat="student in studentsToSave" ng-click="removeStudent(student)" ng-mouseover="showButtons = true" ng-mouseleave="showButtons = false" class="mouse-click">
+					        		<td width="10%">
+					        		<input type="checkbox" value="{{student.code}}" id="studentsCodes" name="studentsCodes" checked="checked">
+					        		{{student.code}}
+					        		</td>
+						            <td width="20%">{{student.registry}}</td>
+						            <td width="50%">{{student.person.name}}</td>
+					                <td width="10%">
+						                <div class="registryOptions" ng-show="showButtons">
+						                	 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+						                </div>
+					                </td>
+					            </tr>
+					            
+					            <!-- <div class="checkbox" ng-repeat="student in studentsToSave" ng-click="removeStudent(student)">
+-                                                 <label>
+-                                                   <input type="checkbox" value="{{student}}" id="students" name="students" class="hide" checked="checked">
+-                                                   {{student.person.name}}
+-                                                 </label>
+-                                               </div> -->
+					            
 					        </tbody>
-					      </table>
+						      </table>
+					      </div>
 					   
 					    
 					</div><!-- end col -->

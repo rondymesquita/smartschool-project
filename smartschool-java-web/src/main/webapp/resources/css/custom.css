@@ -159,3 +159,6 @@ span.twitter-typeahead {
 .table-list-student-right{
 	margin-top: 72px;
 }
+.mouse-click{
+	cursor: pointer;
+}
