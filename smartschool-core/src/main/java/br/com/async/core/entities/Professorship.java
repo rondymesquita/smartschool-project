@@ -33,16 +33,16 @@ public class Professorship extends AbstractEntity implements Serializable{
 	private Integer code;
 	
 	@Getter
-	@OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, cascade= CascadeType.REFRESH)
 	private Set<Student> students;
 	
 	@Getter
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade =  CascadeType.REFRESH)
 	@JoinColumn(name = "professor")
 	private Professor professor;
 	
 	@Getter
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade =  CascadeType.REFRESH)
 	@JoinColumn(name = "discipline")
 	private Discipline discipline;
 	

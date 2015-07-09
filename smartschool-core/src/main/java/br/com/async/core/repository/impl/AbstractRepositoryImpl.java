@@ -85,6 +85,7 @@ public abstract class AbstractRepositoryImpl<T, E extends Serializable> implemen
 	public List<T> list() {
 		try {
 			Criteria criteria = hibernateTemplate.getSessionFactory().getCurrentSession().createCriteria(entity);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			return criteria.list();
 		} catch (RuntimeException re) {
 			System.err.println(re);

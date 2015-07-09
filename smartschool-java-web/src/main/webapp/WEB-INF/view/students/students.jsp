@@ -71,9 +71,8 @@
                         Apagar
                     </a>
                     
-                   
+                   <!-- UPDATE REGISTRY -->
                     <form action="${pageContext.request.contextPath}/students/edit" method="POST" th:object="${student}" class="inline">
-                    	
                     	<input type="hidden" class="form-control" name="code" th:field="*{code}" value="${student.code}" >
                     
 	                    <button type="submit" type="button" class="btn btn-primary btn-sm">

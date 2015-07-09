@@ -42,35 +42,40 @@
 
     <div>
       <table class="table table-striped" ng-table="tableParams">
+      <thead>
+      		<th>Código</th>
+      		<th>Professor</th>
+      		<th>Disciplina</th>
+      		<th></th>
+      	</thead>
         <tbody>
         
-        <c:forEach var="professor" items="${professors}">
-        	<tr>
-                <td data-title="'Cód'" sortable="'code'" width="10%">${professor.person.code}</td>
-                <td data-title="'Matrícula'" sortable="'registry'" width="10%">${professor.registry}</td>
-                <td data-title="'Nome'" sortable="'name'" width="20%">${professor.person.name}</td>
-                <td data-title="'CPF'" sortable="'cpf'" width="20%">${professor.person.cpf}</td>
-                <td data-title="'Email'" sortable="'email'" width="20%">${professor.person.email}</td>
+        <c:forEach var="professorship" items="${professorships}">
+        	<tr ng-mouseover="showButtons_${professorship.code} = true" ng-mouseleave="showButtons_${professorship.code} = false">
+                <td width="10%">${professorship.code}</td>
+                <td width="10%">${professorship.professor.person.name}</td>
+                <td width="20%">${professorship.discipline.name}</td>
 
                 <td width="20%">
 
-
-                    <div class="registryOptions" ng-show="showButtons">
-
-                        <!-- DELETE REGISTRY -->
-                        <modal id="professorDeleteModal" on-primary-button-click-event="deleteProfessor(professor)" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
-                        <a data-target="" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
-                            <i class="fa fa-times-circle"></i>
-                            Apagar
-                        </a>
-
-                        <!-- UPDATE REGISTRY -->
-                        <modal id="professorUpdateModal" on-primary-button-click-event="updateProfessor(professor)" primary-button-text="Atualizar" primary-button-context="primary" secondary-button-text="Cancelar" modal-title="Atualizar Registro" modal-body="../professor/professorCreateModal.html" modal-dismissible="true"></modal>
-                        <a data-target="" type="button" class="btn btn-primary btn-sm" data-toggle="modal">
-                            <i class="fa fa-pencil"></i>
-                            Editar
-                        </a>
-
+                    <div class="registryOptions" ng-show="showButtons_${professorship.code}">
+						<!-- DELETE REGISTRY -->
+	                    <modal handler="studentDeleteModal-${professorship.code}" object="student" code="${professorship.code}" on-primary-button-click-action="${pageContext.request.contextPath}/professorships/delete" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
+	                    
+	                    <a data-target="#studentDeleteModal-${professorship.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
+	                        <i class="fa fa-times-circle"></i>
+	                        Apagar
+	                    </a>
+	                    
+	                   <!-- UPDATE REGISTRY -->
+	                    <form action="${pageContext.request.contextPath}/professorships/edit" method="POST" th:object="${professorship}" class="inline">
+	                    	<input type="hidden" class="form-control" name="code" th:field="*{code}" value="${professorship.code}" >
+	                    
+		                    <button type="submit" type="button" class="btn btn-primary btn-sm">
+		                        <i class="fa fa-pencil"></i>
+		                        Editar
+		                    </button>
+						</form>
                     </div>
 
                 </td>

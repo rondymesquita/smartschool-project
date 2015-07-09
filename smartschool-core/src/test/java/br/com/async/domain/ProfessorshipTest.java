@@ -132,12 +132,12 @@ public class ProfessorshipTest extends BaseTest{
 		} 
 	}
 	
-	@AfterClass
-	public static void afterClass(){
-		List<Professorship> list = professorshipApplication.list();
-		for (Professorship professorship : list) {
-			professorshipApplication.delete(professorship);
-		} 
-	}
+//	@AfterClass
+//	public static void afterClass(){
+//		List<Professorship> list = professorshipApplication.list();
+//		for (Professorship professorship : list) {
+//			professorshipApplication.delete(professorship);
+//		} 
+//	}
 
 }
