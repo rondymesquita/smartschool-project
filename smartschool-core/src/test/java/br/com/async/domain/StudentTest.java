@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import br.com.async.config.HibernateConfigTest;
 import br.com.async.core.application.StudentApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Student;
@@ -19,22 +20,20 @@ public class StudentTest extends BaseTest{
 	private static AnnotationConfigApplicationContext ctx;
 	private static Integer code;
 	
-	
 	@BeforeClass
 	public static void before(){
-		ctx = new AnnotationConfigApplicationContext();
+		ctx = new AnnotationConfigApplicationContext(HibernateConfigTest.class);
 		ctx.scan("br.com.async.core");
-		ctx.refresh();
 		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
 	}
 	
-	@AfterClass
-	public static void afterClass(){
+//	@AfterClass
+//	public static void afterClass(){
 //		List<Student> list = studentApplication.list();
 //		for (Student student : list) {
 //			studentApplication.delete(student);
 //		}
-	}
+//	}
 	
 	@Test
 	public void saveStudentTest() throws Exception{
