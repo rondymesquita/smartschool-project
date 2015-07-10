@@ -1,31 +1,26 @@
-package br.com.async.domain;
+package br.com.async.domain.test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.entities.Discipline;
+import br.com.async.domain.helper.test.DisciplineHelper;
 
 public class DisciplineTest extends BaseTest{
 
 	private static DisciplineApplication disciplineApplication;
-	private static AnnotationConfigApplicationContext ctx;
-	private static Integer code;
 
 	@BeforeClass
 	public static void before() throws IOException {
-
-		ctx = new AnnotationConfigApplicationContext();
-		ctx.scan("br.com.async.core");
-		ctx.refresh();
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
-		
 	}
 	
 	@AfterClass
@@ -39,18 +34,17 @@ public class DisciplineTest extends BaseTest{
 
 	@Test
 	public void saveDisciplineTest() throws Exception{
-		Discipline discipline = new Discipline();
-		discipline.setName("Prog 1");
-		discipline.setWorkload(120);
+		Discipline discipline = DisciplineHelper.createBasic();
 		Assert.assertTrue(disciplineApplication.save(discipline));
+		Discipline disciplineSaved = disciplineApplication.findByCode(discipline.getCode());
+		Assert.assertEquals(discipline.getName(), disciplineSaved.getName());
+		Assert.assertEquals(discipline.getWorkload(), disciplineSaved.getWorkload());
 	}
 	
 	@Test
 	public void findDisciplineByCodeTest() throws Exception{
 		
-		Discipline discipline = new Discipline();
-		discipline.setName("Prog 1");
-		discipline.setWorkload(120);
+		Discipline discipline = DisciplineHelper.createBasic();
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		Discipline discipline2 = disciplineApplication.findByCode(discipline.getCode());
 		Assert.assertNotNull(discipline2);
@@ -58,24 +52,26 @@ public class DisciplineTest extends BaseTest{
 	
 	@Test
 	public void updateDisciplineTest() throws Exception{
-		Discipline discipline = new Discipline();
-		discipline.setName("Prog 1");
-		discipline.setWorkload(120);
+		
+		String name = UUID.randomUUID().toString();
+		Integer workload = Math.max(1, 1);
+		
+		Discipline discipline = DisciplineHelper.createBasic();
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		
-		Discipline discipline2 = disciplineApplication.findByCode(discipline.getCode());
-		discipline2.setName("Prog 2");
-		Assert.assertTrue(disciplineApplication.update(discipline2));
+		Discipline disciplineToUpdate = disciplineApplication.findByCode(discipline.getCode());
+		disciplineToUpdate.setName(name);
+		disciplineToUpdate.setWorkload(workload);
+		Assert.assertTrue(disciplineApplication.update(disciplineToUpdate));
 		
-		Discipline disciplineUpdated = disciplineApplication.findByCode(discipline2.getCode());
-		Assert.assertEquals(disciplineUpdated.getName(), "Prog 2");
+		Discipline disciplineUpdated = disciplineApplication.findByCode(disciplineToUpdate.getCode());
+		Assert.assertEquals(disciplineUpdated.getName(), name);
+		Assert.assertEquals(disciplineUpdated.getWorkload(), workload);
 	}
 	
 	@Test
 	public void listDisciplineTest() throws Exception{
-		Discipline discipline = new Discipline();
-		discipline.setName("Prog 1");
-		discipline.setWorkload(120);
+		Discipline discipline = DisciplineHelper.createBasic();
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		
 		List<Discipline> list = disciplineApplication.list();

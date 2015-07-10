@@ -1,4 +1,4 @@
-package br.com.async.domain.helper;
+package br.com.async.domain.helper.test;
 
 import br.com.async.core.entities.AbstractEntity;
 

@@ -1,4 +1,4 @@
-package br.com.async.config;
+package br.com.async.config.test;
 
 import java.util.Properties;
 

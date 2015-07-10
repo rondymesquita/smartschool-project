@@ -1,4 +1,4 @@
-package br.com.async.deploy;
+package br.com.async.deploy.test;
 
 import io.github.benas.jpopulator.api.Populator;
 import io.github.benas.jpopulator.impl.PopulatorBuilder;

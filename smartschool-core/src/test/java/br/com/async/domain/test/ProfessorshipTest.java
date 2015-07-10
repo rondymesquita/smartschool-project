@@ -1,16 +1,16 @@
-package br.com.async.domain;
+package br.com.async.domain.test;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import br.com.async.config.test.HibernateConfigTest;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
@@ -29,16 +29,10 @@ public class ProfessorshipTest extends BaseTest{
 	private static ProfessorApplication professorApplication;
 	private static StudentApplication studentApplication;
 	private static DisciplineApplication disciplineApplication;
-	private static AnnotationConfigApplicationContext ctx;
-	private static Integer code;
 
 	@BeforeClass
 	public static void before() throws IOException {
 
-		ctx = new AnnotationConfigApplicationContext();
-		ctx.scan("br.com.async.core");
-		ctx.refresh();
-		
 		professorshipApplication = ctx.getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
 		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);

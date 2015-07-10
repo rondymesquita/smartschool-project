@@ -1,8 +1,10 @@
-package br.com.async.domain.helper;
+package br.com.async.domain.helper.test;
+
+import java.util.UUID;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import br.com.async.config.HibernateConfigTest;
+import br.com.async.config.test.HibernateConfigTest;
 import br.com.async.core.application.StudentApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Student;
@@ -21,11 +23,18 @@ public class StudentHelper{
 	
 	public static Student createBasic(){
 		
+		String registry = UUID.randomUUID().toString();
+		String name = UUID.randomUUID().toString();
+		String cpf = UUID.randomUUID().toString();
+		String email = UUID.randomUUID().toString();
+		
 		Student student = new Student();
-		student.setRegistry("123");
+		student.setRegistry(registry);
 		Person person = new Person();
-		person.setName("John_Test");
-		person.setCpf("123");
+		person.setName(name);
+		person.setCpf(cpf);
+		person.setEmail(email);
+		
 		student.setPerson(person);
 		return student;
 	}
@@ -33,12 +42,7 @@ public class StudentHelper{
 	public static Student saveBasic(){
 		before();
 		
-		Student student = new Student();
-		student.setRegistry("123");
-		Person person = new Person();
-		person.setName("John_Test");
-		person.setCpf("123");
-		student.setPerson(person);
+		Student student = createBasic();
 		studentApplication.save(student);
 		return studentApplication.findByCode(student.getCode());
 	}

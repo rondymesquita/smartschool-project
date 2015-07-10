@@ -1,4 +1,4 @@
-package br.com.async.domain;
+package br.com.async.domain.test;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
