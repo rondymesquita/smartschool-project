@@ -33,7 +33,7 @@ public class CourseRepositoryImpl extends AbstractRepositoryImpl<Course, Integer
 	@Override
 	public List<Course> searchByCodeOrName(String search) {
 		
-		Criteria criteria = getSession().createCriteria(Discipline.class);
+		Criteria criteria = getSession().createCriteria(Course.class);
 		
 		Integer code = SmartUtils.StringToInteger(search);
 		Criterion criterion;

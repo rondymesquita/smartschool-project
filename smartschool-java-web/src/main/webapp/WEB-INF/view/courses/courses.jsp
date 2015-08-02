@@ -60,7 +60,7 @@
             <td width="40%">${course.name}</td>
             <td width="20%">
 
-                <div class="registryOptions" ng-show="showButtons_${discipline.code}">
+                <div class="registryOptions" ng-show="showButtons_${course.code}">
 
                     <!-- DELETE REGISTRY -->
                     <modal handler="courseDeleteModal-${course.code}" on-primary-button-click-event="deleteCourse(${course.code})" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>

@@ -22,6 +22,11 @@
                     Alunos
                 </a>
                 
+                <a href="${pageContext.request.contextPath}/courses" class="list-group-item">
+                    <span class="fa fa-university" aria-hidden="true"></span>
+                    Cursos
+                </a>
+                
                 <a href="${pageContext.request.contextPath}/professorships" class="list-group-item">
                     <span class="fa fa-book" aria-hidden="true"></span>
                     Cadeiras

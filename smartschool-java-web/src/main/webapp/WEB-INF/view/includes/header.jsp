@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Smartschool Web</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <meta charset="utf-8">
     <!-- Styles -->
   <link  href="${pageContext.request.contextPath}/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link  href="${pageContext.request.contextPath}/resources/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -29,6 +31,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/components/professor/professorService.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/components/discipline/disciplineService.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/components/student/studentService.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/components/course/courseService.js"></script>
   
   <!-- controllers -->
   <%-- <script src="${pageContext.request.contextPath}/resources/js/components/base/baseController.js"></script> --%>
@@ -36,6 +39,7 @@
   <script src="${pageContext.request.contextPath}/resources/js/components/professor/professorController.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/components/discipline/disciplineController.js"></script>
   <script src="${pageContext.request.contextPath}/resources/js/components/student/studentController.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/js/components/course/courseController.js"></script>
   
   
   

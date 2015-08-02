@@ -4,7 +4,7 @@ angular.module('SmartschoolApp').constant('config',(function(){
 	
     return{
     	url: url,
-	    dashboardUrl: 'http://localhost:9090/smartschool-java-web/dashboard',
+	    dashboardUrl: url +'dashboard',
 	    
 	    professorshipsUri: 'professorships/',
 	    professorshipsUrl: url + 'professorships/',
@@ -18,6 +18,10 @@ angular.module('SmartschoolApp').constant('config',(function(){
 	    studentsUri: 'students/',
 	    studentsUrl: url + 'students/',
 	    studentsApiUrl: url + 'api/students/',
+	    
+	    coursesUri: 'courses/',
+	    coursesUrl: url + 'courses/',
+	    coursesApiUrl: url + 'api/courses/',
 	    
     }
 })());

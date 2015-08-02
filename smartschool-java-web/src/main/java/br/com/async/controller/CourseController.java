@@ -1,5 +1,7 @@
 package br.com.async.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriUtils;
 
 import br.com.async.annotations.Authenticate;
 import br.com.async.annotations.RoleManager;
@@ -42,8 +45,9 @@ public class CourseController extends BaseController{
     @Authenticate
     @RoleProfessor
     @RequestMapping(value="/courses/{search}", method = RequestMethod.GET)
-    public String searchByCodeOrName(Model model, @PathVariable String search){
+    public String searchByCodeOrName(Model model, @PathVariable String search) throws UnsupportedEncodingException{
     	ResponseData responseData = null;
+    	String decodedSearch = URLDecoder.decode(search,"UTF-8");
     	
     	System.out.println(search);
     	List<Course> list = courseApplication.searchByCodeOrName(search);
@@ -111,7 +115,7 @@ public class CourseController extends BaseController{
             responseData = new ResponseData(Constants.ERROR, ResponseData.ERROR);
     	
     	redirectAttributes.addFlashAttribute(Constants.RESPONSE_DATA,responseData);
-    	return "redirect:/course";
+    	return "redirect:/courses";
     }
     
     @Authenticate

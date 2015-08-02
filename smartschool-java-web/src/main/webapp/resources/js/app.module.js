@@ -1,7 +1,7 @@
 angular
 .module('SmartschoolApp', [])
 .run(function(){
-    console.log("Angular Loaded!");
+    console.log("Modules Loaded!");
     console.log("===============");
 }).config(function($httpProvider){
     $httpProvider.interceptors.push(interceptor);
