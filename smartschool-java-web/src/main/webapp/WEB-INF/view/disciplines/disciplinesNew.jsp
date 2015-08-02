@@ -3,7 +3,7 @@
 <jsp:include page="../includes/header.jsp"/>
 <%-- <jsp:include page="../includes/headerApp.jsp"/> --%>
 
-<div class="container-fluid mainContent" ng-controller="ProfessorshipController">
+<div class="container-fluid mainContent" ng-controller="DisciplineController">
 
 
  	<ol class="breadcrumb">

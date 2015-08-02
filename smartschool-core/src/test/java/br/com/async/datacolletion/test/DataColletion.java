@@ -1,4 +1,4 @@
-package br.com.async.datacolletion;
+package br.com.async.datacolletion.test;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;

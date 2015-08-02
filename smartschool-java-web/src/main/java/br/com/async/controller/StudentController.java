@@ -1,6 +1,5 @@
 package br.com.async.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,7 +20,6 @@ import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.StudentApplication;
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Student;
-import br.com.async.core.entities.User;
 import br.com.async.util.Constants;
 import br.com.async.util.ResponseData;
 
