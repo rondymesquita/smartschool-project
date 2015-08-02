@@ -18,13 +18,17 @@ import br.com.async.annotations.Authenticate;
 import br.com.async.annotations.RoleManager;
 import br.com.async.annotations.RoleProfessor;
 import br.com.async.config.ApplicationContext;
+import br.com.async.core.application.CourseApplication;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
+import br.com.async.core.application.SemesterApplication;
 import br.com.async.core.application.StudentApplication;
+import br.com.async.core.entities.Course;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
+import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
 import br.com.async.util.Constants;
 import br.com.async.util.ResponseData;
@@ -36,6 +40,8 @@ public class ProfessorshipController extends BaseController{
 	private ProfessorApplication professorApplication = ApplicationContext.getInstance().getBean("professorApplicationImpl", ProfessorApplication.class);
 	private DisciplineApplication disciplineApplication = ApplicationContext.getInstance().getBean("disciplineApplicationImpl", DisciplineApplication.class);
 	private StudentApplication studentApplication = ApplicationContext.getInstance().getBean("studentApplicationImpl", StudentApplication.class);
+	private CourseApplication courseApplication = ApplicationContext.getInstance().getBean("courseApplicationImpl", CourseApplication.class);
+	private SemesterApplication semesterApplication = ApplicationContext.getInstance().getBean("semesterApplicationImpl", SemesterApplication.class);
 	
 	private static String CONTROLLER = "professorships/";
 	
@@ -55,6 +61,9 @@ public class ProfessorshipController extends BaseController{
 		
 		model.addAttribute("professors",professorApplication.list());
 		model.addAttribute("disciplines",disciplineApplication.list());
+		model.addAttribute("courses",courseApplication.list());
+		model.addAttribute("semesters",semesterApplication.list());
+		
 		
 		return CONTROLLER + "professorshipsNew";
 	}
@@ -65,6 +74,8 @@ public class ProfessorshipController extends BaseController{
 	public String save(Model model, 
 			@RequestParam String professorCode,
 			@RequestParam String disciplineCode,
+			@RequestParam String courseCode,
+			@RequestParam String semesterCode,
 			@RequestParam String[] studentsCodes,
 			HttpServletRequest request, HttpServletResponse response, final RedirectAttributes redirectAttributes){
 		
@@ -72,6 +83,9 @@ public class ProfessorshipController extends BaseController{
 		
 		Professor professor = professorApplication.findByCode(Integer.parseInt(professorCode));
 		Discipline discipline = disciplineApplication.findByCode(Integer.parseInt(disciplineCode));
+		Semester semester = semesterApplication.findByCode(Integer.parseInt(semesterCode));
+		Course course = courseApplication.findByCode(Integer.parseInt(courseCode));
+		
 		Set<Student> students = new HashSet<Student>(); 
 		for (String code : studentsCodes) {
 			Student student = studentApplication.findByCode(Integer.parseInt(code));
@@ -81,6 +95,9 @@ public class ProfessorshipController extends BaseController{
 		professorship.setDiscipline(discipline);
 		professorship.setProfessor(professor);
 		professorship.setStudents(students);
+		professorship.setSemester(semester);
+		professorship.setCourse(course);
+		
 		
 		boolean resultQuery = professorshipApplication.save(professorship);
 		

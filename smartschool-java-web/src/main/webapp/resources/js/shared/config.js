@@ -23,5 +23,9 @@ angular.module('SmartschoolApp').constant('config',(function(){
 	    coursesUrl: url + 'courses/',
 	    coursesApiUrl: url + 'api/courses/',
 	    
+	    semestersUri: 'semesters/',
+	    semestersUrl: url + 'semesters/',
+	    semestersApiUrl: url + 'api/semesters/',
+	    
     }
 })());

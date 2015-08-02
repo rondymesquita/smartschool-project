@@ -38,6 +38,24 @@
 		    </select>
 		</div>
 		
+		<div class="form-group">
+		    <label for="fieldName">Selecione curso</label>
+		    <select class="combobox form-control square" name="courseCode">
+		    	<c:forEach var="course" items="${courses}">
+		    		<option value="${course.code}">${course.name}</option>
+		    	</c:forEach>
+		    </select>
+		</div>
+		
+		<div class="form-group">
+		    <label for="fieldName">Selecione semestre</label>
+		    <select class="combobox form-control square" name="semesterCode">
+		    	<c:forEach var="semester" items="${semesters}">
+		    		<option value="${semester.code}">${semester.name}</option>
+		    	</c:forEach>
+		    </select>
+		</div>
+		
 		
 		<div class="row">
 			<div class="col-xs-12">

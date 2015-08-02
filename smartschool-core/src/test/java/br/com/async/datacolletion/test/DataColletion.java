@@ -4,12 +4,17 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.async.core.application.CourseApplication;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.ProfessorApplication;
+import br.com.async.core.application.SemesterApplication;
 import br.com.async.core.application.StudentApplication;
+import br.com.async.core.entities.Course;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professor;
+import br.com.async.core.entities.Role;
+import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
 import br.com.async.domain.test.BaseDeployTest;
 
@@ -18,12 +23,66 @@ public class DataColletion extends BaseDeployTest{
 	private static StudentApplication studentApplication;
 	private static ProfessorApplication professorApplication;
 	private static DisciplineApplication disciplineApplication;
+	private static SemesterApplication semesterApplication;
+	private static CourseApplication courseApplication;
 	
 	@BeforeClass
 	public static void before(){
 		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
+		semesterApplication = ctx.getBean("semesterApplicationImpl", SemesterApplication.class);
+		courseApplication = ctx.getBean("courseApplicationImpl", CourseApplication.class);
+	}
+	
+	@Test
+	public void saveCourses() throws Exception{
+		Course course = new Course();
+		course.setName("Sistemas de Informa√ß√£o");
+		Assert.assertTrue(courseApplication.save(course));
+		
+		course = new Course();
+		course.setName("Ci√™ncias Cont√°beis");
+		Assert.assertTrue(courseApplication.save(course));
+		
+		course = new Course();
+		course.setName("Enfermagem");
+		Assert.assertTrue(courseApplication.save(course));
+		
+		course = new Course();
+		course.setName("Farm√°cia");
+		Assert.assertTrue(courseApplication.save(course));
+		
+		course = new Course();
+		course.setName("Arquitetura");
+		Assert.assertTrue(courseApplication.save(course));
+		
+		course = new Course();
+		course.setName("Ci√™ncia da Computa√ß√£o");
+		Assert.assertTrue(courseApplication.save(course));
+		
+		course = new Course();
+		course.setName("Direito");
+		Assert.assertTrue(courseApplication.save(course));
+	}
+	
+	@Test
+	public void saveSemesters() throws Exception{
+		Semester semester = new Semester();
+		semester.setName("2010.1");
+		Assert.assertTrue(semesterApplication.save(semester));
+		
+		semester = new Semester();
+		semester.setName("2010.2");
+		Assert.assertTrue(semesterApplication.save(semester));
+		
+		semester = new Semester();
+		semester.setName("2011.1");
+		Assert.assertTrue(semesterApplication.save(semester));
+		
+		semester = new Semester();
+		semester.setName("2011.2");
+		Assert.assertTrue(semesterApplication.save(semester));
 	}
 	
 	@Test
@@ -67,7 +126,7 @@ public class DataColletion extends BaseDeployTest{
 		student = new Student();
 		student.setRegistry("5555");
 		person = new Person();
-		person.setName("Mercúrio");
+		person.setName("Merc√∫rio");
 		person.setCpf("5555");
 		person.setEmail("mercurio@email.com");
 		student.setPerson(person);
@@ -94,6 +153,7 @@ public class DataColletion extends BaseDeployTest{
 		person.setName("Wolverine");
 		person.setCpf("111");
 		person.setEmail("wolverine@email.com");
+		person.setRole(Role.ROLE_MANAGER);
 		professor.setPerson(person);
 		Assert.assertTrue(professorApplication.save(professor));
 		
@@ -105,6 +165,7 @@ public class DataColletion extends BaseDeployTest{
 		person.setName("Tempestade");
 		person.setCpf("222");
 		person.setEmail("tempestade@email.com");
+		person.setRole(Role.ROLE_MANAGER);
 		professor.setPerson(person);
 		Assert.assertTrue(professorApplication.save(professor));
 		
@@ -116,6 +177,7 @@ public class DataColletion extends BaseDeployTest{
 		person.setName("Jean Grey");
 		person.setCpf("333");
 		person.setEmail("jeangrey@email.com");
+		person.setRole(Role.ROLE_MANAGER);
 		professor.setPerson(person);
 		Assert.assertTrue(professorApplication.save(professor));
 		
@@ -127,6 +189,7 @@ public class DataColletion extends BaseDeployTest{
 		person.setName("Professor Xavier");
 		person.setCpf("444");
 		person.setEmail("x@email.com");
+		person.setRole(Role.ROLE_MANAGER);
 		professor.setPerson(person);
 		Assert.assertTrue(professorApplication.save(professor));
 		
@@ -138,6 +201,7 @@ public class DataColletion extends BaseDeployTest{
 		person.setName("Fera");
 		person.setCpf("555");
 		person.setEmail("fera@email.com");
+		person.setRole(Role.ROLE_MANAGER);
 		professor.setPerson(person);
 		Assert.assertTrue(professorApplication.save(professor));
 		
@@ -149,6 +213,7 @@ public class DataColletion extends BaseDeployTest{
 		person.setName("Magneto");
 		person.setCpf("777");
 		person.setEmail("magneto@email.com");
+		person.setRole(Role.ROLE_MANAGER);
 		professor.setPerson(person);
 		Assert.assertTrue(professorApplication.save(professor));
 	}
@@ -162,7 +227,7 @@ public class DataColletion extends BaseDeployTest{
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		
 		discipline = new Discipline();
-		discipline.setName("Programação 1");
+		discipline.setName("Programa√ß√£o 1");
 		discipline.setWorkload(10);		
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		
@@ -172,7 +237,7 @@ public class DataColletion extends BaseDeployTest{
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		
 		discipline = new Discipline();
-		discipline.setName("Matemática Discreta");
+		discipline.setName("Matem√°tica Discreta");
 		discipline.setWorkload(10);		
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		
@@ -182,17 +247,17 @@ public class DataColletion extends BaseDeployTest{
 		Assert.assertTrue(disciplineApplication.save(discipline));
 
 		discipline = new Discipline();
-		discipline.setName("Programação 2");
+		discipline.setName("Programa√ß√£o 2");
 		discipline.setWorkload(10);		
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		
 		discipline = new Discipline();
-		discipline.setName("Sistemas de Informação");
+		discipline.setName("Sistemas de Informa√ß√£o");
 		discipline.setWorkload(10);		
 		Assert.assertTrue(disciplineApplication.save(discipline));
 		
 		discipline = new Discipline();
-		discipline.setName("Gerência de Projetos");
+		discipline.setName("Ger√™ncia de Projetos");
 		discipline.setWorkload(10);		
 		Assert.assertTrue(disciplineApplication.save(discipline));
 	}

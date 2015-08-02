@@ -27,15 +27,17 @@
                     Cursos
                 </a>
                 
+                <a href="${pageContext.request.contextPath}/semesters" class="list-group-item">
+                    <span class="fa fa-book" aria-hidden="true"></span>
+                    Semestres
+                </a>
+                
                 <a href="${pageContext.request.contextPath}/professorships" class="list-group-item">
                     <span class="fa fa-book" aria-hidden="true"></span>
                     Cadeiras
                 </a>
                 
-                <a href="${pageContext.request.contextPath}/semesters" class="list-group-item">
-                    <span class="fa fa-book" aria-hidden="true"></span>
-                    Semestres
-                </a>
+                
                 
             </div>
         </div>
