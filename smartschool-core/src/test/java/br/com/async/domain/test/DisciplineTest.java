@@ -1,8 +1,6 @@
 package br.com.async.domain.test;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 import org.junit.AfterClass;
@@ -19,7 +17,7 @@ public class DisciplineTest extends BaseTest{
 	private static DisciplineApplication disciplineApplication;
 
 	@BeforeClass
-	public static void before() throws IOException {
+	public static void before(){
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
 	}
 	

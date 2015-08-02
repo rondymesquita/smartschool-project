@@ -1,31 +1,21 @@
 package br.com.async.deploy.test;
 
-import io.github.benas.jpopulator.api.Populator;
-import io.github.benas.jpopulator.impl.PopulatorBuilder;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
+import br.com.async.domain.test.BaseDeployTest;
 
-public class UserDeployTest {
+public class UserDeployTest extends BaseDeployTest{
 	
 	private UserApplication userApplication;
-	private Populator populator;
-	private AnnotationConfigApplicationContext ctx;
 	
 	@Before
 	public void before(){
-		populator = new PopulatorBuilder().build();
-		
-		ctx = new AnnotationConfigApplicationContext();
-		ctx.scan("br.com.async.core");
-		ctx.refresh();
 		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);		
 	}
 
@@ -37,6 +27,7 @@ public class UserDeployTest {
 		user.setUsername("admin@admin");
 		user.setPassword("admin");
 		Person person = new Person();
+		person.setEmail("admin@admin");
 		person.setCpf("12345678900");
 		person.setName("John Doe");
 		person.setRole(Role.ROLE_MANAGER);
@@ -46,6 +37,7 @@ public class UserDeployTest {
 		if(u==null){
 			boolean result = userApplication.save(user);
 			Assert.assertEquals(true, result);
+			System.out.println("Saved!");
 		}
 	}
 	

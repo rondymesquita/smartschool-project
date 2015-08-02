@@ -1,27 +1,30 @@
 package br.com.async.domain.test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import br.com.async.config.test.HibernateConfigTest;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.application.StudentApplication;
 import br.com.async.core.entities.Diary;
 import br.com.async.core.entities.Discipline;
-import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.SchoolClass;
 import br.com.async.core.entities.Student;
+import br.com.async.domain.helper.test.DisciplineHelper;
+import br.com.async.domain.helper.test.ProfessorHelper;
+import br.com.async.domain.helper.test.StudentHelper;
 
 public class ProfessorshipTest extends BaseTest{
 	
@@ -40,83 +43,69 @@ public class ProfessorshipTest extends BaseTest{
 		
 	}
 	
+	@AfterClass
+	public static void afterClass(){
+		List<Professorship> list = professorshipApplication.list();
+		for (Professorship professorship : list) {
+			professorship.setDiary(null);
+			professorship.setDiscipline(null);
+			professorship.setProfessor(null);
+			professorship.setStudents(null);
+			professorshipApplication.delete(professorship);
+		}
+	}
 	
 	@Test
 	public void saveProfessorshipTest() throws Exception{
-		Professor professor = new Professor();
-		Person personProfessor = new Person();
-		personProfessor.setName("John");
-		professor.setPerson(personProfessor);
+		
+		String content = UUID.randomUUID().toString();
+		
+		Professor professor = ProfessorHelper.createBasic();
 		Assert.assertTrue(professorApplication.save(professor));
-		professor = professorApplication.findByCode(professor.getCode());
+		Professor professorSaved = professorApplication.findByCode(professor.getCode());
 		
 
-		Student student = new Student();
-		student.setRegistry("abc");
-		Person personStudent = new Person();
-		personStudent.setName("Peter");
-		student.setPerson(personStudent);
+		Student student = StudentHelper.createBasic();
 		Assert.assertTrue(studentApplication.save(student));
-		student = studentApplication.findByCode(student.getCode());
-		Set<Student> students = new HashSet<Student>();
-		students.add(student);
+		Student studentSaved = studentApplication.findByCode(student.getCode());
 		
-		Discipline discipline = new Discipline();
-		discipline.setName("Prog 1");
+		Set<Student> students = new HashSet<Student>();
+		students.add(studentSaved);
+		
+		Discipline discipline = DisciplineHelper.createBasic();
 		Assert.assertTrue(disciplineApplication.save(discipline));
-		discipline = disciplineApplication.findByCode(discipline.getCode());
+		Discipline disciplineSaved = disciplineApplication.findByCode(discipline.getCode());
 		
 		Diary diary = new Diary();
 		Set<SchoolClass> schoolClasses = new HashSet<SchoolClass>();
 		SchoolClass schoolClass = new SchoolClass();
-		schoolClass.setContent("Aula 1");
+		schoolClass.setContent(content);
 		schoolClass.setStudentsAttendance(students);
 		
 		schoolClasses.add(schoolClass);
 		diary.setSchoolClasses(schoolClasses);
 		
 		Professorship professorship = new Professorship();
-		professorship.setProfessor(professor);
+		professorship.setProfessor(professorSaved);
 		professorship.setStudents(students);
-		professorship.setDiscipline(discipline);
+		professorship.setDiscipline(disciplineSaved);
 		professorship.setDiary(diary);
 		professorshipApplication.save(professorship);
-		code = professorship.getCode();
 		
+		Professorship professorshipSaved = professorshipApplication.findByCode(professorship.getCode());
+		Assert.assertNotNull(professorshipSaved);
+		
+		ArrayList<SchoolClass> schoolClassesSaved = new ArrayList<SchoolClass>(professorshipSaved.getDiary().getSchoolClasses());
+		Assert.assertEquals(schoolClassesSaved.get(0).getContent(), content);
+		Assert.assertEquals(professorshipSaved.getProfessor().getPerson().getName(), professorSaved.getPerson().getName());
+		Assert.assertEquals(professorshipSaved.getDiscipline().getName(), disciplineSaved.getName());
+		ArrayList<Student> studentsSaved = new ArrayList<Student>(professorshipSaved.getStudents());
+		Assert.assertEquals(studentsSaved.get(0).getPerson().getName(), studentSaved.getPerson().getName());
 		
 	}
 	
-//	@Test
-//	public void listTest() {
-//		List<Professorship> lista = professorshipApplication.list();
-//		Professorship professorship = professorshipApplication.findByCode(1);
-//			
-//			System.out.println(professorship.getProfessor());
-//			System.out.println(professorship.getDiscipline());
-//			System.out.println(professorship.getDiary());
-//			
-//			Set<Student> students = professorship.getStudents();
-//			System.out.println("==== Estudantes Matriculados ===");
-//			for (Student student : students) {
-//				System.out.println(student.getCode());
-//			}
-//			
-//			Set<SchoolClass> schoolClasses = professorship.getDiary().getSchoolClasses();
-//			System.out.println("==== Estudantes Presentes ===");
-//			for (SchoolClass schoolClass : schoolClasses) {
-//				Set<Student> attendace = schoolClass.getStudentsAttendance();
-//				for (Student student : attendace) {
-//					System.out.println(student.getCode());
-//				}
-//			}
-//
-//	}
 	
 
-	public void findByCodeProfessorshipTest() throws Exception{
-		Professorship professorship = professorshipApplication.findByCode(code);
-		Assert.assertNotNull(professorship);
-	}
 	
 	@Test
 	public void listProfessorshipTest() throws Exception{

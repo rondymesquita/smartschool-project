@@ -18,8 +18,7 @@ public class ProfessorTest extends BaseTest{
 	private static ProfessorApplication professorApplication;
 
 	@BeforeClass
-	public static void before() throws IOException {
-
+	public static void before() {
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
 	}
 	

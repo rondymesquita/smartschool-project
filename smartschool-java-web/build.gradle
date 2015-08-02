@@ -62,9 +62,3 @@ task compileCore(type: Exec){
 	executable 'gradle' 
 	args 'install' //,'package' 
 }
-
-task runDeployTests(type: Exec){
-	workingDir '../smartschool-core'
-	executable 'gradle'
-	args 'gradle -Dtest.single=User test'
-}
