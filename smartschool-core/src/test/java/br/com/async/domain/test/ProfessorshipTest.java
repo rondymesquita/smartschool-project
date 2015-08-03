@@ -12,15 +12,19 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import br.com.async.core.application.CourseApplication;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
+import br.com.async.core.application.SemesterApplication;
 import br.com.async.core.application.StudentApplication;
+import br.com.async.core.entities.Course;
 import br.com.async.core.entities.Diary;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.SchoolClass;
+import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
 import br.com.async.domain.helper.test.DisciplineHelper;
 import br.com.async.domain.helper.test.ProfessorHelper;
@@ -32,6 +36,8 @@ public class ProfessorshipTest extends BaseTest{
 	private static ProfessorApplication professorApplication;
 	private static StudentApplication studentApplication;
 	private static DisciplineApplication disciplineApplication;
+	private static SemesterApplication semesterApplication;
+	private static CourseApplication courseApplication;
 
 	@BeforeClass
 	public static void before() throws IOException {
@@ -40,11 +46,41 @@ public class ProfessorshipTest extends BaseTest{
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
 		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
+		semesterApplication = ctx.getBean("semesterApplicationImpl", SemesterApplication.class);
+		courseApplication = ctx.getBean("courseApplicationImpl", CourseApplication.class);
 		
 	}
 	
 	@AfterClass
 	public static void afterClass(){
+		
+		List<Student> list1 = studentApplication.list();
+		for (Student student : list1) {
+			student.setPerson(null);
+			studentApplication.delete(student);
+		}
+		
+		List<Professor> list2 = professorApplication.list();
+		for (Professor professor : list2) {
+			professor.setPerson(null);
+			professorApplication.delete(professor);
+		}
+		
+		List<Discipline> list3 = disciplineApplication.list();
+		for (Discipline discipline : list3) {
+			disciplineApplication.delete(discipline);
+		}
+		
+		List<Semester> list4 = semesterApplication.list();
+		for (Semester semester : list4) {
+			semesterApplication.delete(semester);
+		}
+		
+		List<Course> list5 = courseApplication.list();
+		for (Course course : list5) {
+			courseApplication.delete(course);
+		}
+		
 		List<Professorship> list = professorshipApplication.list();
 		for (Professorship professorship : list) {
 			professorship.setDiary(null);

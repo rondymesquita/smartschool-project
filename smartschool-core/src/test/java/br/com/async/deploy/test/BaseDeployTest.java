@@ -1,4 +1,4 @@
-package br.com.async.domain.test;
+package br.com.async.deploy.test;
 
 import java.io.IOException;
 

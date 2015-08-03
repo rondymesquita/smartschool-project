@@ -16,7 +16,7 @@ import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Role;
 import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
-import br.com.async.domain.test.BaseDeployTest;
+import br.com.async.deploy.test.BaseDeployTest;
 
 public class DataColletion extends BaseDeployTest{
 

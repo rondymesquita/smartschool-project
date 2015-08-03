@@ -8,7 +8,6 @@ import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
-import br.com.async.domain.test.BaseDeployTest;
 
 public class UserDeployTest extends BaseDeployTest{
 	
