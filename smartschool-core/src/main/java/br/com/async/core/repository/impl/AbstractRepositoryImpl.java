@@ -6,6 +6,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,6 +28,14 @@ public abstract class AbstractRepositoryImpl<T, E extends Serializable> implemen
 
 	public Class<T> getEntity() {
 		return this.entity;
+	}
+	
+	protected Session getSession(){
+		return hibernateTemplate.getSessionFactory().getCurrentSession();
+	}
+	
+	public Transaction getTransaction(){
+		return hibernateTemplate.getSessionFactory().getCurrentSession().getTransaction();
 	}
 
 	@Transactional
@@ -75,6 +85,7 @@ public abstract class AbstractRepositoryImpl<T, E extends Serializable> implemen
 	public List<T> list() {
 		try {
 			Criteria criteria = hibernateTemplate.getSessionFactory().getCurrentSession().createCriteria(entity);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 			return criteria.list();
 		} catch (RuntimeException re) {
 			System.err.println(re);

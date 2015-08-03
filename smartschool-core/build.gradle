@@ -46,4 +46,17 @@ jar {
 	   from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 	}
 
+task runDeployTests(type: Test, dependsOn: testClasses){
+	include '**/*Deploy*'
+}
+
+task runDataTests(type: Test, dependsOn: testClasses){
+	include '**/DataCollection'
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events 'started', 'passed'
+    }
+}
 

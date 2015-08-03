@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.async.core.application.StudentApplication;
+import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Student;
 import br.com.async.core.repository.StudentRepository;
 
@@ -42,6 +43,11 @@ public class StudentApplicationImpl implements StudentApplication{
 	@Override
 	public List<Student> list() {
 		return repository.list();
+	}
+	
+	@Override
+	public List<Student> searchByCodeOrName(String search) {
+		 return repository.searchByCodeOrName(search);
 	}
 	
 	
