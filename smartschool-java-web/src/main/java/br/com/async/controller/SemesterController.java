@@ -42,7 +42,7 @@ public class SemesterController extends BaseController {
     public String searchByCodeOrName(Model model, @PathVariable String search) throws UnsupportedEncodingException{
     	ResponseData responseData = null;
     	
-    	System.out.println(search);
+    	search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
     	List<Semester> list = semesterApplication.searchByCodeOrName(search);
     	if(list.size() == 0){
     		responseData = new ResponseData(Constants.NO_RESULT, ResponseData.INFO);

@@ -1,5 +1,6 @@
 package br.com.async.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,8 @@ public class StudentController extends BaseController {
 	    @Authenticate
 	    @RoleProfessor
 	    @RequestMapping(value="/api/students/{search}", method = RequestMethod.GET)
-	    public @ResponseBody List<Student> searchByCodeOrNameJson(Model model, @PathVariable String search){
+	    public @ResponseBody List<Student> searchByCodeOrNameJson(Model model, @PathVariable String search) throws UnsupportedEncodingException{
+	    	search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
 	    	return studentApplication.searchByCodeOrName(search);
 	    }
 	    

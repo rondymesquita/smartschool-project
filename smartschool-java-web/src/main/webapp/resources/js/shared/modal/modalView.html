@@ -28,7 +28,7 @@
                 
                 <form action="{{onPrimaryButtonClickAction}}" method="POST" >
                 	<input type="hidden" class="form-control" name="code" value="{{code}}" >
-                	<button type="submit" class="btn btn-primary btn-{{primaryButtonContext}}" ng-disabled="parentScope.onTransaction || parentScope.formModal.$invalid" ng-show="primaryButtonText && onPrimaryButtonClickAction">{{primaryButtonText}}-FORM</button>
+                	<button type="submit" class="btn btn-primary btn-{{primaryButtonContext}}" ng-disabled="parentScope.onTransaction || parentScope.formModal.$invalid" ng-show="primaryButtonText && onPrimaryButtonClickAction">{{primaryButtonText}}</button>
                 </form>
 
             </div>
