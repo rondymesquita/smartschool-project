@@ -11,16 +11,16 @@ function professorshipController($scope, $rootScope, $filter, professorService, 
     $scope.onWarning = false;
     $scope.onSuccess = false;
     $scope.studentsToSave = [];
-    $scope.showResponseData = false;
     
     $scope.searchStudents = function(){
   
     	$scope.onTransaction = true;
+        $scope.onWarning = false;
+        $scope.onSuccess = false;
     	$scope.responseData = new ResponseData(constants.message.LOADING, constants.status.LOADING);
     	
     	studentService.list()
     	.then(function(data, status){
-    		console.log(data.status);
     		$scope.students = data.data;
     		if($scope.students.length == 0){
                 $scope.responseData = new ResponseData(constants.message.EMPTY, constants.status.WARNING);
@@ -40,17 +40,21 @@ function professorshipController($scope, $rootScope, $filter, professorService, 
     	}).finally(function(){
     		$scope.onTransaction = false;
             $scope.onResponse = true;
+            $scope.onWarning = false;
+            $scope.onSuccess = false;	
+            
     	});
     }
     
     $scope.searchStudentsByCodeOrName = function(search){
     	  
     	$scope.onTransaction = true;
+        $scope.onWarning = false;
+        $scope.onSuccess = false;
     	$scope.responseData = new ResponseData(constants.message.LOADING, constants.status.LOADING);
     	
     	studentService.searchByCodeOrName(search)
     	.then(function(data, status){
-    		console.log(data.data);
     		$scope.students = data.data;
     		if($scope.students.length == 0){
                 $scope.responseData = new ResponseData(constants.message.EMPTY, constants.status.WARNING);
@@ -69,7 +73,7 @@ function professorshipController($scope, $rootScope, $filter, professorService, 
             
     	}).finally(function(){
     		$scope.onTransaction = false;
-            $scope.onResponse = true;
+            $scope.onResponse = true;	
     	});
     }
     

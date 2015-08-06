@@ -59,10 +59,9 @@
 		
 		<div class="row">
 			<div class="col-xs-12">
-			
+				<legend>Selecionar Alunos</legend>
 				<div class="row">
 					<div class="col-xs-6">
-						
 						<nav class="navbar navbar-default">
 					
 					          <div class="navbar-form">
@@ -100,7 +99,7 @@
 						                </td>
 						            </tr>
 						            
-						            <tr ng-show="onTransaction || onWarning" ng-hide="onSuccess" >
+						            <tr ng-show="onWarning || onTransaction">
 							            <td colspan="3" class="{{responseData.status}} text-{{responseData.status}}">
 							              <i class="fa fa-{{responseData.status}}"></i>
 							              {{responseData.message}}
