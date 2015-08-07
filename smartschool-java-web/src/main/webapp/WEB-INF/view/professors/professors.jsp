@@ -65,9 +65,8 @@
 
                     <!-- DELETE REGISTRY -->
                     <modal handler="professorDeleteModal-${professor.code}" on-primary-button-click-event="deleteProfessor(${professor.code})" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
-                    <a data-target="#professorDeleteModal-${professor.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
-                        <i class="fa fa-times-circle"></i>
-                        Apagar
+                    <a data-target="#professorDeleteModal-${professor.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Apagar">
+                        <i class="fa fa-trash"></i>
                     </a>
                     
                    
@@ -75,9 +74,8 @@
                     	
                     	<input type="hidden" class="form-control" name="code" th:field="*{code}" value="${professor.code}" >
                     
-	                    <button type="submit" type="button" class="btn btn-primary btn-sm">
+	                    <button type="submit" type="button" class="btn btn-primary btn-sm" data-placement="top" title="Editar">
 	                        <i class="fa fa-pencil"></i>
-	                        Editar
 	                    </button>
 					</form>
                 </div>

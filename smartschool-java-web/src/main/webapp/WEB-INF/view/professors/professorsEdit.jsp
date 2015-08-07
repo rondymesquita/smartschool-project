@@ -28,7 +28,7 @@
 		
 		<div class="form-group">
 		    <label for="fieldName">CPF</label>
-		    <input id="fieldName" name="person.cpf" type="text" class="form-control square" placeholder="" required value="${professor.person.cpf }"">
+		    <input id="fieldName" name="person.cpf" type="text" class="form-control square" placeholder="" required value="${professor.person.cpf }" data-mask="999.999.999-99">
 		</div>
 		
 		<div class="form-group">

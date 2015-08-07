@@ -28,7 +28,7 @@
 		
 		<div class="form-group">
 		    <label for="fieldName">CPF</label>
-		    <input id="fieldName" name="person.cpf" th:field="*{cpf}" type="number" class="form-control square" placeholder="" required value="12345678900">
+		    <input id="fieldName" name="person.cpf" th:field="*{cpf}" type="text" class="form-control square" placeholder="" required value="12345678900" data-mask="999.999.999-99">
 		</div>
 		
 		<div class="form-group">

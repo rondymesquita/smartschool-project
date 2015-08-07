@@ -28,7 +28,7 @@
 		
 		<div class="form-group">
 		    <label for="fieldName">CPF</label>
-		    <input id="fieldName" name="person.cpf" type="text" class="form-control square" placeholder="" required value="${student.person.cpf }"">
+		    <input id="fieldName" name="person.cpf" type="text" class="form-control square" placeholder="" required value="${student.person.cpf }" data-mask="999.999.999-99">
 		</div>
 		
 		<div class="form-group">
@@ -40,7 +40,7 @@
 		<legend>Dados de usuário</legend>
 			<div class="form-group">
 			    <label for="fieldName">Email</label>
-			    <input id="fieldName" name="person.email" type="email" class="form-control square" placeholder="" required value="${student.person.email }">
+			    <input id="fieldName" name="person.email" type="email" class="form-control square" placeholder="" required value="${student.person.email }" >
 			</div>
 		</fieldset>
 		

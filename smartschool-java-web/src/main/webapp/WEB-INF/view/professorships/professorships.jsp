@@ -62,18 +62,16 @@
 						<!-- DELETE REGISTRY -->
 	                    <modal handler="studentDeleteModal-${professorship.code}" object="student" code="${professorship.code}" on-primary-button-click-action="${pageContext.request.contextPath}/professorships/delete" primary-button-text="Apagar" primary-button-context="danger" secondary-button-text="Cancelar" modal-title="Apagar Registro" modal-body-html="Deseja apagar o registro?" modal-dismissible="true"></modal>
 	                    
-	                    <a data-target="#studentDeleteModal-${professorship.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal">
-	                        <i class="fa fa-times-circle"></i>
-	                        Apagar
+	                    <a data-target="#studentDeleteModal-${professorship.code}" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-placement="top" title="Apagar">
+	                        <i class="fa fa-trash"></i>
 	                    </a>
 	                    
 	                   <!-- UPDATE REGISTRY -->
 	                    <form action="${pageContext.request.contextPath}/professorships/edit" method="POST" th:object="${professorship}" class="inline">
 	                    	<input type="hidden" class="form-control" name="code" th:field="*{code}" value="${professorship.code}" >
 	                    
-		                    <button type="submit" type="button" class="btn btn-primary btn-sm">
+		                    <button type="submit" type="button" class="btn btn-primary btn-sm" data-placement="top" title="Editar">
 		                        <i class="fa fa-pencil"></i>
-		                        Editar
 		                    </button>
 						</form>
                     </div>

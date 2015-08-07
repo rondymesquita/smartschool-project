@@ -16,6 +16,7 @@
   <script src="${pageContext.request.contextPath}/resources/bootstrap-combobox/bootstrap-combobox.js"></script>
   <script src="${pageContext.request.contextPath}/resources/bower_components/angular/angular.js"></script>
   <script src="${pageContext.request.contextPath}/resources/bower_components/angular-resource/angular-resource.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/jasny/inputmask.js"></script>
   
   <!-- angular -->
   <script src="${pageContext.request.contextPath}/resources/js/app.module.js"></script>
