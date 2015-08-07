@@ -27,14 +27,14 @@
 
           </div>
 
-          <form class="navbar-form navbar-left" role="search" ng-submit="searchDisciplines()">
+          <div class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Nome ou código da cadeira" style="min-width:300px;">
+              <input type="text" class="form-control" placeholder="Código, Professor ou Disciplina" style="min-width:300px;" ng-model="search" ng-redirect-on-enter="${pageContext.request.contextPath}/professorships/{{search}}">
             </div>
-            <button type="submit" class="btn btn-primary" ng-disabled="onTransaction">
+            <a href="${pageContext.request.contextPath}/professorships/{{search}}" type="submit" class="btn btn-primary" ng-disabled="onTransaction">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-              Buscar</button>
-          </form>
+              Buscar {{search}} </a
+          </div>
 
         </div>
       </nav>
@@ -79,17 +79,11 @@
                 </td>
                 </tr>  
         </c:forEach>
-          
-
-          <tr ng-show="onResponse || onTransaction" ng-hide="onResponse">
-            <td colspan="3" class="{{responseData.status}} text-{{responseData.status}}">
-              <i class="fa fa-{{responseData.status}}"></i>
-              {{responseData.message}}
-            </td>
-          </tr>
 
         </tbody>
       </table>
+      
+       <jsp:include page="../includes/alertQuery.jsp"/>
 
     </div>
 

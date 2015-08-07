@@ -1,6 +1,8 @@
 package br.com.async.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -110,6 +113,25 @@ public class ProfessorshipController extends BaseController{
     	return "redirect:/professorships";
 				
 	}
+	
+	@Authenticate
+    @RoleProfessor
+    @RequestMapping(value="/professorships/{search}", method = RequestMethod.GET)
+    public String searchByCodeOrDisciplineOrProfessor(Model model, @PathVariable String search) throws UnsupportedEncodingException{
+    	ResponseData responseData = null;
+    	
+    	search = new String(search.getBytes("ISO-8859-1"), "UTF-8");
+    	List<Professorship> list = professorshipApplication.searchByCodeOrDisciplineOrProfessor(search);
+    	if(list.size() == 0){
+    		responseData = new ResponseData(Constants.NO_RESULT, ResponseData.INFO);
+    		model.addAttribute(Constants.RESPONSE_DATA_QUERY , responseData);
+    	}else
+    		model.addAttribute("professorships",list);
+    	
+    	model.addAttribute("search",search);
+    	
+    	return CONTROLLER + "professorships";
+    }
 	
 	@Authenticate
     @RoleManager

@@ -18,14 +18,13 @@ import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.application.SemesterApplication;
 import br.com.async.core.application.StudentApplication;
-import br.com.async.core.entities.Course;
 import br.com.async.core.entities.Diary;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.SchoolClass;
-import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
+import br.com.async.deploy.test.BaseDeployTest;
 import br.com.async.domain.helper.test.DisciplineHelper;
 import br.com.async.domain.helper.test.ProfessorHelper;
 import br.com.async.domain.helper.test.StudentHelper;
@@ -54,41 +53,41 @@ public class ProfessorshipTest extends BaseTest{
 	@AfterClass
 	public static void afterClass(){
 		
-		List<Student> list1 = studentApplication.list();
-		for (Student student : list1) {
-			student.setPerson(null);
-			studentApplication.delete(student);
-		}
-		
-		List<Professor> list2 = professorApplication.list();
-		for (Professor professor : list2) {
-			professor.setPerson(null);
-			professorApplication.delete(professor);
-		}
-		
-		List<Discipline> list3 = disciplineApplication.list();
-		for (Discipline discipline : list3) {
-			disciplineApplication.delete(discipline);
-		}
-		
-		List<Semester> list4 = semesterApplication.list();
-		for (Semester semester : list4) {
-			semesterApplication.delete(semester);
-		}
-		
-		List<Course> list5 = courseApplication.list();
-		for (Course course : list5) {
-			courseApplication.delete(course);
-		}
-		
-		List<Professorship> list = professorshipApplication.list();
-		for (Professorship professorship : list) {
-			professorship.setDiary(null);
-			professorship.setDiscipline(null);
-			professorship.setProfessor(null);
-			professorship.setStudents(null);
-			professorshipApplication.delete(professorship);
-		}
+//		List<Student> list1 = studentApplication.list();
+//		for (Student student : list1) {
+//			student.setPerson(null);
+//			studentApplication.delete(student);
+//		}
+//		
+//		List<Professor> list2 = professorApplication.list();
+//		for (Professor professor : list2) {
+//			professor.setPerson(null);
+//			professorApplication.delete(professor);
+//		}
+//		
+//		List<Discipline> list3 = disciplineApplication.list();
+//		for (Discipline discipline : list3) {
+//			disciplineApplication.delete(discipline);
+//		}
+//		
+//		List<Semester> list4 = semesterApplication.list();
+//		for (Semester semester : list4) {
+//			semesterApplication.delete(semester);
+//		}
+//		
+//		List<Course> list5 = courseApplication.list();
+//		for (Course course : list5) {
+//			courseApplication.delete(course);
+//		}
+//		
+//		List<Professorship> list = professorshipApplication.list();
+//		for (Professorship professorship : list) {
+//			professorship.setDiary(null);
+//			professorship.setDiscipline(null);
+//			professorship.setProfessor(null);
+//			professorship.setStudents(null);
+//			professorshipApplication.delete(professorship);
+//		}
 	}
 	
 	@Test
@@ -140,7 +139,29 @@ public class ProfessorshipTest extends BaseTest{
 		
 	}
 	
-	
+	@Test
+	public void listByCodeOrProfessorOrDisciplineProfessorshipTest() throws Exception{
+		List<Professorship> list = professorshipApplication.searchByCodeOrDisciplineOrProfessor("Banco de Dados");
+		for (Professorship professorship : list) {
+			System.out.println(professorship.getCode() + " : " + professorship.getDiscipline().getName() + " : " + professorship.getProfessor().getPerson().getName());
+			Assert.assertNotNull(professorship);
+		}
+		
+		System.out.println("=========");
+		List<Professorship> list2 = professorshipApplication.searchByCodeOrDisciplineOrProfessor("Wolverine");
+		for (Professorship professorship : list2) {
+			System.out.println(professorship.getCode() + " : " + professorship.getDiscipline().getName() + " : " + professorship.getProfessor().getPerson().getName());
+			Assert.assertNotNull(professorship);
+		}
+		
+		System.out.println("==========");
+		List<Professorship> list3 = professorshipApplication.searchByCodeOrDisciplineOrProfessor("Banco");
+		for (Professorship professorship : list3) {
+			System.out.println(professorship.getCode() + " : " + professorship.getDiscipline().getName() + " : " + professorship.getProfessor().getPerson().getName());
+			Assert.assertNotNull(professorship);
+		}
+
+	}
 
 	
 	@Test

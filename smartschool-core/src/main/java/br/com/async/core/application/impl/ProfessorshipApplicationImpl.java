@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.async.core.application.ProfessorshipApplication;
+import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
 import br.com.async.core.repository.ProfessorshipRepository;
 
@@ -43,6 +44,14 @@ public class ProfessorshipApplicationImpl implements ProfessorshipApplication{
 	@Override
 	public List<Professorship> list() {
 		return repository.list();
+	}
+
+	/* (non-Javadoc)
+	 * @see br.com.async.core.application.ProfessorshipApplication#searchByCodeOrDisciplineOrProfessor(java.lang.String)
+	 */
+	@Override
+	public List<Professorship> searchByCodeOrDisciplineOrProfessor(String search) {
+		 return repository.searchByCodeOrDisciplineOrProfessor(search);
 	}
 	
 }
