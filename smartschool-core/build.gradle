@@ -1,6 +1,12 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
+apply plugin: "jacoco"
+
+buildscript {
+    repositories { mavenCentral() }
+    dependencies { classpath 'org.ajoberstar:gradle-jacoco:0.2.0' }
+}	
 	
 repositories{
 	mavenCentral()
@@ -58,5 +64,36 @@ tasks.withType(Test) {
     testLogging {
         events 'started', 'passed'
     }
+}
+
+jacoco {
+	toolVersion = '0.6.2.201302030002'
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+test {
+    jacoco {
+        // would have been enabled by default
+        enabled = true
+    }
+}
+import org.ajoberstar.gradle.jacoco.tasks.*
+
+task jacocoReport(type: JacocoReport) {
+    // can include one or more execution files
+    executionData test
+
+    // specify one or more source sets that you want to report on the coverage of
+    sourceSets project.sourceSets.main
+
+    // can also specify additional class and source dirs
+    // additionalClassDirs moreStuff
+    // additionalSourceDirs moreSourceStuff
 }
 
