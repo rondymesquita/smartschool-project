@@ -9,4 +9,5 @@ import br.com.async.core.entities.User;
 public interface ProfessorApplication extends AbstractApplication<Professor, Integer>{
 	public boolean save(Professor entity, User user);
 	public List<Professor> searchByCodeOrName(String search);
+	public Professor findByEmail(String email);
 }

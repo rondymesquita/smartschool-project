@@ -15,6 +15,8 @@ public class ChangePasswordUser implements Serializable{
 	private String password;
 	@Getter
 	private String newPassword;
+	@Getter
+	private String newUsername;
 	
 
 }

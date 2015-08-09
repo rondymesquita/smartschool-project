@@ -69,5 +69,9 @@ public class ProfessorApplicationImpl implements ProfessorApplication{
 	public List<Professor> searchByCodeOrName(String search) {
 		 return repository.searchByCodeOrName(search);
 	}
+	
+	public Professor findByEmail(String email){
+		return repository.findByEmail(email);
+	}
 
 }

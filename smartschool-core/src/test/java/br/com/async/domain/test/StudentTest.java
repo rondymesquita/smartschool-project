@@ -26,12 +26,8 @@ public class StudentTest extends BaseTest{
 	}
 	
 	@AfterClass
-	public static void afterClass(){
-		List<Student> list = studentApplication.list();
-		for (Student student : list) {
-			student.setPerson(null);
-			studentApplication.delete(student);
-		}
+	public static void after(){
+		cleanup();
 		
 	}
 	
@@ -90,6 +86,21 @@ public class StudentTest extends BaseTest{
 		for (Student s : list) {
 			Assert.assertNotNull(s);
 		} 
+	}
+
+	/**
+	 * 
+	 */
+	public static void cleanup() {
+		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
+		List<Student> list = studentApplication.list();
+		if(list != null){
+			for (Student student : list) {
+				student.setPerson(null);
+				studentApplication.delete(student);
+			}
+		}
+		
 	}
 	
 }

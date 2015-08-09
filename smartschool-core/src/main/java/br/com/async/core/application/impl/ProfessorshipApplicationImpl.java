@@ -53,5 +53,4 @@ public class ProfessorshipApplicationImpl implements ProfessorshipApplication{
 	public List<Professorship> searchByCodeOrDisciplineOrProfessor(String search) {
 		 return repository.searchByCodeOrDisciplineOrProfessor(search);
 	}
-	
 }

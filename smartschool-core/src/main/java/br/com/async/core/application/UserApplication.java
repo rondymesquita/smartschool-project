@@ -6,6 +6,7 @@ public interface UserApplication extends AbstractApplication<User, Integer>{
 
 	public boolean login(String username, String password);
 	public User findByUsernameAndPassword(String username, String password);
+	public User findByUsername(String username);
 //	public boolean changePassword(Integer userCode, String newPassword);
 	
 }

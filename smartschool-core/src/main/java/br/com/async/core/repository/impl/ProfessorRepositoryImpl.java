@@ -15,31 +15,30 @@ import br.com.async.core.entities.Professor;
 import br.com.async.core.repository.ProfessorRepository;
 import br.com.async.utils.SmartUtils;
 
-
 @Repository
-@Resource(name="professorRepositoryImpl")
-public class ProfessorRepositoryImpl extends AbstractRepositoryImpl<Professor, Integer> implements ProfessorRepository{
+@Resource(name = "professorRepositoryImpl")
+public class ProfessorRepositoryImpl extends AbstractRepositoryImpl<Professor, Integer> implements ProfessorRepository {
 
-	public ProfessorRepositoryImpl(){
+	public ProfessorRepositoryImpl() {
 		super(Professor.class);
 	}
 
 	@Override
 	public List<Professor> searchByCodeOrName(String search) {
-		
+
 		Criteria criteria = getSession().createCriteria(Professor.class);
-		
+
 		Integer code = SmartUtils.StringToInteger(search);
 		Criterion criterion;
-		if(code != -1)
-			criterion = Restrictions.eq("code", code );
-		else{
+		if (code != -1)
+			criterion = Restrictions.eq("code", code);
+		else {
 			criteria.createAlias("person", "p");
 			criterion = Restrictions.ilike("p.name", search, MatchMode.ANYWHERE);
 		}
-			    
+
 		criteria.add(criterion);
-		
+
 		try {
 			return criteria.list();
 		} catch (RuntimeException re) {
@@ -48,5 +47,27 @@ public class ProfessorRepositoryImpl extends AbstractRepositoryImpl<Professor, I
 		}
 	}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * br.com.async.core.repository.ProfessorRepository#findByEmail(java.lang
+	 * .String)
+	 */
+	@Override
+	public Professor findByEmail(String email) {
+		Criteria criteria = getSession().createCriteria(Professor.class);
+		criteria.createAlias("person", "p");
+		Criterion criterion = Restrictions.eq("p.email", email);
+
+		criteria.add(criterion);
+
+		try {
+			return (Professor) criteria.uniqueResult();
+		} catch (RuntimeException re) {
+			System.err.println(re);
+			return null;
+		}
+	}
+
 }

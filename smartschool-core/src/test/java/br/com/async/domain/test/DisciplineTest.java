@@ -22,11 +22,8 @@ public class DisciplineTest extends BaseTest{
 	}
 	
 	@AfterClass
-	public static void afterClass(){
-		List<Discipline> list = disciplineApplication.list();
-		for (Discipline discipline : list) {
-			disciplineApplication.delete(discipline);
-		}
+	public static void after(){
+		cleanup();
 	}
 	
 
@@ -76,6 +73,20 @@ public class DisciplineTest extends BaseTest{
 		for (Discipline d : list) {
 			Assert.assertNotNull(d);
 		} 
+	}
+
+	/**
+	 * 
+	 */
+	public static void cleanup() {
+		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
+		List<Discipline> list = disciplineApplication.list();
+		if(list != null){
+			for (Discipline discipline : list) {
+				disciplineApplication.delete(discipline);
+			}
+		}
+		
 	}
 	
 }

@@ -16,6 +16,14 @@ public class BaseTest {
 	public static void beforeClass() throws IOException {
 		ctx = new AnnotationConfigApplicationContext(HibernateConfigTest.class);
 		ctx.scan("br.com.async.core");
+		
+	}
+	
+	public static void baseCleanup(){
+		ProfessorshipTest.cleanup();
+		ProfessorTest.cleanup();
+		StudentTest.cleanup();
+		DisciplineTest.cleanup();
 	}
 	
 	@AfterClass

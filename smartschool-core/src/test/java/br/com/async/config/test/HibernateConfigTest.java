@@ -43,7 +43,7 @@ public class HibernateConfigTest {
 	@Value("${hibernate.show_sql}")
 	private String hibernateShowSql;
 	
-	@Value("${hibernate.hbm2ddl.auto}")
+	@Value("${hibernate.hbm2ddl.auto.test}")
 	private String hibernateHbm2ddlAuto;
 
 	@Autowired

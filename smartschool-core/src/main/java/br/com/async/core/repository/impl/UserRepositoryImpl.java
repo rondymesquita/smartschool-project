@@ -30,11 +30,16 @@ public class UserRepositoryImpl extends AbstractRepositoryImpl<User, Integer> im
 		criteria.add(Restrictions.eq("username",username));
 		criteria.add(Restrictions.eq("password",password));
 		return (User)criteria.uniqueResult();
-		
-		
-//		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
-//		hibernateTemplate.findByCriteria(criteria);
-//		return true;
+	
+	}
+	
+	@Override
+	public User findByUsername(String username) {
+		Criteria criteria = hibernateTemplate.getSessionFactory().getCurrentSession().createCriteria(entity);
+
+		criteria.add(Restrictions.eq("username",username));
+		return (User)criteria.uniqueResult();
+	
 	}
 	
 }
