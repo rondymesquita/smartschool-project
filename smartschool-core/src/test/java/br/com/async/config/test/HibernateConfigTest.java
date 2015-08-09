@@ -31,6 +31,9 @@ public class HibernateConfigTest {
 	@Value("${postgres.url.test}")
 	private String url;
 	
+	@Value("${postgres.url.test.codeship}")
+	private String urlCodeship;
+	
 	@Value("${postgres.username}")
 	private String username;
 	
@@ -62,7 +65,17 @@ public class HibernateConfigTest {
 	public DataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(driverClassName);
-		dataSource.setUrl(url);
+		
+		String isDeployEnv = System.getenv("DEPLOY_ENV");
+		if(isDeployEnv != null){
+			System.out.println("====> Running on Codeship Environment: isDeployEnv: " + isDeployEnv);
+			dataSource.setUrl(urlCodeship);
+		}else{
+			System.out.println("====> Running on other Environment: isDeployEnv: " + isDeployEnv);
+			dataSource.setUrl(url);
+		}
+		
+		//dataSource.setUrl(url);
 		dataSource.setUsername(username);
 		dataSource.setPassword(password);
 		return dataSource;
