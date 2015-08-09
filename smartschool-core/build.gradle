@@ -82,6 +82,7 @@ test {
         // would have been enabled by default
         enabled = true
     }
+    include '**/domain/**'
 }
 import org.ajoberstar.gradle.jacoco.tasks.*
 
