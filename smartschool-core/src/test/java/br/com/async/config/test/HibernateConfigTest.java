@@ -51,15 +51,9 @@ public class HibernateConfigTest {
 	/*
 	 * 
 	 */
-	@Value("${postgres.url.test.codeship}")
+	@Value("${postgres.url.codeship}")
 	private String urlCodeship;
 	
-	@Value("${postgres.username.codeship}")
-	private String usernameCodeship;
-	
-	@Value("${postgres.password.codeship}")
-	private String passwordCodeship;
-
 	@Autowired
 	private LocalSessionFactoryBean sessionFactory;
 	
