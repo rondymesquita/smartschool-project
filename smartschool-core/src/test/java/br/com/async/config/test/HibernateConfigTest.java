@@ -1,6 +1,8 @@
 package br.com.async.config.test;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -51,7 +53,7 @@ public class HibernateConfigTest {
 
 	@Autowired
 	private LocalSessionFactoryBean sessionFactory;
-
+	
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -63,15 +65,17 @@ public class HibernateConfigTest {
 
 	@Bean
 	public DataSource getDataSource() {
+		Logger logger = Logger.getLogger(HibernateConfigTest.class.getName());
+		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(driverClassName);
 		
 		String isDeployEnv = System.getenv("DEPLOY_ENV");
 		if(isDeployEnv != null){
-			System.out.println("====> Running on Codeship Environment: isDeployEnv: " + isDeployEnv);
+			logger.log(Level.INFO, "====> Running on Codeship Environment: isDeployEnv: " + isDeployEnv);
 			dataSource.setUrl(urlCodeship);
 		}else{
-			System.out.println("====> Running on other Environment: isDeployEnv: " + isDeployEnv);
+			logger.log(Level.INFO, "====> Running on other Environment: isDeployEnv: " + isDeployEnv);
 			dataSource.setUrl(url);
 		}
 		
