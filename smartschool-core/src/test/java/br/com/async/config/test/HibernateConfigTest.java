@@ -33,9 +33,6 @@ public class HibernateConfigTest {
 	@Value("${postgres.url.test}")
 	private String url;
 	
-	@Value("${postgres.url.test.codeship}")
-	private String urlCodeship;
-	
 	@Value("${postgres.username}")
 	private String username;
 	
@@ -50,6 +47,18 @@ public class HibernateConfigTest {
 	
 	@Value("${hibernate.hbm2ddl.auto.test}")
 	private String hibernateHbm2ddlAuto;
+	
+	/*
+	 * 
+	 */
+	@Value("${postgres.url.test.codeship}")
+	private String urlCodeship;
+	
+	@Value("${postgres.username.codeship}")
+	private String usernameCodeship;
+	
+	@Value("${postgres.password.codeship}")
+	private String passwordCodeship;
 
 	@Autowired
 	private LocalSessionFactoryBean sessionFactory;
@@ -70,18 +79,21 @@ public class HibernateConfigTest {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(driverClassName);
 		
-		String isDeployEnv = System.getenv("DEPLOY_ENV");
-		if(isDeployEnv != null){
-			logger.log(Level.INFO, "====> Running on Codeship Environment: isDeployEnv: " + isDeployEnv);
+		if(System.getenv("PG_USER") != null){
+			logger.log(Level.INFO, "====> Running on Codeship Environment");
 			dataSource.setUrl(urlCodeship);
+			dataSource.setUsername(System.getenv("PG_USER"));
+			dataSource.setPassword(System.getenv("PG_PASSWORD"));
 		}else{
-			logger.log(Level.INFO, "====> Running on other Environment: isDeployEnv: " + isDeployEnv);
+			logger.log(Level.INFO, "====> Running on other Environment");
 			dataSource.setUrl(url);
+			dataSource.setUsername(username);
+			dataSource.setPassword(password);
 		}
 		
 		//dataSource.setUrl(url);
-		dataSource.setUsername(username);
-		dataSource.setPassword(password);
+//		dataSource.setUsername(username);
+//		dataSource.setPassword(password);
 		return dataSource;
 	}
 
