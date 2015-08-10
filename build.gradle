@@ -4,3 +4,25 @@ allprojects {
 
   group = 'br.com.async'
 }
+
+
+task core(type: Exec){
+	description 'Install and test core'
+	workingDir 'smartschool-core'
+	executable 'gradle' 
+	args 'clean install test jacocoTestReport' //,'package' 
+}
+
+task ws(type: Exec){
+	description 'Install core on ws'
+	workingDir 'smartschool-ws'
+	executable 'gradle' 
+	args 'clean','compileCore','eclipse'
+}
+
+task web(type: Exec){
+	description 'Install core on web'
+	workingDir 'smartschool-java-web'
+	executable 'gradle' 
+	args 'clean','compileCore','eclipse'
+}
