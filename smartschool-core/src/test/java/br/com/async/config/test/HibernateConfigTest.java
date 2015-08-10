@@ -81,15 +81,17 @@ public class HibernateConfigTest {
 		
 		if(System.getenv("PG_USER") != null){
 			logger.log(Level.INFO, "====> Running on Codeship Environment");
+			dataSource.setUrl(urlCodeship);
 			dataSource.setUsername(System.getenv("PG_USER"));
 			dataSource.setPassword(System.getenv("PG_PASSWORD"));
 		}else{
 			logger.log(Level.INFO, "====> Running on other Environment");
+			dataSource.setUrl(url);
 			dataSource.setUsername(username);
 			dataSource.setPassword(password);
 		}
 		
-		dataSource.setUrl(url);
+		
 //		dataSource.setUsername(username);
 //		dataSource.setPassword(password);
 		return dataSource;
