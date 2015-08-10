@@ -10,7 +10,7 @@ task core(type: Exec){
 	description 'Install and test core'
 	workingDir 'smartschool-core'
 	executable 'gradle' 
-	args 'clean install test jacocoTestReport' //,'package' 
+	args 'clean','install','test','jacocoTestReport'
 }
 
 task ws(type: Exec){
