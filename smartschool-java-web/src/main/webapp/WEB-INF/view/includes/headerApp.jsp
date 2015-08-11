@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="#/dashboard">Smartschool</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/dashboard">Smartschool</a>
 
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -11,12 +11,17 @@
                     ${sessionScope.userSession.username}
                      <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-
+						<li>
+                         	<a href="${pageContext.request.contextPath}/profile" style="cursor:pointer;">
+                         		<i class="fa fa-cog"></i> Perfil
+                         	</a>
+                         </li>
                          <li>
                          	<a href="${pageContext.request.contextPath}/auth/logout" style="cursor:pointer;">
                          		<i class="fa fa-sign-out"></i> Sair
                          	</a>
                          </li>
+                         
                         
 
                     </ul>

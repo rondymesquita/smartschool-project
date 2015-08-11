@@ -66,6 +66,20 @@ public class ProfessorApplicationImpl implements ProfessorApplication{
 	}
 	
 	@Override
+	public boolean update(Professor entity, User user) {
+		boolean resultQueryProfessor = repository.update(entity);
+		boolean resultQueryUser = userRepository.update(user);
+		
+		if(!resultQueryProfessor || !resultQueryUser){
+			repository.getTransaction().rollback();
+			return false;
+		}
+		
+		return true;
+		
+	}
+	
+	@Override
 	public List<Professor> searchByCodeOrName(String search) {
 		 return repository.searchByCodeOrName(search);
 	}

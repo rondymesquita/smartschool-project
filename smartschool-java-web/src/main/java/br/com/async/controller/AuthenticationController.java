@@ -45,7 +45,6 @@ public class AuthenticationController extends BaseController{
 	@RequestMapping(value="/auth/login", method = RequestMethod.POST)
 	public String login(String username, String password, HttpServletResponse response, Model model){
 		ResponseData responseData;
-		System.out.println(username + " : " +password);
 		User user = userApplication.findByUsernameAndPassword(username, password);
 		if(user != null){
 			String token = HttpUtils.generateToken();

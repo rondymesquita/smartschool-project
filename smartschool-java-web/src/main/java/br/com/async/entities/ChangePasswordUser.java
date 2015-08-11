@@ -14,9 +14,10 @@ public class ChangePasswordUser implements Serializable{
 	@Getter
 	private String password;
 	@Getter
-	private String newPassword;
-	@Getter
 	private String newUsername;
+	@Getter
+	private String newPassword;
+	
 	
 
 }

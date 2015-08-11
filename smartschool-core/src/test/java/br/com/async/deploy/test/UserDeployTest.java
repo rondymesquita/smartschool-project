@@ -4,18 +4,23 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Person;
+import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
 
 public class UserDeployTest extends BaseDeployTest{
 	
 	private UserApplication userApplication;
+	private ProfessorApplication professorApplication;
+
 	
 	@Before
 	public void before(){
-		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);		
+		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
+		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
 	}
 
 	
@@ -32,10 +37,16 @@ public class UserDeployTest extends BaseDeployTest{
 		person.setRole(Role.ROLE_MANAGER);
 		user.setPerson(person);
 		
+		Professor professor = new Professor();
+		professor.setRegistry("111");
+		professor.setFormation("Msc");
+		professor.setEnrollments("111");
+		professor.setPerson(person);
+		
 		User u = userApplication.findByUsernameAndPassword("admin@admin", "admin");
 		if(u==null){
-			boolean result = userApplication.save(user);
-			Assert.assertEquals(true, result);
+			Assert.assertTrue(userApplication.save(user));
+			Assert.assertTrue(professorApplication.save(professor));
 			System.out.println("Saved!");
 		}
 	}

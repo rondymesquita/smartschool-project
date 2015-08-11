@@ -10,4 +10,5 @@ public interface ProfessorApplication extends AbstractApplication<Professor, Int
 	public boolean save(Professor entity, User user);
 	public List<Professor> searchByCodeOrName(String search);
 	public Professor findByEmail(String email);
+	public boolean update(Professor entity, User user);
 }
