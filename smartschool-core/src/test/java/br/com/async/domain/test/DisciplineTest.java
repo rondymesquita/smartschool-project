@@ -3,9 +3,9 @@ package br.com.async.domain.test;
 import java.util.List;
 import java.util.UUID;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.async.core.application.DisciplineApplication;
@@ -14,15 +14,16 @@ import br.com.async.domain.helper.test.DisciplineHelper;
 
 public class DisciplineTest extends BaseTest{
 
-	private static DisciplineApplication disciplineApplication;
+	private DisciplineApplication disciplineApplication;
 
-	@BeforeClass
-	public static void before(){
+	@Before
+	public void before(){
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
+		cleanup();
 	}
 	
-	@AfterClass
-	public static void after(){
+	@After
+	public void after(){
 		cleanup();
 	}
 	
@@ -78,7 +79,7 @@ public class DisciplineTest extends BaseTest{
 	/**
 	 * 
 	 */
-	public static void cleanup() {
+	public void cleanup() {
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
 		List<Discipline> list = disciplineApplication.list();
 		if(list != null){

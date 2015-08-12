@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.async.core.application.CourseApplication;
@@ -18,13 +18,11 @@ import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.application.SemesterApplication;
 import br.com.async.core.application.StudentApplication;
-import br.com.async.core.entities.Course;
 import br.com.async.core.entities.Diary;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.SchoolClass;
-import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
 import br.com.async.domain.helper.test.DisciplineHelper;
 import br.com.async.domain.helper.test.ProfessorHelper;
@@ -32,15 +30,15 @@ import br.com.async.domain.helper.test.StudentHelper;
 
 public class ProfessorshipTest extends BaseTest {
 
-	private static ProfessorshipApplication professorshipApplication;
-	private static ProfessorApplication professorApplication;
-	private static StudentApplication studentApplication;
-	private static DisciplineApplication disciplineApplication;
-	private static SemesterApplication semesterApplication;
-	private static CourseApplication courseApplication;
+	private ProfessorshipApplication professorshipApplication;
+	private ProfessorApplication professorApplication;
+	private StudentApplication studentApplication;
+	private DisciplineApplication disciplineApplication;
+	private SemesterApplication semesterApplication;
+	private CourseApplication courseApplication;
 
-	@BeforeClass
-	public static void before() throws IOException {
+	@Before
+	public void before() throws IOException {
 
 		professorshipApplication = ctx.getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
@@ -48,11 +46,12 @@ public class ProfessorshipTest extends BaseTest {
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
 		semesterApplication = ctx.getBean("semesterApplicationImpl", SemesterApplication.class);
 		courseApplication = ctx.getBean("courseApplicationImpl", CourseApplication.class);
+		cleanup();
 
 	}
 
-	@AfterClass
-	public static void after() {
+	@After
+	public void after() {
 		cleanup();
 	}
 	
@@ -144,7 +143,7 @@ public class ProfessorshipTest extends BaseTest {
 	/**
 	 * 
 	 */
-	public static void cleanup() {
+	public void cleanup() {
 		professorshipApplication = ctx.getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
 
 		List<Professorship> list = professorshipApplication.list();

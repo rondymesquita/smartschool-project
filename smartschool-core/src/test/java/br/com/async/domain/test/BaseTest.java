@@ -19,13 +19,6 @@ public class BaseTest {
 		
 	}
 	
-	public static void baseCleanup(){
-		ProfessorshipTest.cleanup();
-		ProfessorTest.cleanup();
-		StudentTest.cleanup();
-		DisciplineTest.cleanup();
-	}
-	
 	@AfterClass
 	public static void afterClass() throws IOException {
 		System.out.println("Destroy");

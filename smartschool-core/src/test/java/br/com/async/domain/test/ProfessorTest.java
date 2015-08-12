@@ -1,12 +1,11 @@
 package br.com.async.domain.test;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.async.core.application.ProfessorApplication;
@@ -15,15 +14,16 @@ import br.com.async.domain.helper.test.ProfessorHelper;
 
 public class ProfessorTest extends BaseTest {
 
-	private static ProfessorApplication professorApplication;
+	private ProfessorApplication professorApplication;
 
-	@BeforeClass
-	public static void before() {
+	@Before
+	public void before() {
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
+		cleanup();
 	}
 
-	@AfterClass
-	public static void after() {
+	@After
+	public void after() {
 		cleanup();
 	}
 
@@ -85,7 +85,7 @@ public class ProfessorTest extends BaseTest {
 	/**
 	 * 
 	 */
-	public static void cleanup() {
+	public void cleanup() {
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
 		List<Professor> list = professorApplication.list();
 		if (list != null) {

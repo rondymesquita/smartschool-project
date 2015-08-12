@@ -3,32 +3,28 @@ package br.com.async.domain.test;
 import java.util.List;
 import java.util.UUID;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import br.com.async.config.test.HibernateConfigTest;
 import br.com.async.core.application.StudentApplication;
-import br.com.async.core.entities.Person;
-import br.com.async.core.entities.Role;
 import br.com.async.core.entities.Student;
 import br.com.async.domain.helper.test.StudentHelper;
 
 public class StudentTest extends BaseTest{
 
-	private static StudentApplication studentApplication;
+	private StudentApplication studentApplication;
 	
-	@BeforeClass
-	public static void before(){
+	@Before
+	public void before(){
 		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
+		cleanup();
 	}
 	
-	@AfterClass
-	public static void after(){
+	@After
+	public void after(){
 		cleanup();
-		
 	}
 	
 	@Test
@@ -95,7 +91,7 @@ public class StudentTest extends BaseTest{
 	/**
 	 * 
 	 */
-	public static void cleanup() {
+	public void cleanup() {
 		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
 		List<Student> list = studentApplication.list();
 		if(list != null){
