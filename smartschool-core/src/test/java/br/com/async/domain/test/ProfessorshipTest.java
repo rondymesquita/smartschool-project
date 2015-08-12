@@ -55,6 +55,11 @@ public class ProfessorshipTest extends BaseTest {
 	public static void after() {
 		cleanup();
 	}
+	
+	@Test
+	public void listStudentsFromProfessorship() throws Exception {
+	
+	}
 
 	@Test
 	public void saveProfessorshipTest() throws Exception {

@@ -83,8 +83,12 @@ public class StudentTest extends BaseTest{
 		Assert.assertTrue(studentApplication.save(student));
 		
 		List<Student> list = studentApplication.list();
-		for (Student s : list) {
-			Assert.assertNotNull(s);
+		for (Student studentSaved : list) {
+			Assert.assertNotNull(studentSaved);
+			Assert.assertEquals(student.getRegistry(), studentSaved.getRegistry());
+			Assert.assertEquals(student.getPerson().getName(), studentSaved.getPerson().getName());
+			Assert.assertEquals(student.getPerson().getCpf(), studentSaved.getPerson().getCpf());
+			Assert.assertEquals(student.getPerson().getEmail(), studentSaved.getPerson().getEmail());
 		} 
 	}
 

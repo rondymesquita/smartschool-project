@@ -1,6 +1,7 @@
 package br.com.async.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.annotations.Authenticate;
+import br.com.async.annotations.RoleManager;
+import br.com.async.annotations.RoleProfessor;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.entities.Professorship;
+import br.com.async.core.entities.Student;
 import br.com.async.util.Constants;
 import br.com.async.util.ResponseData;
 
@@ -28,6 +32,7 @@ private ProfessorshipApplication professorshipApplication = ApplicationContext.g
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professorships", method = RequestMethod.GET)
 	public @ResponseBody List<Professorship> list(){
 		return professorshipApplication.list();
@@ -38,6 +43,7 @@ private ProfessorshipApplication professorshipApplication = ApplicationContext.g
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professorships/{id}", method = RequestMethod.GET)
 	public @ResponseBody Professorship find(@PathVariable String id){
 		return professorshipApplication.findByCode(Integer.parseInt(id));
@@ -48,6 +54,7 @@ private ProfessorshipApplication professorshipApplication = ApplicationContext.g
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professorships", method = RequestMethod.POST)
 	public @ResponseBody ResponseData save(@RequestBody Professorship professorship){
 		
@@ -68,6 +75,7 @@ private ProfessorshipApplication professorshipApplication = ApplicationContext.g
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professorships", method = RequestMethod.PUT)
 	public @ResponseBody ResponseData update(@RequestBody Professorship professorship){
 		boolean resultQuery = professorshipApplication.update(professorship);
@@ -86,6 +94,7 @@ private ProfessorshipApplication professorshipApplication = ApplicationContext.g
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/professorships/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseData delete(@PathVariable String id){
 		Professorship professorship = new Professorship();
@@ -101,5 +110,14 @@ private ProfessorshipApplication professorshipApplication = ApplicationContext.g
 		
 		return responseData;
 	}
+	
+	@Authenticate
+	@RoleManager
+	@RequestMapping(value="/api/professorships/{id}/students", method = RequestMethod.GET)
+	public @ResponseBody Set<Student> findStudents(@PathVariable String id){
+		Professorship professorship = professorshipApplication.findByCode(Integer.parseInt(id));
+		return professorship.getStudents();
+	}
+	
 	
 }

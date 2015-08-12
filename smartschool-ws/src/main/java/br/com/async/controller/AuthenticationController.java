@@ -133,6 +133,12 @@ public class AuthenticationController extends BaseController{
 		
 	}
 	
+	@RequestMapping(value="api/hello")
+	public @ResponseBody ResponseData hello(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		ResponseData responseData = new ResponseData(Constants.HELLO, HttpStatus.OK.toString());
+		return responseData;
+	}
+	
 	
 	@ResponseStatus(value=HttpStatus.UNAUTHORIZED)
 	public class UnauthorizedException extends RuntimeException{
