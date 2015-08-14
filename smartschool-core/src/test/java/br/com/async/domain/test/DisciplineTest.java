@@ -42,8 +42,10 @@ public class DisciplineTest extends BaseTest{
 		
 		Discipline discipline = DisciplineHelper.createBasic();
 		Assert.assertTrue(disciplineApplication.save(discipline));
-		Discipline discipline2 = disciplineApplication.findByCode(discipline.getCode());
-		Assert.assertNotNull(discipline2);
+		Integer code = discipline.getCode();
+		Discipline disciplineSaved = disciplineApplication.findByCode(code);
+		Assert.assertNotNull(disciplineSaved);
+		Assert.assertEquals(code, disciplineSaved.getCode());
 	}
 	
 	@Test
@@ -73,12 +75,29 @@ public class DisciplineTest extends BaseTest{
 		List<Discipline> list = disciplineApplication.list();
 		for (Discipline d : list) {
 			Assert.assertNotNull(d);
+			Assert.assertEquals(discipline.getName(), d.getName());
+			Assert.assertEquals(discipline.getWorkload(), d.getWorkload());
 		} 
 	}
-
-	/**
-	 * 
-	 */
+	
+	@Test
+	public void searchByCodeOrNameWithParamCode() throws Exception{
+		Discipline discipline = DisciplineHelper.createBasic();
+		Assert.assertTrue(disciplineApplication.save(discipline));
+		
+		List<Discipline> disciplineSearched = disciplineApplication.searchByCodeOrName(discipline.getCode().toString());
+		Assert.assertEquals(discipline.toString(), disciplineSearched.get(0).toString());  
+	}
+	
+	@Test
+	public void searchByCodeOrNameWithParamName() throws Exception{
+		Discipline discipline = DisciplineHelper.createBasic();
+		Assert.assertTrue(disciplineApplication.save(discipline));
+		
+		List<Discipline> disciplineSearched = disciplineApplication.searchByCodeOrName(discipline.getName());
+		Assert.assertEquals(discipline.toString(), disciplineSearched.get(0).toString());  
+	}
+	
 	public void cleanup() {
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
 		List<Discipline> list = disciplineApplication.list();

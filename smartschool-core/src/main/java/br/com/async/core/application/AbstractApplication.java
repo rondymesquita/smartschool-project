@@ -3,6 +3,8 @@ package br.com.async.core.application;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Transaction;
+
 import br.com.async.core.entities.AbstractEntity;
 
 public interface AbstractApplication <T extends AbstractEntity, E extends Serializable>{

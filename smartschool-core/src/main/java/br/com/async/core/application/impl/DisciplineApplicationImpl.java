@@ -4,6 +4,8 @@ import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.repository.DisciplineRepository;
 import br.com.async.core.repository.StudentRepository;
+
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

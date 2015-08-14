@@ -1,5 +1,9 @@
 package br.com.async.datacolletion.test;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -7,12 +11,14 @@ import org.junit.Test;
 import br.com.async.core.application.CourseApplication;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.ProfessorApplication;
+import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.application.SemesterApplication;
 import br.com.async.core.application.StudentApplication;
 import br.com.async.core.entities.Course;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professor;
+import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.Role;
 import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
@@ -25,6 +31,7 @@ public class DataColletion extends BaseDeployTest{
 	private static DisciplineApplication disciplineApplication;
 	private static SemesterApplication semesterApplication;
 	private static CourseApplication courseApplication;
+	private static ProfessorshipApplication professorshipApplication;
 	
 	@BeforeClass
 	public static void before(){
@@ -33,6 +40,7 @@ public class DataColletion extends BaseDeployTest{
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
 		semesterApplication = ctx.getBean("semesterApplicationImpl", SemesterApplication.class);
 		courseApplication = ctx.getBean("courseApplicationImpl", CourseApplication.class);
+		professorshipApplication = ctx.getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
 	}
 	
 	@Test
@@ -261,5 +269,31 @@ public class DataColletion extends BaseDeployTest{
 		discipline.setWorkload(10);		
 		Assert.assertTrue(disciplineApplication.save(discipline));
 	}
+	
+//	@Test
+//	public void saveProfessorship() throws Exception{
+//		Professorship professorship = new Professorship();
+//		professorship.setCourse(courseApplication.findByCode(1));
+//		List<Student> list1 = new ArrayList<Student>();
+//		list1.add(studentApplication.findByCode(1));
+//		list1.add(studentApplication.findByCode(2));
+//		professorship.setStudents(new HashSet<Student>(list1));
+//		professorship.setSemester(semesterApplication.findByCode(1));
+//		professorship.setDiscipline(disciplineApplication.findByCode(1));
+//		professorship.setProfessor(professorApplication.findByCode(1));
+//		professorshipApplication.save(professorship);
+//		
+//	 	professorship = new Professorship();
+//		professorship.setCourse(courseApplication.findByCode(2));
+//		List<Student> list2 = new ArrayList<Student>();
+//		list2.add(studentApplication.findByCode(3));
+//		list2.add(studentApplication.findByCode(4));
+//		professorship.setStudents(new HashSet<Student>(list2));
+//		professorship.setSemester(semesterApplication.findByCode(2));
+//		professorship.setDiscipline(disciplineApplication.findByCode(2));
+//		professorship.setProfessor(professorApplication.findByCode(2));
+//		professorshipApplication.save(professorship);
+//		
+//	}
 	
 }

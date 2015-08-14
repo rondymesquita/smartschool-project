@@ -1,5 +1,6 @@
 package br.com.async.core.repository.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,8 +11,8 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
+import br.com.async.core.entities.Semester;
 import br.com.async.core.repository.ProfessorshipRepository;
 import br.com.async.utils.SmartUtils;
 
@@ -52,6 +53,42 @@ public class ProfessorshipRepositoryImpl  extends AbstractRepositoryImpl<Profess
 			System.err.println(re);
 			return null;
 		}
+	}
+
+	@Override
+	public List<Semester> searchSemesterByCourse(String courseId) {
+		Criteria criteria = getSession().createCriteria(Professorship.class);
+		criteria.createAlias("course", "course");
+		
+		Integer code = SmartUtils.StringToInteger(courseId);
+		Criterion criterion = Restrictions.eq("course.code", code );
+		criteria.add(criterion);
+		
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Professorship> professorhips = criteria.list();
+		List<Semester> semesters = new ArrayList<Semester>();
+		for (Professorship professorship : professorhips) {
+			Semester semester = professorship.getSemester();
+			if(!semesters.contains(semester))
+				semesters.add(professorship.getSemester());
+		}
+		
+		return semesters;
+	}
+	
+	@Override
+	public List<Professorship> searchProfessorshipsBySemester(String semesterId) {
+		Criteria criteria = getSession().createCriteria(Professorship.class);
+		criteria.createAlias("semester", "semester");
+		
+		Integer code = SmartUtils.StringToInteger(semesterId);
+		Criterion criterion = Restrictions.eq("semester.code", code );
+		criteria.add(criterion);
+		
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Professorship> professorhips = criteria.list();
+		
+		return professorhips;
 	}
 	
 }

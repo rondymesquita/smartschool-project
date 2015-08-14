@@ -9,16 +9,15 @@ import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professor;
 
-public class ProfessorHelper{
+public class ProfessorHelper extends BaseHelper{
 	
 	private static ProfessorApplication professorApplication;
-	private static AnnotationConfigApplicationContext ctx;
 	
 	private static void before(){
-		ctx = new AnnotationConfigApplicationContext(HibernateConfigTest.class);
-		ctx.scan("br.com.async.core");
-		ctx.refresh();
-		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
+		config();
+		professorApplication = 
+				ctx
+				.getBean("professorApplicationImpl", ProfessorApplication.class);
 	}
 	
 	public static Professor createBasic(){

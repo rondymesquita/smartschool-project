@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.annotations.Authenticate;
 import br.com.async.annotations.RoleManager;
-import br.com.async.annotations.RoleProfessor;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.entities.Professorship;
+import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
 import br.com.async.util.Constants;
 import br.com.async.util.ResponseData;
@@ -23,7 +23,7 @@ import br.com.async.util.ResponseData;
 @Controller
 public class ProfessorshipController extends BaseController{
 
-private ProfessorshipApplication professorshipApplication = ApplicationContext.getInstance().getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
+	private ProfessorshipApplication professorshipApplication = ApplicationContext.getInstance().getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
 	
 	
 	/**
@@ -117,6 +117,14 @@ private ProfessorshipApplication professorshipApplication = ApplicationContext.g
 	public @ResponseBody Set<Student> findStudents(@PathVariable String id){
 		Professorship professorship = professorshipApplication.findByCode(Integer.parseInt(id));
 		return professorship.getStudents();
+	}
+	
+	@Authenticate
+	@RoleManager
+	@RequestMapping(value="/api/professorships/semesters/{id}", method = RequestMethod.GET)
+	public @ResponseBody List<Professorship> searchProfessorshipsBySemester(@PathVariable String id){
+		List<Professorship> professorships = professorshipApplication.searchProfessorshipsBySemester(id);
+		return professorships;
 	}
 	
 	

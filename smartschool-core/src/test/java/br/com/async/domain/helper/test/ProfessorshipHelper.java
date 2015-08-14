@@ -9,40 +9,24 @@ import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professorship;
 
-public class ProfessorshipHelper{
+public class ProfessorshipHelper extends BaseHelper{
 	
 	private static ProfessorshipApplication professorshipApplication;
-	private static AnnotationConfigApplicationContext ctx;
 	
 	private static void before(){
-		ctx = new AnnotationConfigApplicationContext(HibernateConfigTest.class);
-		ctx.scan("br.com.async.core");
-		ctx.refresh();
+		config();
 		professorshipApplication = ctx.getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
 	}
 	
 	public static Professorship createBasic(){
 		
-		String registry = UUID.randomUUID().toString();
-		String formation = UUID.randomUUID().toString();
-		String enrollments = UUID.randomUUID().toString();
-		String name = UUID.randomUUID().toString();
-		String cpf = UUID.randomUUID().toString();
-		String email = UUID.randomUUID().toString();
-		
-		
 		Professorship professorship = new Professorship();
+		professorship.setStudents(StudentHelper.saveBasicList());
+		professorship.setProfessor(ProfessorHelper.saveBasic());
+		professorship.setDiscipline(DisciplineHelper.saveBasic());
 		professorship.setDiary(DiaryHelper.createBasic());
-		//professorship.setDiscipline(DisciplineHelper.findBasic());
-		//professorship.setProfessor(ProfessorHelper.findBasic());
-		//professorship.setStudents(StudentHelper);
-		
-		//person
-		Person person = new Person();
-		person.setName(name);
-		person.setCpf(cpf);
-		person.setEmail(email);
-		//professorship.setPerson(person);
+		professorship.setSemester(SemesterHelper.saveBasic());
+		professorship.setCourse(CourseHelper.saveBasic());
 		
 		
 		return professorship;

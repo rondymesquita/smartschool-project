@@ -3,6 +3,7 @@ package br.com.async.core.entities;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

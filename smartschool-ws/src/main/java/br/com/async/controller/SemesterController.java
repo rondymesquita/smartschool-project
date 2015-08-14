@@ -13,6 +13,7 @@ import br.com.async.annotations.Authenticate;
 import br.com.async.annotations.RoleManager;
 import br.com.async.annotations.RoleProfessor;
 import br.com.async.config.ApplicationContext;
+import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.application.SemesterApplication;
 import br.com.async.core.entities.Semester;
 import br.com.async.util.Constants;
@@ -25,6 +26,7 @@ import br.com.async.util.ResponseData;
 public class SemesterController extends BaseController{
 
     private SemesterApplication semesterApplication = ApplicationContext.getInstance().getBean("semesterApplicationImpl", SemesterApplication.class);
+    private ProfessorshipApplication professorshipApplication = ApplicationContext.getInstance().getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
 
     /**
      * @param request
@@ -112,4 +114,12 @@ public class SemesterController extends BaseController{
 
         return responseData;
     }
+    
+    @Authenticate
+	@RoleManager
+	@RequestMapping(value="/api/semesters/courses/{id}", method = RequestMethod.GET)
+	public @ResponseBody List<Semester> findSemestersByCourse(@PathVariable String id){
+		List<Semester> list = professorshipApplication.searchSemesterByCourse(id);
+		return list;
+	}
 }

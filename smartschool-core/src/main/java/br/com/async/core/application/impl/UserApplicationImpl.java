@@ -3,6 +3,7 @@ package br.com.async.core.application.impl;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -63,4 +64,5 @@ public class UserApplicationImpl implements UserApplication{
 	public User findByUsername(String username) {
 		return repository.findByUsername(username);
 	}
+	
 }
