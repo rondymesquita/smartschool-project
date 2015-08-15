@@ -27,6 +27,11 @@ public class SemesterHelper extends BaseHelper{
 		
 		return semester;
 	}
+	
+	public static Semester updateBasic(Semester semester){
+		semester.setName(UUID.randomUUID().toString());
+		return semester;
+	}
 
 	/**
 	 * @return

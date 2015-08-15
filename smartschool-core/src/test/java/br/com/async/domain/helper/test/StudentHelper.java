@@ -30,10 +30,7 @@ public class StudentHelper extends BaseHelper{
 		
 		Student student = new Student();
 		student.setRegistry(registry);
-		Person person = new Person();
-		person.setName(name);
-		person.setCpf(cpf);
-		person.setEmail(email);
+		Person person = PersonHelper.createBasic();
 		
 		student.setPerson(person);
 		return student;

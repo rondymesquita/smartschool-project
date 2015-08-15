@@ -3,15 +3,25 @@ package br.com.async.domain.test;
 import java.util.List;
 import java.util.UUID;
 
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.powermock.api.mockito.PowerMockito;
 
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.entities.Discipline;
 import br.com.async.domain.helper.test.DisciplineHelper;
 
+@RunWith(MockitoJUnitRunner.class)
 public class DisciplineTest extends BaseTest{
 
 	private DisciplineApplication disciplineApplication;
@@ -97,6 +107,7 @@ public class DisciplineTest extends BaseTest{
 		List<Discipline> disciplineSearched = disciplineApplication.searchByCodeOrName(discipline.getName());
 		Assert.assertEquals(discipline.toString(), disciplineSearched.get(0).toString());  
 	}
+	
 	
 	public void cleanup() {
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);

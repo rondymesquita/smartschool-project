@@ -32,24 +32,21 @@ public class StudentTest extends BaseTest{
 		Student student = StudentHelper.createBasic();
 		Assert.assertTrue(studentApplication.save(student));
 		Student studentSaved = studentApplication.findByCode(student.getCode());
-		Assert.assertEquals(student.getRegistry(), studentSaved.getRegistry());
-		Assert.assertEquals(student.getPerson().getName(), studentSaved.getPerson().getName());
-		Assert.assertEquals(student.getPerson().getCpf(), studentSaved.getPerson().getCpf());
-		Assert.assertEquals(student.getPerson().getEmail(), studentSaved.getPerson().getEmail());
+		Assert.assertEquals(student.toString(), studentSaved.toString());
 	}
 	
 	@Test
 	public void updateStudentTest() throws Exception{
 		
+		Student student = StudentHelper.createBasic();
+		Assert.assertTrue(studentApplication.save(student));
+		
+		Student studentToUpdate = studentApplication.findByCode(student.getCode());
 		String registry = UUID.randomUUID().toString();
 		String name = UUID.randomUUID().toString();
 		String cpf = UUID.randomUUID().toString();
 		String email = UUID.randomUUID().toString();
 		
-		Student student = StudentHelper.createBasic();
-		Assert.assertTrue(studentApplication.save(student));
-		
-		Student studentToUpdate = studentApplication.findByCode(student.getCode());
 		studentToUpdate.setRegistry(registry);
 		studentToUpdate.getPerson().setName(name);
 		studentToUpdate.getPerson().setCpf(cpf);
@@ -71,6 +68,26 @@ public class StudentTest extends BaseTest{
 		
 		Student studentSearched = studentApplication.findByCode(student.getCode());
 		Assert.assertNotNull(studentSearched);
+	}
+	
+	@Test
+	public void searchByCodeOrNameParamCodeTest() throws Exception{
+		Student student = StudentHelper.createBasic();
+		Assert.assertTrue(studentApplication.save(student));
+		
+		List<Student> studentSearcheds = studentApplication.searchByCodeOrName(student.getCode().toString());
+		Assert.assertNotNull(studentSearcheds);
+		Assert.assertEquals(studentSearcheds.get(0).toString(), student.toString());
+	}
+	
+	@Test
+	public void searchByCodeOrNameParamNameTest() throws Exception{
+		Student student = StudentHelper.createBasic();
+		Assert.assertTrue(studentApplication.save(student));
+		
+		List<Student> studentSearcheds = studentApplication.searchByCodeOrName(student.getPerson().getName());
+		Assert.assertNotNull(studentSearcheds);
+		Assert.assertEquals(studentSearcheds.get(0).toString(), student.toString());
 	}
 	
 	@Test

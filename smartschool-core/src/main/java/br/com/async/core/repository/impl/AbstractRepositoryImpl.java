@@ -30,7 +30,7 @@ public abstract class AbstractRepositoryImpl<T, E extends Serializable> implemen
 		return this.entity;
 	}
 	
-	protected Session getSession(){
+	public Session getSession(){
 		return hibernateTemplate.getSessionFactory().getCurrentSession();
 	}
 	

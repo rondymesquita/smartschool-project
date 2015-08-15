@@ -39,4 +39,14 @@ public class CourseHelper extends BaseHelper{
 		return courseApplication.findByCode(course.getCode());
 	}
 
+	/**
+	 * @param courseToUpdate
+	 * @return
+	 */
+	public static Course updateBasic(Course course) {
+		String name = UUID.randomUUID().toString();
+		course.setName(name);
+		return course;
+	}
+
 }

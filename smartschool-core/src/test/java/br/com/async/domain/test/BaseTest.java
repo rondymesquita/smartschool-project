@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import br.com.async.config.test.HibernateConfigTest;

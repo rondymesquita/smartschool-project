@@ -11,6 +11,7 @@ buildscript {
 repositories{
 	mavenCentral()
 	mavenLocal()
+	jcenter()
 }
 
 group "br.com.async"
@@ -38,6 +39,10 @@ dependencies{
         compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
         compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
         compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1.3'
+        testCompile "org.mockito:mockito-core:1.+"
+        testCompile 'org.powermock:powermock-api-mockito:1.6.2'
+        testCompile 'org.powermock:powermock-module-junit4:1.6.2'
+
 }
 
 sourceSets {
@@ -83,6 +88,7 @@ test {
         enabled = true
     }
     include '**/domain/**'
+    exclude '**/config/**'
 }
 import org.ajoberstar.gradle.jacoco.tasks.*
 

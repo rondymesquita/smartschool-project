@@ -25,10 +25,6 @@ public class ProfessorHelper extends BaseHelper{
 		String registry = UUID.randomUUID().toString();
 		String formation = UUID.randomUUID().toString();
 		String enrollments = UUID.randomUUID().toString();
-		String name = UUID.randomUUID().toString();
-		String cpf = UUID.randomUUID().toString();
-		String email = UUID.randomUUID().toString();
-		
 		
 		Professor professor = new Professor();
 		professor.setRegistry(registry);
@@ -36,12 +32,8 @@ public class ProfessorHelper extends BaseHelper{
 		professor.setEnrollments(enrollments);
 		
 		//person
-		Person person = new Person();
-		person.setName(name);
-		person.setCpf(cpf);
-		person.setEmail(email);
+		Person person = PersonHelper.createBasic();
 		professor.setPerson(person);
-		
 		
 		return professor;
 	}
@@ -52,6 +44,24 @@ public class ProfessorHelper extends BaseHelper{
 		Professor professor = createBasic();
 		professorApplication.save(professor);
 		return professorApplication.findByCode(professor.getCode());
+	}
+
+	/**
+	 * @param professorToUpdate
+	 * @return
+	 */
+	public static Professor updateBasic(Professor professor) {
+		String registry = UUID.randomUUID().toString();
+		String formation = UUID.randomUUID().toString();
+		String enrollments = UUID.randomUUID().toString();
+		
+		professor.setRegistry(registry);
+		professor.setFormation(formation);
+		professor.setEnrollments(enrollments);
+		
+		Person person = PersonHelper.updateBasic(professor.getPerson());
+		professor.setPerson(person);
+		return professor;
 	}
 
 	
