@@ -20,6 +20,14 @@ public class PersonHelper {
 		person.setEmail(UUID.randomUUID().toString());
 		return person;
 	}
+	
+	public static Person createBasicWithName(String name) {
+		Person person = new Person();
+		person.setName(name);
+		person.setCpf(UUID.randomUUID().toString());
+		person.setEmail(UUID.randomUUID().toString());
+		return person;
+	}
 
 	/**
 	 * @param person

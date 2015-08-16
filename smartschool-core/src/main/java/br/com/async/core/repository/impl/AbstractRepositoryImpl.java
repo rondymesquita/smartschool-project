@@ -26,10 +26,6 @@ public abstract class AbstractRepositoryImpl<T, E extends Serializable> implemen
 		this.entity = entity;
 	}
 
-	public Class<T> getEntity() {
-		return this.entity;
-	}
-	
 	public Session getSession(){
 		return hibernateTemplate.getSessionFactory().getCurrentSession();
 	}

@@ -62,4 +62,8 @@ public class ProfessorshipApplicationImpl implements ProfessorshipApplication{
 		 return repository.searchProfessorshipsBySemester(semesterId);
 	}
 	
+	public List<Professorship> searchProfessorshipsByProfessorName(String professorName){
+		return repository.searchProfessorshipsByProfessorName(professorName);
+	}
+	
 }

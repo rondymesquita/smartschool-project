@@ -3,6 +3,9 @@ package br.com.async.controller;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,15 +17,24 @@ import br.com.async.annotations.Authenticate;
 import br.com.async.annotations.RoleManager;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.ProfessorshipApplication;
+import br.com.async.core.application.UserApplication;
+import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
-import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
+import br.com.async.core.entities.User;
 import br.com.async.util.Constants;
+import br.com.async.util.ControllerHelper;
 import br.com.async.util.ResponseData;
 
 @Controller
 public class ProfessorshipController extends BaseController{
-
+	
+	
+	@Autowired
+	private HttpSession httpSession;
+	
+	private UserApplication userApplication = ApplicationContext.getInstance().getBean("userApplicationImpl", UserApplication.class);
+	
 	private ProfessorshipApplication professorshipApplication = ApplicationContext.getInstance().getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
 	
 	
@@ -125,6 +137,15 @@ public class ProfessorshipController extends BaseController{
 	public @ResponseBody List<Professorship> searchProfessorshipsBySemester(@PathVariable String id){
 		List<Professorship> professorships = professorshipApplication.searchProfessorshipsBySemester(id);
 		return professorships;
+	}
+	
+	@Authenticate
+	@RoleManager
+	@RequestMapping(value="/api/professorships/own", method = RequestMethod.GET)
+	public @ResponseBody List<Professorship> searchProfessorshipsIOwn(){
+		
+    	Professor professor = ControllerHelper.getProfessorBySessionUser(httpSession);
+		return professorshipApplication.searchProfessorshipsByProfessorName(professor.getPerson().getName());
 	}
 	
 	

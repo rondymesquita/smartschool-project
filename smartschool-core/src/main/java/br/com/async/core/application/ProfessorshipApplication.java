@@ -11,5 +11,6 @@ public interface ProfessorshipApplication  extends AbstractApplication<Professor
 	public List<Professorship> searchByCodeOrDisciplineOrProfessor(String search);
 	public List<Semester> searchSemesterByCourse(String courseId);
 	public List<Professorship> searchProfessorshipsBySemester(String semesterId);
+	public List<Professorship> searchProfessorshipsByProfessorName(String professorName);
 	
 }

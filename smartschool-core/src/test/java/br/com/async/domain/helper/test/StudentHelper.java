@@ -58,7 +58,8 @@ public class StudentHelper extends BaseHelper{
 	public static Set<Student> saveBasicList() {
 		Set<Student> students = new HashSet<Student>();
 		students.add(saveBasic());
-		return new HashSet<Student>(studentApplication.list());
+		//return new HashSet<Student>(studentApplication.list());
+		return new HashSet<Student>(students);
 	}
 
 	

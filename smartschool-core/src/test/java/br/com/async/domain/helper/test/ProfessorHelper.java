@@ -45,7 +45,7 @@ public class ProfessorHelper extends BaseHelper{
 		professorApplication.save(professor);
 		return professorApplication.findByCode(professor.getCode());
 	}
-
+	
 	/**
 	 * @param professorToUpdate
 	 * @return

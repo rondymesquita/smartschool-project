@@ -89,6 +89,7 @@ test {
     }
     include '**/domain/**'
     exclude '**/config/**'
+
 }
 import org.ajoberstar.gradle.jacoco.tasks.*
 

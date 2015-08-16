@@ -91,4 +91,18 @@ public class ProfessorshipRepositoryImpl  extends AbstractRepositoryImpl<Profess
 		return professorhips;
 	}
 	
+	public List<Professorship> searchProfessorshipsByProfessorName(String professorName){
+		Criteria criteria = getSession().createCriteria(Professorship.class);
+		criteria.createAlias("professor", "professor");
+		criteria.createAlias("professor.person", "person");
+		
+		Criterion criterion = Restrictions.eq("person.name", professorName );
+		criteria.add(criterion);
+		
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		List<Professorship> professorhips = criteria.list();
+		
+		return professorhips;
+	}
+	
 }

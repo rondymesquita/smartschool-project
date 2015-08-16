@@ -3,6 +3,7 @@ package br.com.async.domain.test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -51,12 +52,12 @@ public class ProfessorshipTest extends BaseTest {
 	
 	@Test
 	public void searchSemesterByCourse() throws Exception {
-		List<Semester> list = professorshipApplication.searchSemesterByCourse("1");
-		System.out.println("============");
+		Professorship professorship =  ProfessorshipHelper.saveBasic();
+		List<Semester> list = professorshipApplication.searchSemesterByCourse(professorship.getCode().toString());
 		for (Semester semester : list) {
-			System.out.println(semester);
+			Assert.assertNotNull(semester);
+			Assert.assertEquals(professorship.getSemester().toString(), semester.toString());
 		}
-		System.out.println("============");
 	}
 
 	@Test
@@ -101,36 +102,80 @@ public class ProfessorshipTest extends BaseTest {
 
 	}
 	
-	//TODO ADJUST THIS TEST
 	@Test
-	public void listByCodeOrProfessorOrDisciplineProfessorshipTest() throws Exception {
-		List<Professorship> list = professorshipApplication.searchByCodeOrDisciplineOrProfessor("Banco de Dados");
-		for (Professorship professorship : list) {
-			System.out.println(professorship.getCode() + " : " + professorship.getDiscipline().getName() + " : " + professorship.getProfessor().getPerson().getName());
-			Assert.assertNotNull(professorship);
+	public void searchProfessorshipsByProfessorName() throws Exception{
+		
+		String name = UUID.randomUUID().toString();
+		Professorship professorship =  ProfessorshipHelper.saveBasic();
+		ProfessorshipHelper.saveBasicWithProfessor(professorship.getProfessor());
+		ProfessorshipHelper.saveBasicWithProfessor(professorship.getProfessor());
+		ProfessorshipHelper.saveBasicWithProfessor(professorship.getProfessor());
+		ProfessorshipHelper.saveBasicWithProfessor(professorship.getProfessor());
+		
+		List<Professorship> professorshipsSaved = professorshipApplication.searchProfessorshipsByProfessorName(name);
+		for (Professorship professorshipSaved : professorshipsSaved) {
+			Assert.assertEquals(name, professorshipSaved.getProfessor().getPerson().getName());
 		}
-
-		System.out.println("=========");
-		List<Professorship> list2 = professorshipApplication.searchByCodeOrDisciplineOrProfessor("Wolverine");
-		for (Professorship professorship : list2) {
-			System.out.println(professorship.getCode() + " : " + professorship.getDiscipline().getName() + " : " + professorship.getProfessor().getPerson().getName());
-			Assert.assertNotNull(professorship);
-		}
-
-		System.out.println("==========");
-		List<Professorship> list3 = professorshipApplication.searchByCodeOrDisciplineOrProfessor("Banco");
-		for (Professorship professorship : list3) {
-			System.out.println(professorship.getCode() + " : " + professorship.getDiscipline().getName() + " : " + professorship.getProfessor().getPerson().getName());
-			Assert.assertNotNull(professorship);
+	}
+	
+	@Test
+	public void listByCodeOrProfessorOrDisciplineParamProfessorTest() throws Exception {
+		
+		Professorship professorship =  ProfessorshipHelper.saveBasic();
+		List<Professorship> list = professorshipApplication.searchByCodeOrDisciplineOrProfessor(professorship.getProfessor().getPerson().getName());
+		
+		for (Professorship professorshipSaved : list) {
+			Assert.assertNotNull(professorshipSaved);
+			Assert.assertEquals(professorship.toString(), professorshipSaved.toString());
 		}
 
 	}
-
+	
+	@Test
+	public void listByCodeOrProfessorOrDisciplineParamDisciplineTest() throws Exception {
+		
+		Professorship professorship =  ProfessorshipHelper.saveBasic();
+		List<Professorship> list = professorshipApplication.searchByCodeOrDisciplineOrProfessor(professorship.getDiscipline().getName());
+		
+		for (Professorship professorshipSaved : list) {
+			Assert.assertNotNull(professorshipSaved);
+			Assert.assertEquals(professorship.toString(), professorshipSaved.toString());
+		}
+	}
+	
+	@Test
+	public void listByCodeOrProfessorOrDisciplineParamCodeTest() throws Exception {
+		
+		Professorship professorship =  ProfessorshipHelper.saveBasic();
+		List<Professorship> list = professorshipApplication.searchByCodeOrDisciplineOrProfessor(professorship.getCode().toString());
+		
+		for (Professorship professorshipSaved : list) {
+			Assert.assertNotNull(professorshipSaved);
+			Assert.assertEquals(professorship.toString(), professorshipSaved.toString());
+		}
+	}
+	
+	@Test
+	public void searchProfessorshipsBySemesterTest() throws Exception {
+		
+		Professorship professorship =  ProfessorshipHelper.saveBasic();
+		List<Professorship> list = professorshipApplication.searchProfessorshipsBySemester(professorship.getSemester().toString());
+		
+		for (Professorship professorshipSaved : list) {
+			Assert.assertNotNull(professorshipSaved);
+			Assert.assertEquals(professorship.toString(), professorshipSaved.toString());
+		}
+	}
+	
+	
 	@Test
 	public void listProfessorshipTest() throws Exception {
+		Professorship professorship =  ProfessorshipHelper.saveBasic();
 		List<Professorship> list = professorshipApplication.list();
-		for (Professorship professorship : list) {
-			Assert.assertNotNull(professorship);
+		
+		for (Professorship professorshipSaved : list) {
+			Assert.assertNotNull(professorshipSaved);
+			Assert.assertEquals(professorship.toString(), professorshipSaved.toString());
 		}
 	}
 
@@ -149,6 +194,7 @@ public class ProfessorshipTest extends BaseTest {
 				for (Student student : professorship.getStudents()) {
 					student.setPerson(null);
 				}
+				professorship.setStudents(null);
 				professorshipApplication.delete(professorship);
 			}
 		}

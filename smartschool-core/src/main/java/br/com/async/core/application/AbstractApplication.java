@@ -13,5 +13,4 @@ public interface AbstractApplication <T extends AbstractEntity, E extends Serial
 	public boolean delete(T entity);
 	public T findByCode(E code);
 	public List<T> list();
-
 }

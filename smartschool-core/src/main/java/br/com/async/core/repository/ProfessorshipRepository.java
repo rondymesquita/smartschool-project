@@ -24,6 +24,8 @@ public interface ProfessorshipRepository extends AbstractRepository<Professorshi
 	 * @param semesterId
 	 * @return
 	 */
-	List<Professorship> searchProfessorshipsBySemester(String semesterId);
+	public List<Professorship> searchProfessorshipsBySemester(String semesterId);
+	
+	public List<Professorship> searchProfessorshipsByProfessorName(String professorName);
 
 }
