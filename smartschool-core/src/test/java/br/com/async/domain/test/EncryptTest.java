@@ -2,8 +2,7 @@ package br.com.async.domain.test;
 
 import java.security.NoSuchAlgorithmException;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.async.utils.Encrypt;

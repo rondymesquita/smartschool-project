@@ -6,8 +6,14 @@ import nl.jqno.equalsverifier.Warning;
 import org.junit.Test;
 import org.meanbean.test.BeanTester;
 
+import br.com.async.core.entities.Attendance;
 import br.com.async.core.entities.Course;
+import br.com.async.core.entities.CourseCurriculum;
+import br.com.async.core.entities.CourseCurriculumSemester;
 import br.com.async.core.entities.Diary;
+import br.com.async.core.entities.Discipline;
+import br.com.async.core.entities.Manager;
+import br.com.async.core.entities.MyUser;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
@@ -33,6 +39,14 @@ public class EntitiesTest extends BaseTest{
 		asyncEntityTestFor(Professorship.class);
 		asyncEntityTestFor(Diary.class);
 		asyncEntityTestFor(SchoolClass.class);
+		asyncEntityTestFor(Discipline.class);
+		
+		//maybe to remove these unused classes from project
+		asyncEntityTestFor(MyUser.class);
+		asyncEntityTestFor(CourseCurriculum.class);
+		asyncEntityTestFor(CourseCurriculumSemester.class);
+		asyncEntityTestFor(Manager.class);
+		asyncEntityTestFor(Attendance.class);
 	}
 	
 	private static void asyncEntityTestFor(Class clazz){
