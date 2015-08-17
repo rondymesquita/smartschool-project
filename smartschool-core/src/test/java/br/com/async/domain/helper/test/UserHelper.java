@@ -2,6 +2,7 @@ package br.com.async.domain.helper.test;
 
 import java.util.UUID;
 
+import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.User;
 
@@ -9,8 +10,15 @@ import br.com.async.core.entities.User;
  * Created by rondymesquita on 15/08/2015
  *
  */
-public class UserHelper {
+public class UserHelper extends BaseHelper{
 
+	private static UserApplication userApplication;
+	
+	protected static void before(){
+		config();
+		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
+	}
+	
 	/**
 	 * @return
 	 */
@@ -49,6 +57,16 @@ public class UserHelper {
 		user.setUsername(person.getEmail());
 		user.setPassword(UUID.randomUUID().toString());
 		return user;
+	}
+
+	/**
+	 * @return
+	 */
+	public static User saveBasic() {
+		before();
+		User user = createBasic();
+		userApplication.save(user);
+		return userApplication.findByCode(user.getCode());
 	}
 	
 //	public static User updateBasic(User userToUpdate, Person person) {

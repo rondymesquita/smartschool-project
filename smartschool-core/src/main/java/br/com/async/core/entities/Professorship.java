@@ -3,7 +3,6 @@ package br.com.async.core.entities;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
@@ -34,7 +33,7 @@ public class Professorship extends AbstractEntity implements Serializable{
 	private Integer code;
 	
 	@Getter
-	@OneToMany(fetch = FetchType.EAGER, cascade= CascadeType.REFRESH)
+	@ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.REFRESH)
 	private Set<Student> students;
 	
 	@Getter

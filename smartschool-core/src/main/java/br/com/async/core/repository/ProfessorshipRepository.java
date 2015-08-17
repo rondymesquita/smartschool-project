@@ -2,7 +2,6 @@ package br.com.async.core.repository;
 
 import java.util.List;
 
-import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.Semester;
 

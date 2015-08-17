@@ -2,11 +2,7 @@ package br.com.async.domain.helper.test;
 
 import java.util.UUID;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import br.com.async.config.test.HibernateConfigTest;
 import br.com.async.core.application.SemesterApplication;
-import br.com.async.core.application.StudentApplication;
 import br.com.async.core.entities.Semester;
 
 public class SemesterHelper extends BaseHelper{

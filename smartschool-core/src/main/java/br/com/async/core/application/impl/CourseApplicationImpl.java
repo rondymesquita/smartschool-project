@@ -2,7 +2,6 @@ package br.com.async.core.application.impl;
 
 import java.util.List;
 
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

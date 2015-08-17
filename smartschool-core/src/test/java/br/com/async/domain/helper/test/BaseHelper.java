@@ -1,10 +1,8 @@
 package br.com.async.domain.helper.test;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
 
 import br.com.async.config.test.HibernateConfigTest;
-import br.com.async.core.application.StudentApplication;
 
 /**
  * Created by rondymesquita on 14/08/2015

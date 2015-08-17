@@ -3,7 +3,6 @@ package br.com.async.core.repository.impl;
 import javax.annotation.Resource;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 

@@ -10,7 +10,6 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Student;
 import br.com.async.core.repository.StudentRepository;
 import br.com.async.utils.SmartUtils;

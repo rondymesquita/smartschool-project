@@ -3,19 +3,12 @@ package br.com.async.domain.test;
 import java.util.List;
 import java.util.UUID;
 
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Restrictions;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.powermock.api.mockito.PowerMockito;
 
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.entities.Discipline;

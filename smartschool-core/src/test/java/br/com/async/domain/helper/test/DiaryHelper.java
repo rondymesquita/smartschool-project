@@ -1,9 +1,6 @@
 package br.com.async.domain.helper.test;
 
-import java.util.Set;
-
 import br.com.async.core.entities.Diary;
-import br.com.async.core.entities.SchoolClass;
 
 public class DiaryHelper extends BaseHelper{
 	

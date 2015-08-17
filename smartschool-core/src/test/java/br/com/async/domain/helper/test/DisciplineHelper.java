@@ -2,12 +2,8 @@ package br.com.async.domain.helper.test;
 
 import java.util.UUID;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import br.com.async.config.test.HibernateConfigTest;
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.entities.Discipline;
-import br.com.async.core.entities.Student;
 
 public class DisciplineHelper extends BaseHelper{
 

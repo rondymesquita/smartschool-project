@@ -20,7 +20,6 @@ import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.SchoolClass;
 import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
-import br.com.async.deploy.test.BaseDeployTest;
 import br.com.async.domain.helper.test.ProfessorshipHelper;
 
 public class ProfessorshipTest extends BaseTest {
@@ -175,7 +174,9 @@ public class ProfessorshipTest extends BaseTest {
 		
 		for (Professorship professorshipSaved : list) {
 			Assert.assertNotNull(professorshipSaved);
-			Assert.assertEquals(professorship.toString(), professorshipSaved.toString());
+			
+			Assert.assertEquals(professorship, professorshipSaved);
+			
 		}
 	}
 

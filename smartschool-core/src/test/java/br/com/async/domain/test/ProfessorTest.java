@@ -6,17 +6,11 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.User;
-import br.com.async.core.repository.impl.AbstractRepositoryImpl;
 import br.com.async.domain.helper.test.ProfessorHelper;
 import br.com.async.domain.helper.test.UserHelper;
 

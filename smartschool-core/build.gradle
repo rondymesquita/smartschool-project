@@ -2,10 +2,14 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: "jacoco"
+apply plugin: 'net.saliman.cobertura'
 
 buildscript {
     repositories { mavenCentral() }
-    dependencies { classpath 'org.ajoberstar:gradle-jacoco:0.2.0' }
+    dependencies { 
+    	classpath 'org.ajoberstar:gradle-jacoco:0.2.0'
+    	classpath "net.saliman:gradle-cobertura-plugin:2.2.7"
+    }
 }	
 	
 repositories{
@@ -42,6 +46,8 @@ dependencies{
         testCompile "org.mockito:mockito-core:1.+"
         testCompile 'org.powermock:powermock-api-mockito:1.6.2'
         testCompile 'org.powermock:powermock-module-junit4:1.6.2'
+        testCompile 'org.meanbean:meanbean:2.0.3'
+        testCompile 'nl.jqno.equalsverifier:equalsverifier:1.7.3'
 
 }
 
@@ -71,6 +77,13 @@ tasks.withType(Test) {
     }
 }
 
+cobertura{
+	coverageFormats = ['html']
+	coverageReportDir = file("$buildDir/cobertura")
+	//coverageIgnoreMethodAnnotations = ['javax.annotation.Generated','lombok.EqualsAndHashCode','java.lang.Override']
+	//coverageIgnores = ["hashCode\(\) {[\x21-\x7E\s]*\}"] 
+}
+
 jacoco {
 	toolVersion = '0.6.2.201302030002'
     reportsDir = file("$buildDir/customJacocoReportDir")
@@ -87,6 +100,7 @@ test {
         // would have been enabled by default
         enabled = true
     }
+//    include '**/domain/**/**User**'
     include '**/domain/**'
     exclude '**/config/**'
 

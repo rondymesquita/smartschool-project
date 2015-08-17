@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import br.com.async.core.entities.Semester;
 import br.com.async.core.repository.SemesterRepository;
-import br.com.async.utils.SmartUtils;
 
 /**
  * Created by rondymesquita on Jul 25, 2015

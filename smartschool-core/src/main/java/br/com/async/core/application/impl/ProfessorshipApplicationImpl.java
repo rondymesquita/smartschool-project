@@ -2,14 +2,12 @@ package br.com.async.core.application.impl;
 
 import java.util.List;
 
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.async.core.application.ProfessorshipApplication;
-import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.Semester;
 import br.com.async.core.repository.ProfessorshipRepository;

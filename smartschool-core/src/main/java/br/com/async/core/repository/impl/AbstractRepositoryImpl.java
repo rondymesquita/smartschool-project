@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -82,6 +83,7 @@ public abstract class AbstractRepositoryImpl<T, E extends Serializable> implemen
 		try {
 			Criteria criteria = hibernateTemplate.getSessionFactory().getCurrentSession().createCriteria(entity);
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+			criteria.addOrder(Order.asc("code"));
 			return criteria.list();
 		} catch (RuntimeException re) {
 			System.err.println(re);

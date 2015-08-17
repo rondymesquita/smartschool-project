@@ -1,13 +1,12 @@
 package br.com.async.domain.helper.test;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import org.hibernate.metamodel.domain.Superclass;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import br.com.async.config.test.HibernateConfigTest;
 import br.com.async.core.application.StudentApplication;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Student;
@@ -56,10 +55,21 @@ public class StudentHelper extends BaseHelper{
 	 * @return
 	 */
 	public static Set<Student> saveBasicList() {
-		Set<Student> students = new HashSet<Student>();
-		students.add(saveBasic());
-		//return new HashSet<Student>(studentApplication.list());
-		return new HashSet<Student>(students);
+//		Set<Student> list = new HashSet<Student>();
+//		list.add(saveBasic());
+		
+		saveBasic();
+		List<Student> list = studentApplication.list();
+		Collections.sort(list, new Comparator<Student>(){
+
+			@Override
+			public int compare(Student o1, Student o2) {
+				return o1.getPerson().getName().compareTo(o1.getPerson().getName());
+			}
+			
+		});
+		
+		return new HashSet<Student>(list);
 	}
 
 	

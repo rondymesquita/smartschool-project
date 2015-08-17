@@ -1,7 +1,6 @@
 package br.com.async.domain.test;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -10,11 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.application.SemesterApplication;
-import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Semester;
-import br.com.async.domain.helper.test.DisciplineHelper;
 import br.com.async.domain.helper.test.SemesterHelper;
 
 @RunWith(MockitoJUnitRunner.class)

@@ -11,7 +11,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import br.com.async.core.entities.Course;
-import br.com.async.core.entities.Discipline;
 import br.com.async.core.repository.CourseRepository;
 import br.com.async.utils.SmartUtils;
 

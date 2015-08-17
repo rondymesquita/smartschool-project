@@ -1,17 +1,15 @@
 package br.com.async.core.application.impl;
 
-import br.com.async.core.application.DisciplineApplication;
-import br.com.async.core.entities.Discipline;
-import br.com.async.core.repository.DisciplineRepository;
-import br.com.async.core.repository.StudentRepository;
+import java.util.List;
 
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import br.com.async.core.application.DisciplineApplication;
+import br.com.async.core.entities.Discipline;
+import br.com.async.core.repository.DisciplineRepository;
 
 /**
  * Created by rondymesquita on 11/27/14.

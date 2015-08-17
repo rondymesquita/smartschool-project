@@ -1,9 +1,5 @@
 package br.com.async.datacolletion.test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +14,6 @@ import br.com.async.core.entities.Course;
 import br.com.async.core.entities.Discipline;
 import br.com.async.core.entities.Person;
 import br.com.async.core.entities.Professor;
-import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.Role;
 import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
