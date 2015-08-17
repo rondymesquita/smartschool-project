@@ -2,13 +2,13 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: "jacoco"
-apply plugin: 'net.saliman.cobertura'
+//apply plugin: 'net.saliman.cobertura'
 
 buildscript {
     repositories { mavenCentral() }
     dependencies { 
     	classpath 'org.ajoberstar:gradle-jacoco:0.2.0'
-    	classpath "net.saliman:gradle-cobertura-plugin:2.2.7"
+//    	classpath "net.saliman:gradle-cobertura-plugin:2.2.7"
     }
 }	
 	
@@ -77,12 +77,12 @@ tasks.withType(Test) {
     }
 }
 
-cobertura{
-	coverageFormats = ['html']
-	coverageReportDir = file("$buildDir/cobertura")
-	//coverageIgnoreMethodAnnotations = ['javax.annotation.Generated','lombok.EqualsAndHashCode','java.lang.Override']
-	//coverageIgnores = ["hashCode\(\) {[\x21-\x7E\s]*\}"] 
-}
+//cobertura{
+//	coverageFormats = ['html']
+//	coverageReportDir = file("$buildDir/cobertura")
+//	//coverageIgnoreMethodAnnotations = ['javax.annotation.Generated','lombok.EqualsAndHashCode','java.lang.Override']
+//	//coverageIgnores = ["hashCode\(\) {[\x21-\x7E\s]*\}"] 
+//}
 
 jacoco {
 	toolVersion = '0.6.2.201302030002'
