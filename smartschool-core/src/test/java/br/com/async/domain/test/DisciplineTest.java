@@ -22,12 +22,12 @@ public class DisciplineTest extends BaseTest{
 	@Before
 	public void before(){
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
-		cleanup();
+		DisciplineHelper.cleanup();
 	}
 	
 	@After
 	public void after(){
-		cleanup();
+		DisciplineHelper.cleanup();
 	}
 	
 
@@ -101,16 +101,5 @@ public class DisciplineTest extends BaseTest{
 		Assert.assertEquals(discipline.toString(), disciplineSearched.get(0).toString());  
 	}
 	
-	
-	public void cleanup() {
-		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
-		List<Discipline> list = disciplineApplication.list();
-		if(list != null){
-			for (Discipline discipline : list) {
-				disciplineApplication.delete(discipline);
-			}
-		}
-		
-	}
 	
 }

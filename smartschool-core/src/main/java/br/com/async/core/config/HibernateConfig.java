@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 @ComponentScan({ "br.com.async.core" })
-public class HibernateConfig {
+public class HibernateConfig implements BaseHibernateConfig{
 
 	@Value("${postgres.driverClassName}")
 	private String driverClassName;

@@ -1,5 +1,6 @@
 package br.com.async.domain.helper.test;
 
+import java.util.List;
 import java.util.UUID;
 
 import br.com.async.core.application.SemesterApplication;
@@ -37,6 +38,17 @@ public class SemesterHelper extends BaseHelper{
 		Semester semester = createBasic();
 		semesterApplication.save(semester);
 		return semesterApplication.findByCode(semester.getCode());
+	}
+	
+	public static void cleanup(){
+		config();
+		semesterApplication = ctx.getBean("semesterApplicationImpl", SemesterApplication.class);
+		List<Semester> list = semesterApplication.list();
+		if(list != null){
+			for (Semester semester : list) {
+				semesterApplication.delete(semester);
+			}
+		}
 	}
 
 }

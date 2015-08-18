@@ -1,9 +1,12 @@
 package br.com.async.domain.helper.test;
 
+import java.util.List;
+
 import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.ProfessorshipApplication;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
+import br.com.async.core.entities.Student;
 
 public class ProfessorshipHelper extends BaseHelper{
 	
@@ -39,6 +42,7 @@ public class ProfessorshipHelper extends BaseHelper{
 	}
 	
 	public static Professorship createBasicWithProfessor(Professor professor){
+		before();
 		
 		Professorship professorship = new Professorship();
 		professorship.setStudents(StudentHelper.saveBasicList());
@@ -57,6 +61,29 @@ public class ProfessorshipHelper extends BaseHelper{
 		Professorship professorship = createBasicWithProfessor(professor);
 		professorshipApplication.save(professorship);
 		return professorshipApplication.findByCode(professorship.getCode());
+	}
+	
+	/**
+	 * 
+	 */
+	public static void cleanup() {
+		config();
+		professorshipApplication = ctx.getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
+
+		List<Professorship> list = professorshipApplication.list();
+		if (list != null) {
+			for (Professorship professorship : list) {
+				professorship.setDiary(null);
+				professorship.setDiscipline(null);
+				professorship.setProfessor(null);
+				for (Student student : professorship.getStudents()) {
+					student.setPerson(null);
+				}
+				professorship.setStudents(null);
+				professorshipApplication.delete(professorship);
+			}
+		}
+
 	}
 
 	

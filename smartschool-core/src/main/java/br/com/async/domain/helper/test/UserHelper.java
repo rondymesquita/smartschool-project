@@ -1,5 +1,6 @@
 package br.com.async.domain.helper.test;
 
+import java.util.List;
 import java.util.UUID;
 
 import br.com.async.core.application.UserApplication;
@@ -76,5 +77,16 @@ public class UserHelper extends BaseHelper{
 //		userToUpdate.setPassword(UUID.randomUUID().toString());
 //		return userToUpdate;
 //	}
+	
+	public static void cleanup(){
+		config();
+		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
+		List<User> list = userApplication.list();
+		if (list != null) {
+			for (User user : list) {
+				userApplication.delete(user);
+			}
+		}
+	}
 
 }

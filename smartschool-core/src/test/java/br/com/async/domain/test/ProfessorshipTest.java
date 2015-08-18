@@ -40,13 +40,13 @@ public class ProfessorshipTest extends BaseTest {
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
 		semesterApplication = ctx.getBean("semesterApplicationImpl", SemesterApplication.class);
 		courseApplication = ctx.getBean("courseApplicationImpl", CourseApplication.class);
-		cleanup();
+		ProfessorshipHelper.cleanup();
 
 	}
 
 	@After
 	public void after() {
-		cleanup();
+		ProfessorshipHelper.cleanup();
 	}
 	
 	@Test
@@ -180,25 +180,5 @@ public class ProfessorshipTest extends BaseTest {
 		}
 	}
 
-	/**
-	 * 
-	 */
-	public void cleanup() {
-		professorshipApplication = ctx.getBean("professorshipApplicationImpl", ProfessorshipApplication.class);
-
-		List<Professorship> list = professorshipApplication.list();
-		if (list != null) {
-			for (Professorship professorship : list) {
-				professorship.setDiary(null);
-				professorship.setDiscipline(null);
-				professorship.setProfessor(null);
-				for (Student student : professorship.getStudents()) {
-					student.setPerson(null);
-				}
-				professorship.setStudents(null);
-				professorshipApplication.delete(professorship);
-			}
-		}
-	}
 
 }

@@ -1,4 +1,4 @@
-package br.com.async.config.test;
+package br.com.async.core.config;
 
 import java.util.Properties;
 import java.util.logging.Level;
@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 @ComponentScan({ "br.com.async.core" })
-public class HibernateConfigTest {
+public class HibernateConfigTest implements BaseHibernateConfig{
 
 	@Value("${postgres.driverClassName}")
 	private String driverClassName;

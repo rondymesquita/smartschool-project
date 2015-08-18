@@ -1,5 +1,6 @@
 package br.com.async.domain.helper.test;
 
+import java.util.List;
 import java.util.UUID;
 
 import br.com.async.core.application.DisciplineApplication;
@@ -35,6 +36,17 @@ public class DisciplineHelper extends BaseHelper{
 		boolean saved = disciplineApplication.save(discipline);
 		Discipline d = disciplineApplication.findByCode(discipline.getCode());
 		return d;
+	}
+	
+	public static void cleanup(){
+		config();
+		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
+		List<Discipline> list = disciplineApplication.list();
+		if(list != null){
+			for (Discipline discipline : list) {
+				disciplineApplication.delete(discipline);
+			}
+		}
 	}
 
 }

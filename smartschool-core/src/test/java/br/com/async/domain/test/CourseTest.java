@@ -21,12 +21,12 @@ public class CourseTest extends BaseTest{
 	@Before
 	public void before(){
 		courseApplication = ctx.getBean("courseApplicationImpl", CourseApplication.class);
-		cleanup();
+		CourseHelper.cleanup();
 	}
 	
 	@After
 	public void after(){
-		cleanup();
+		CourseHelper.cleanup();
 	}
 	
 
@@ -87,15 +87,5 @@ public class CourseTest extends BaseTest{
 	}
 	
 	
-	public void cleanup() {
-		courseApplication = ctx.getBean("courseApplicationImpl", CourseApplication.class);
-		List<Course> list = courseApplication.list();
-		if(list != null){
-			for (Course course : list) {
-				courseApplication.delete(course);
-			}
-		}
-		
-	}
 	
 }

@@ -1,5 +1,6 @@
 package br.com.async.domain.helper.test;
 
+import java.util.List;
 import java.util.UUID;
 
 import br.com.async.core.application.CourseApplication;
@@ -43,6 +44,17 @@ public class CourseHelper extends BaseHelper{
 		String name = UUID.randomUUID().toString();
 		course.setName(name);
 		return course;
+	}
+	
+	public static void cleanup(){
+		config();
+		courseApplication = ctx.getBean("courseApplicationImpl", CourseApplication.class);
+		List<Course> list = courseApplication.list();
+		if(list != null){
+			for (Course course : list) {
+				courseApplication.delete(course);
+			}
+		}
 	}
 
 }

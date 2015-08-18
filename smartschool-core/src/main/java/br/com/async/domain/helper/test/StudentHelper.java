@@ -71,6 +71,18 @@ public class StudentHelper extends BaseHelper{
 		
 		return new HashSet<Student>(list);
 	}
+	
+	public static void cleanup(){
+		config();
+		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
+		List<Student> list = studentApplication.list();
+		if(list != null){
+			for (Student student : list) {
+				student.setPerson(null);
+				studentApplication.delete(student);
+			}
+		}
+	}
 
 	
 }

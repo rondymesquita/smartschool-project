@@ -21,12 +21,12 @@ public class SemesterTest extends BaseTest{
 	@Before
 	public void before(){
 		semesterApplication = ctx.getBean("semesterApplicationImpl", SemesterApplication.class);
-		cleanup();
+		SemesterHelper.cleanup();
 	}
 	
 	@After
 	public void after(){
-		cleanup();
+		SemesterHelper.cleanup();
 	}
 	
 
@@ -83,18 +83,6 @@ public class SemesterTest extends BaseTest{
 		
 		List<Semester> semesterSearched = semesterApplication.searchByCodeOrName(semester.getName());
 		Assert.assertEquals(semester.toString(), semesterSearched.get(0).toString());  
-	}
-	
-	
-	public void cleanup() {
-		semesterApplication = ctx.getBean("semesterApplicationImpl", SemesterApplication.class);
-		List<Semester> list = semesterApplication.list();
-		if(list != null){
-			for (Semester semester : list) {
-				semesterApplication.delete(semester);
-			}
-		}
-		
 	}
 	
 }

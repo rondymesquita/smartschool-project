@@ -23,12 +23,12 @@ public class ProfessorTest extends BaseTest {
 	public void before() {
 		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
 		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
-		cleanup();
+		ProfessorHelper.cleanup();
 	}
 
 	@After
 	public void after() {
-		cleanup();
+		ProfessorHelper.cleanup();
 	}
 
 	@Test
@@ -122,30 +122,4 @@ public class ProfessorTest extends BaseTest {
 		Assert.assertEquals(professor.toString(), professorSearched.get(0).toString());  
 	}
 
-	/**
-	 * 
-	 */
-	public void cleanup() {
-		
-		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
-		List<User> list2 = userApplication.list();
-		if(list2 != null){
-			for (User user : list2) {
-				user.setPerson(null);
-				userApplication.delete(user);
-			}
-		}
-		
-		professorApplication = ctx.getBean("professorApplicationImpl", ProfessorApplication.class);
-		List<Professor> list = professorApplication.list();
-		if (list != null) {
-			for (Professor professor : list) {
-				professor.setPerson(null);
-				professorApplication.delete(professor);
-			}
-		}
-		
-		
-		
-	}
 }

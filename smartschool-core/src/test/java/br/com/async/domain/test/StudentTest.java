@@ -19,12 +19,12 @@ public class StudentTest extends BaseTest{
 	@Before
 	public void before(){
 		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
-		cleanup();
+		StudentHelper.cleanup();
 	}
 	
 	@After
 	public void after(){
-		cleanup();
+		StudentHelper.cleanup();
 	}
 	
 	@Test
@@ -105,19 +105,4 @@ public class StudentTest extends BaseTest{
 		} 
 	}
 
-	/**
-	 * 
-	 */
-	public void cleanup() {
-		studentApplication = ctx.getBean("studentApplicationImpl", StudentApplication.class);
-		List<Student> list = studentApplication.list();
-		if(list != null){
-			for (Student student : list) {
-				student.setPerson(null);
-				studentApplication.delete(student);
-			}
-		}
-		
-	}
-	
 }

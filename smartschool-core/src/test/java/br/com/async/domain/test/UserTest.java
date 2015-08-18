@@ -22,12 +22,12 @@ public class UserTest extends BaseTest {
 	@Before
 	public void before() {
 		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
-		cleanup();
+		UserHelper.cleanup();
 	}
 
 	@After
 	public void after() {
-		cleanup();
+		UserHelper.cleanup();
 	}
 
 	@Test
@@ -89,17 +89,6 @@ public class UserTest extends BaseTest {
 
 		User userSaved = userApplication.findByUsernameAndPassword(user.getUsername(), user.getPassword());
 		Assert.assertEquals(user.toString(), userSaved.toString());
-	}
-
-	public void cleanup() {
-		userApplication = ctx.getBean("userApplicationImpl", UserApplication.class);
-		List<User> list = userApplication.list();
-		if (list != null) {
-			for (User user : list) {
-				userApplication.delete(user);
-			}
-		}
-
 	}
 
 }
