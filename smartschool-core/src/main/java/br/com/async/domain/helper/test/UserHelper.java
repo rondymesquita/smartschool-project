@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Person;
+import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
 
 /**
@@ -26,6 +27,15 @@ public class UserHelper extends BaseHelper{
 	public static User createBasic() {
 		User user = new User();
 		Person person = PersonHelper.createBasic();
+		user.setPerson(person);
+		user.setUsername(person.getEmail());
+		user.setPassword(UUID.randomUUID().toString());
+		return user;
+	}
+	
+	public static User createBasic(String role) {
+		User user = new User();
+		Person person = PersonHelper.createBasic(role);
 		user.setPerson(person);
 		user.setUsername(person.getEmail());
 		user.setPassword(UUID.randomUUID().toString());
@@ -66,6 +76,13 @@ public class UserHelper extends BaseHelper{
 	public static User saveBasic() {
 		before();
 		User user = createBasic();
+		userApplication.save(user);
+		return userApplication.findByCode(user.getCode());
+	}
+	
+	public static User saveBasic(String role) {
+		before();
+		User user = createBasic(role);
 		userApplication.save(user);
 		return userApplication.findByCode(user.getCode());
 	}

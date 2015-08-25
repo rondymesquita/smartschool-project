@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.async.annotations.Authenticate;
+import br.com.async.annotations.RoleManager;
+import br.com.async.annotations.RoleProfessor;
 import br.com.async.config.ApplicationContext;
 import br.com.async.core.application.StudentApplication;
 import br.com.async.core.entities.Student;
@@ -28,6 +30,7 @@ public class StudentController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
+	@RoleProfessor
 	@RequestMapping(value="/api/students", method = RequestMethod.GET)
 	public @ResponseBody List<Student> list(){
 		return studentApplication.list();
@@ -38,6 +41,7 @@ public class StudentController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
+	@RoleProfessor
 	@RequestMapping(value="/api/students/{id}", method = RequestMethod.GET)
 	public @ResponseBody Student find(@PathVariable String id){
 		return studentApplication.findByCode(Integer.parseInt(id));
@@ -48,6 +52,7 @@ public class StudentController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
+	@RoleProfessor
 	@RequestMapping(value="/api/students", method = RequestMethod.POST)
 	public @ResponseBody ResponseData save(@RequestBody Student student){
 		
@@ -68,6 +73,7 @@ public class StudentController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
+	@RoleProfessor
 	@RequestMapping(value="/api/students", method = RequestMethod.PUT)
 	public @ResponseBody ResponseData update(@RequestBody Student student){
 		boolean resultQuery = studentApplication.update(student);
@@ -86,6 +92,7 @@ public class StudentController extends BaseController{
 	 * @return
 	 */
 	@Authenticate
+	@RoleManager
 	@RequestMapping(value="/api/students/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseData delete(@PathVariable String id){
 		Student student = new Student();

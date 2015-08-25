@@ -16,7 +16,7 @@ public class ApplicationContext {
 				context = new AnnotationConfigApplicationContext();
 			
 			context.scan("br.com.async.core");
-			context.refresh();
+			//context.refresh();
 			System.out.println("Context Initialized");
 		}
 		return context;

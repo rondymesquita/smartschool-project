@@ -41,6 +41,17 @@ public class StudentHelper extends BaseHelper{
 		studentApplication.save(student);
 		return studentApplication.findByCode(student.getCode());
 	}
+	
+	public static Student updateBasic(Student student){
+		
+		String registry = UUID.randomUUID().toString();
+		
+		student.setRegistry(registry);
+		Person person = PersonHelper.updateBasic(student.getPerson());
+		
+		student.setPerson(person);
+		return student;
+	}
 
 	/**
 	 * @return

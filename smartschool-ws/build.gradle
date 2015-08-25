@@ -1,3 +1,5 @@
+apply plugin: "jacoco"
+	
 buildscript {
     repositories {
         mavenCentral()
@@ -6,6 +8,7 @@ buildscript {
         maven { url 'http://repo.spring.io/milestone/'}
     }
     dependencies {
+    	classpath 'org.ajoberstar:gradle-jacoco:0.2.0'
         classpath 'org.gradle.api.plugins:gradle-cargo-plugin:1.5'
     }
 }
@@ -21,6 +24,7 @@ repositories {
 }
 
 dependencies {
+   compile "junit:junit:4.11"
    providedCompile 'javax.servlet:servlet-api:2.5'
    compile 'org.springframework:spring-webmvc:3.2.2.RELEASE'
    compile 'org.springframework.security:spring-security-config:3.2.2.RELEASE'
@@ -48,7 +52,7 @@ dependencies {
    testCompile "org.mockito:mockito-core:1.+"
    testCompile 'org.powermock:powermock-api-mockito:1.6.2'
    testCompile 'org.powermock:powermock-module-junit4:1.6.2'
-   testCompile 'org.springframework:spring-test:4.2.0.RELEASE'
+   testCompile 'org.springframework:spring-test:3.2.3.RELEASE'
    testCompile "com.jayway.jsonpath:json-path:0.8.1"
    testCompile "com.jayway.jsonpath:json-path-assert:0.8.1"
    
@@ -70,7 +74,7 @@ task compileCore(type: Exec){
 }
 
 task runDeployTests(type: Exec){
-	workingDir '../smartscholl-core'
+	workingDir '../smartschool-core'
 	executable 'gradle'
 	args 'gradle -Dtest.single=User test'
 }
@@ -92,3 +96,44 @@ task runDeployTests(type: Exec){
 //		f.delete()
 //	}
 //}
+
+tasks.withType(Test) {
+    testLogging {
+        events 'started', 'passed'
+    }
+}
+
+
+jacoco {
+	toolVersion = '0.6.2.201302030002'
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+test {
+    jacoco {
+        // would have been enabled by default
+        enabled = true
+    }
+    //include '**/domain/**'
+    //exclude '**/config/**'
+
+}
+import org.ajoberstar.gradle.jacoco.tasks.*
+
+task jacocoReport(type: JacocoReport) {
+    // can include one or more execution files
+    executionData test
+
+    // specify one or more source sets that you want to report on the coverage of
+    sourceSets project.sourceSets.main
+
+    // can also specify additional class and source dirs
+    // additionalClassDirs moreStuff
+    // additionalSourceDirs moreSourceStuff
+}

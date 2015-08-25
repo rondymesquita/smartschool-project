@@ -21,6 +21,15 @@ public class PersonHelper {
 		return person;
 	}
 	
+	public static Person createBasic(String role) {
+		Person person = new Person();
+		person.setName(UUID.randomUUID().toString());
+		person.setCpf(UUID.randomUUID().toString());
+		person.setEmail(UUID.randomUUID().toString());
+		person.setRole(role);
+		return person;
+	}
+	
 	public static Person createBasicWithName(String name) {
 		Person person = new Person();
 		person.setName(name);

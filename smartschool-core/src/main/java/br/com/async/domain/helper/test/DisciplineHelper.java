@@ -38,6 +38,15 @@ public class DisciplineHelper extends BaseHelper{
 		return d;
 	}
 	
+	public static Discipline updateBasic(Discipline discipline) {
+
+		String name = UUID.randomUUID().toString();
+		Integer workload = Math.max(1, 100);
+		discipline.setName(name);
+		discipline.setWorkload(workload);
+		return discipline;
+	}
+	
 	public static void cleanup(){
 		config();
 		disciplineApplication = ctx.getBean("disciplineApplicationImpl", DisciplineApplication.class);
