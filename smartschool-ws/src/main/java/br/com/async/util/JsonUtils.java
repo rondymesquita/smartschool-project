@@ -30,8 +30,9 @@ public class JsonUtils {
 	}
 	
 	public static Object toObject(String json, Class<?> clazz) throws JsonProcessingException, IOException{
-		ObjectReader or = new ObjectMapper().reader().withType(clazz);
-		return or.readValue(json);
+		//ObjectReader or = new ObjectMapper().reader().withType(clazz);
+		//return or.readValue(json);
+		return new ObjectMapper().readValue(json, clazz);
 	}
 	
 }

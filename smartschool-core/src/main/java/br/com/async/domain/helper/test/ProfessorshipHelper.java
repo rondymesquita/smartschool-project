@@ -33,6 +33,18 @@ public class ProfessorshipHelper extends BaseHelper{
 		return professorship;
 	}
 	
+	public static Professorship updateBasic(Professorship professorship){
+		
+		professorship.setStudents(StudentHelper.saveBasicList());
+		professorship.setProfessor(ProfessorHelper.saveBasic());
+		professorship.setDiscipline(DisciplineHelper.saveBasic());
+		professorship.setDiary(DiaryHelper.createBasic());
+		professorship.setSemester(SemesterHelper.saveBasic());
+		professorship.setCourse(CourseHelper.saveBasic());
+		
+		return professorship;
+	}
+	
 	public static Professorship saveBasic(){
 		before();
 		

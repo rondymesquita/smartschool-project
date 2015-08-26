@@ -11,19 +11,19 @@ public class HttpUtils {
 		return UUID.randomUUID().toString();
 	}
 
-	public static Cookie getCookieFromRequest(HttpServletRequest request, String cookieName) {
-		Cookie[] cookies = request.getCookies();
-
-		if (cookies == null)
-			return null;
-
-		for (Cookie cookie : cookies) {
-			String name = cookie.getName();
-			if (name.equals(cookieName)) {
-				return cookie;
-			}
-		}
-		return null;
-	}
+//	public static Cookie getCookieFromRequest(HttpServletRequest request, String cookieName) {
+//		Cookie[] cookies = request.getCookies();
+//
+//		if (cookies == null)
+//			return null;
+//
+//		for (Cookie cookie : cookies) {
+//			String name = cookie.getName();
+//			if (name.equals(cookieName)) {
+//				return cookie;
+//			}
+//		}
+//		return null;
+//	}
 
 }

@@ -54,4 +54,8 @@ public class BaseControllerTest {
 		return (AuthUser) JsonUtils.toObject(result.getResponse().getContentAsString(), AuthUser.class);
 	}
 	
+	protected String getResponseAsString(MvcResult result) throws UnsupportedEncodingException{
+		return result.getResponse().getContentAsString();
+	}
+	
 }

@@ -16,11 +16,4 @@ public class Permission {
 	@Getter
 	private String role;
 	
-	
-	
-	
-	
-	
-	
-
 }

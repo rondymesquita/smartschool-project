@@ -24,6 +24,6 @@ public class Constants {
 	 */
 	public static final String AUTH_TOKEN = "X-Auth-Token";
 	public static final String PASSWORD_CHANGED = "Senha alterada com sucesso!";
-	public static final String HELLO = "Olá Smartschool";
+	public static final String HELLO = "Hello";
 
 }

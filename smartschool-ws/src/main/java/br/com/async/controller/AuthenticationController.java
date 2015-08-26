@@ -113,7 +113,7 @@ public class AuthenticationController extends BaseController{
 		
 	}
 	
-	@RequestMapping(value="api/change-password")
+	@RequestMapping(value="api/change-password", method = RequestMethod.POST)
 	public @ResponseBody ResponseData changePassword(@RequestBody ChangePasswordUser login, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ResponseData responseData = null;
