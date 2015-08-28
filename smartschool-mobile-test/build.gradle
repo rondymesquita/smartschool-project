@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+        	url "http://repo.bodar.com/"
+        }	
+    }
+    dependencies {
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testRuntime
+    }
+}	
+	
+repositories {
+    mavenCentral()
+    mavenLocal()
+        maven {
+        	url "http://repo.bodar.com/"
+        }
+}
+
+dependencies {
+		compile 'info.cukes:gherkin:2.12.2'
+    	compile 'info.cukes:gherkin-jvm-deps:1.0.2'
+	    compile 'junit:junit:4.11'
+	    compile 'info.cukes:cucumber-jvm-deps:1.0.3'
+	    compile 'info.cukes:cucumber-pro:1.0.9'
+	    compile 'info.cukes:cucumber-core:1.1.8'
+	    compile 'info.cukes:cucumber-junit:1.1.8'
+	    compile 'info.cukes:cucumber-java:1.1.8'
+	    compile 'net.masterthought:cucumber-reporting:0.1.0'
+	    compile 'org.seleniumhq.selenium:selenium-java:2.43.1'
+	    compile 'io.appium:java-client:3.1.0'
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['-f', 'json','build/reports/report.json','--glue', 'gradle.cucumber', 'src/test/resources']
+        }
+    }
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events 'started', 'passed'
+    }
+}
