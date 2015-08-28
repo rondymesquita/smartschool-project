@@ -17,29 +17,29 @@ import br.com.async.Driver;
  */
 public class ExampleTest extends BaseTest{
 	
-	@Before
-	public void before(){
-		quitDriver();
-		driver = Driver.getDriver(DesiredCapabilitiesBuilder.Build());
-	}
-	
-	@After
-	public void after(){
-		quitDriver();
-	}
-	
-	@Test
-	public void shouldSeeAMessageWhenValuesAreInserted(){
-//		driver.findElementById("etName").sendKeys("Rondy");
-//		driver.findElementById("etMusic").sendKeys("Rock");
-//		driver.findElementById("btnSend").click();
-//		AndroidElement element = driver.findElementById("tvResult");
+//	@Before
+//	public void before(){
+//		quitDriver();
+//		driver = Driver.getDriver(DesiredCapabilitiesBuilder.Build());
+//	}
+//	
+//	@After
+//	public void after(){
+//		quitDriver();
+//	}
+//	
+//	@Test
+//	public void shouldSeeAMessageWhenValuesAreInserted(){
+////		driver.findElementById("etName").sendKeys("Rondy");
+////		driver.findElementById("etMusic").sendKeys("Rock");
+////		driver.findElementById("btnSend").click();
+////		AndroidElement element = driver.findElementById("tvResult");
+////		Assert.assertEquals("Rondy likes Rock", element.getText());
+//		
+//		findElementById("etName").sendKeys("Rondy");
+//		findElementById("etMusic").sendKeys("Rock");
+//		clickOn("btnSend");
+//		AndroidElement element = findElementById("tvResult");
 //		Assert.assertEquals("Rondy likes Rock", element.getText());
-		
-		findElementById("etName").sendKeys("Rondy");
-		findElementById("etMusic").sendKeys("Rock");
-		clickOn("btnSend");
-		AndroidElement element = findElementById("tvResult");
-		Assert.assertEquals("Rondy likes Rock", element.getText());
-	}
+//	}
 }

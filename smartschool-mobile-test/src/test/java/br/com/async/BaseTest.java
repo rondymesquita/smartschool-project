@@ -17,18 +17,16 @@ import br.com.async.server.Server;
 public class BaseTest {
 
 	protected AndroidDriver<AndroidElement> driver;
-	protected static Server server = new Server();
 	
-	
-	@BeforeClass
-	public static void beforeClass() throws InterruptedException, IOException {
-		server.startup();
-	}
-	
-	@AfterClass
-	public static void afterClass() throws IOException {
-		server.shutdown();
-	}
+//	@BeforeClass
+//	public static void beforeClass() throws InterruptedException, IOException {
+//		server.startup();
+//	}
+//	
+//	@AfterClass
+//	public static void afterClass() throws IOException {
+//		server.shutdown();
+//	}
 	
 	/*
 	 * 
@@ -40,14 +38,14 @@ public class BaseTest {
 		}
 	}
 	
-	protected AndroidElement findElementById(String id){
-		Logger.logInfo("findElementById : "+id);
-		return driver.findElementById(id);
-	}
-	
-	protected void clickOn(String id){
-		Logger.logInfo("clickOn : "+id);
-		driver.findElementById(id).click();
-	}
+//	protected AndroidElement findElementById(String id){
+//		Logger.logInfo("findElementById : "+id);
+//		return driver.findElementById(id);
+//	}
+//	
+//	protected void clickOn(String id){
+//		Logger.logInfo("clickOn : "+id);
+//		driver.findElementById(id).click();
+//	}
 	
 }
