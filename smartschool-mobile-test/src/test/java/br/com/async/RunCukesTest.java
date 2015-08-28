@@ -15,16 +15,22 @@ import org.junit.runner.RunWith;
 import br.com.async.server.Server;
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import cucumber.runtime.Glue;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(format = { 
 		"pretty",
-		"html:build/reports/report.html",
-		"json:build/reports/report.json"
-		})
+		"html:build/reports/report",
+		"json:build/reports/report.json",
+		},
+		glue = {"br.com.async.step"},
+		features = {"src/test/resources/feature"},
+		dryRun = true,
+		strict = true
+		)
 public class RunCukesTest {
 	
-	public final static String REPORT_FOLDER = "build/reports";
+	public final static String REPORT_FOLDER = "./build/reports/";
 	protected static Server server = new Server();
 	
 	@BeforeClass
@@ -37,30 +43,30 @@ public class RunCukesTest {
 		server.shutdown();
 		
 		List<String> jsonReportFiles = new ArrayList<String>();
-		jsonReportFiles.add(REPORT_FOLDER+"/report.json");
+		jsonReportFiles.add("./build/reports/report.json");
 		
 		File reportOutputDirectory = new File(RunCukesTest.REPORT_FOLDER);
 		
 		String pluginUrlPath = "";
 		String buildNumber = Calendar.getInstance().getTime().toString();
 		String buildProject = "cucumber-jvm";
+		
 		boolean skippedFails = false;
 		boolean pendingFails = false;
 		boolean undefinedFails = false;
 		boolean missingFails = false;
+		
 		boolean flashCharts = false;
 		boolean runWithJenkins = false;
 		boolean artifactsEnabled = false;
 		String artifactConfig = "";
 		boolean highCharts = false;
+		
 		boolean parallelTesting = false;
-		ReportBuilder reportBuilder = new ReportBuilder(
-				jsonReportFiles,
-				reportOutputDirectory,
-				pluginUrlPath, 
-				buildNumber, 
-				buildProject, skippedFails, pendingFails, undefinedFails, missingFails, flashCharts, runWithJenkins, artifactsEnabled, artifactConfig, highCharts, parallelTesting);
-    	reportBuilder.generateReports();
+		ReportBuilder reportBuilder = new ReportBuilder(jsonReportFiles, reportOutputDirectory, pluginUrlPath, buildNumber,
+			    buildProject, skippedFails, pendingFails, undefinedFails, missingFails, flashCharts, runWithJenkins, artifactsEnabled,
+			    artifactConfig, highCharts, parallelTesting);
+		reportBuilder.generateReports();
     	Logger.logInfo("Done!");
 	}
 	

@@ -1,4 +1,4 @@
-package br.com.async;
+package br.com.async.step;
 
 
 import io.appium.java_client.android.AndroidDriver;
@@ -14,6 +14,9 @@ import net.masterthought.cucumber.ReportBuilder;
 
 import org.junit.Assert;
 
+import br.com.async.BaseTest;
+import br.com.async.DesiredCapabilitiesBuilder;
+import br.com.async.Driver;
 import br.com.async.server.Server;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
