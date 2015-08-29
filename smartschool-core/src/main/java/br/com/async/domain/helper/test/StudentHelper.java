@@ -1,5 +1,6 @@
 package br.com.async.domain.helper.test;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -69,8 +70,8 @@ public class StudentHelper extends BaseHelper{
 //		Set<Student> list = new HashSet<Student>();
 //		list.add(saveBasic());
 		
-		saveBasic();
-		List<Student> list = studentApplication.list();
+		List<Student> list = new ArrayList<Student>();
+		list.add(saveBasic());
 		Collections.sort(list, new Comparator<Student>(){
 
 			@Override

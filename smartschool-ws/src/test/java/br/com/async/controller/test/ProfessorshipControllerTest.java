@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -26,10 +27,15 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import br.com.async.config.WebConfig;
+import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.Professorship;
+import br.com.async.core.entities.Role;
 import br.com.async.core.entities.Semester;
+import br.com.async.core.entities.User;
+import br.com.async.domain.helper.test.ProfessorHelper;
 import br.com.async.domain.helper.test.ProfessorshipHelper;
 import br.com.async.domain.helper.test.SemesterHelper;
+import br.com.async.domain.helper.test.UserHelper;
 import br.com.async.entities.AuthUser;
 import br.com.async.helper.test.LoginHelper;
 import br.com.async.util.Constants;
@@ -216,28 +222,47 @@ public class ProfessorshipControllerTest extends BaseControllerTest{
 		.andExpect(content().string(json));
 	}
 	
-//	@Test
-//    public void shouldSearchProfessorshipsIOwn() throws Exception {
-//		
-//		MvcResult result = LoginHelper.loginAsManager(mockMvc);
-//		MockHttpSession session = getSession(result);
-//		AuthUser authUser = getAuthUser(result);
-//		
-//		List<Professorship> list = new ArrayList<Professorship>();
-//		list.add(ProfessorshipHelper.saveBasicWithProfessor(ProfessorHelper.c));
-//		list.add(ProfessorshipHelper.saveBasic());
-//		list.add(ProfessorshipHelper.saveBasic());
-//		
-//		String json = JsonUtils.toJson(list, JsonUtils.BLANK_STRING_REGEX);
-//		
-//		mockMvc.perform(
-//				get("/api/professorships/semesters/{id}", list.get(0).getSemester().getCode())
-//				.header(Constants.AUTH_TOKEN, authUser.getAuthToken())
-//				.session(session)
-//				)
-//		.andExpect(status().isOk())
-//		.andExpect(content().string(json));
-//	}
+	@Test
+    public void shouldSearchProfessorshipsIOwn() throws Exception {
+		
+		Professor professor = ProfessorHelper.createBasic();
+		professor.getPerson().setRole(Role.ROLE_MANAGER);
+		
+		String password = UUID.randomUUID().toString();
+		String username = professor.getPerson().getEmail();
+		
+		User user = new User();
+    	user.setPassword(password);
+    	user.setPerson(professor.getPerson());
+    	user.setUsername(username);
+    	
+    	ProfessorHelper.saveBasic(professor, user);
+		
+		MvcResult result = LoginHelper.loginAsManagerWithUser(mockMvc, user);
+		MockHttpSession session = getSession(result);
+		AuthUser authUser = getAuthUser(result);
+		
+		List<Professorship> list = new ArrayList<Professorship>();
+		Professorship professorship = ProfessorshipHelper.saveBasicWithProfessor(professor);
+		list.add(professorship);
+		
+		String json = JsonUtils.toJson(list, JsonUtils.BLANK_STRING_REGEX);
+		
+		mockMvc.perform(
+				get("/api/professorships/own", 
+						list
+						.get(0)
+						.getSemester()
+						.getCode())
+				.header(Constants.AUTH_TOKEN, 
+						authUser
+						.getAuthToken())
+				.session(
+						session)
+				)
+		.andExpect(status().isOk())
+		.andExpect(content().string(json));
+	}
 	
 	
 }

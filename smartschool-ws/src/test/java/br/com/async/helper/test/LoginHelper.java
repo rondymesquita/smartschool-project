@@ -20,6 +20,19 @@ public class LoginHelper {
 	
 	public static MvcResult loginAsManager(MockMvc mockMvc) throws Exception{
 		User user = UserHelper.saveBasic(Role.ROLE_MANAGER);
+		
+		AuthUser authUser = new AuthUser();
+		authUser.setUsername(user.getUsername());
+		authUser.setPassword(user.getPassword());
+		
+		String authUserJson = JsonUtils.toJson(authUser, JsonUtils.BLANK_STRING_REGEX);
+		
+		MvcResult result = mockMvc.perform(post("/api/login").content(authUserJson).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andReturn();
+		return result;
+	}
+	
+	public static MvcResult loginAsManagerWithUser(MockMvc mockMvc, User user) throws Exception{
+		
 		AuthUser authUser = new AuthUser();
 		authUser.setUsername(user.getUsername());
 		authUser.setPassword(user.getPassword());

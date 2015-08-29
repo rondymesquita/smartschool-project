@@ -48,6 +48,13 @@ public class ProfessorHelper extends BaseHelper{
 		return professorApplication.findByCode(professor.getCode());
 	}
 	
+	public static Professor saveBasic(Professor professor, User user){
+		before();
+    	professorApplication.save(professor,user);
+    	return professorApplication.findByCode(professor.getCode());
+		
+	}
+	
 	/**
 	 * @param professorToUpdate
 	 * @return
