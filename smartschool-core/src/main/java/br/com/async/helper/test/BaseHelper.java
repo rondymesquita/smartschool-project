@@ -1,8 +1,6 @@
-package br.com.async.domain.helper.test;
+package br.com.async.helper.test;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import br.com.async.core.config.HibernateConfigTest;
 
 /**
  * Created by rondymesquita on 14/08/2015

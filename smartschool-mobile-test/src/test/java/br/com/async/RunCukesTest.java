@@ -25,7 +25,7 @@ import cucumber.runtime.Glue;
 		},
 		glue = {"br.com.async.step"},
 		features = {"src/test/resources/feature"},
-		dryRun = true,
+		dryRun = false,
 		strict = true
 		)
 public class RunCukesTest {

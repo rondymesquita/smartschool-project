@@ -11,8 +11,8 @@ import br.com.async.core.application.ProfessorApplication;
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.Professor;
 import br.com.async.core.entities.User;
-import br.com.async.domain.helper.test.ProfessorHelper;
-import br.com.async.domain.helper.test.UserHelper;
+import br.com.async.helper.test.ProfessorHelper;
+import br.com.async.helper.test.UserHelper;
 
 public class ProfessorTest extends BaseTest {
 

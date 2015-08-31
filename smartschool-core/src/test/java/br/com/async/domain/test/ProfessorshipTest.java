@@ -20,7 +20,7 @@ import br.com.async.core.entities.Professorship;
 import br.com.async.core.entities.SchoolClass;
 import br.com.async.core.entities.Semester;
 import br.com.async.core.entities.Student;
-import br.com.async.domain.helper.test.ProfessorshipHelper;
+import br.com.async.helper.test.ProfessorshipHelper;
 
 public class ProfessorshipTest extends BaseTest {
 

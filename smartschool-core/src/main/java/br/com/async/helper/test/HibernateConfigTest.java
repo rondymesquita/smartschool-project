@@ -1,4 +1,4 @@
-package br.com.async.core.config;
+package br.com.async.helper.test;
 
 import java.util.Properties;
 import java.util.logging.Level;
@@ -20,6 +20,8 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import br.com.async.core.config.BaseHibernateConfig;
 
 @Configuration
 @EnableTransactionManagement

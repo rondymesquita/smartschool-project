@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import br.com.async.core.application.StudentApplication;
 import br.com.async.core.entities.Student;
-import br.com.async.domain.helper.test.StudentHelper;
+import br.com.async.helper.test.StudentHelper;
 
 public class StudentTest extends BaseTest{
 

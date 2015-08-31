@@ -1,4 +1,4 @@
-package br.com.async.domain.helper.test;
+package br.com.async.helper.test;
 
 import java.util.List;
 

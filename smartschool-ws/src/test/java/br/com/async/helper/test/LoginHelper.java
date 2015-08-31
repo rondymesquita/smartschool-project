@@ -8,7 +8,6 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
-import br.com.async.domain.helper.test.UserHelper;
 import br.com.async.entities.AuthUser;
 import br.com.async.util.JsonUtils;
 

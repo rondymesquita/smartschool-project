@@ -6,15 +6,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.lang.reflect.Method;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
-import nl.jqno.equalsverifier.Warning;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.meanbean.test.BeanTester;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
@@ -29,9 +25,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import br.com.async.config.WebConfig;
 import br.com.async.controller.test.BaseControllerTest;
 import br.com.async.core.entities.Discipline;
-import br.com.async.domain.helper.test.DisciplineHelper;
 import br.com.async.entities.AuthUser;
 import br.com.async.entities.Permission;
+import br.com.async.helper.test.DisciplineHelper;
 import br.com.async.helper.test.LoginHelper;
 import br.com.async.util.Constants;
 import br.com.async.util.JsonUtils;

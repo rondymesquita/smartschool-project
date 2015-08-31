@@ -12,7 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import br.com.async.core.application.DisciplineApplication;
 import br.com.async.core.entities.Discipline;
-import br.com.async.domain.helper.test.DisciplineHelper;
+import br.com.async.helper.test.DisciplineHelper;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DisciplineTest extends BaseTest{

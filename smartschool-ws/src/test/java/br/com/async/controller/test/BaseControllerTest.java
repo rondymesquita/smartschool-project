@@ -13,8 +13,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
 import br.com.async.config.ApplicationContext;
-import br.com.async.core.config.HibernateConfigTest;
 import br.com.async.entities.AuthUser;
+import br.com.async.helper.test.HibernateConfigTest;
 import br.com.async.util.JsonUtils;
 
 /**

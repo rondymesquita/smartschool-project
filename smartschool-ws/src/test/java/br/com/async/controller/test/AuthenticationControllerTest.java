@@ -1,6 +1,7 @@
 package br.com.async.controller.test;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import org.junit.After;
@@ -19,9 +20,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import br.com.async.config.WebConfig;
 import br.com.async.core.entities.Role;
 import br.com.async.core.entities.User;
-import br.com.async.domain.helper.test.UserHelper;
 import br.com.async.entities.AuthUser;
 import br.com.async.entities.ChangePasswordUser;
+import br.com.async.helper.test.UserHelper;
 import br.com.async.util.Constants;
 import br.com.async.util.JsonUtils;
 import br.com.async.util.ResponseData;

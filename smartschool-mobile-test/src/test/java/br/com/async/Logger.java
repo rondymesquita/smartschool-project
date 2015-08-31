@@ -14,5 +14,10 @@ public class Logger {
 		//System.out.println(msg);
 		logger.log(Level.INFO, msg);
 	}
+	
+	public static void logSevere(String msg){
+		//System.out.println(msg);
+		logger.log(Level.SEVERE, msg);
+	}
 
 }

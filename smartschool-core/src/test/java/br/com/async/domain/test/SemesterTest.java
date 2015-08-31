@@ -11,7 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import br.com.async.core.application.SemesterApplication;
 import br.com.async.core.entities.Semester;
-import br.com.async.domain.helper.test.SemesterHelper;
+import br.com.async.helper.test.SemesterHelper;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SemesterTest extends BaseTest{

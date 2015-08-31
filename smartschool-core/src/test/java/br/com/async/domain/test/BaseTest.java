@@ -6,7 +6,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import br.com.async.core.config.HibernateConfigTest;
+import br.com.async.helper.test.HibernateConfigTest;
 
 public class BaseTest {
 	

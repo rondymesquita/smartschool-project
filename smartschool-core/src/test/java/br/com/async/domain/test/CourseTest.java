@@ -11,7 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import br.com.async.core.application.CourseApplication;
 import br.com.async.core.entities.Course;
-import br.com.async.domain.helper.test.CourseHelper;
+import br.com.async.helper.test.CourseHelper;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CourseTest extends BaseTest{

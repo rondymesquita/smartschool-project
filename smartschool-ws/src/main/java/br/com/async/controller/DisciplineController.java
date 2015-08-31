@@ -24,7 +24,8 @@ import br.com.async.util.ResponseData;
 @Controller
 public class DisciplineController extends BaseController{
 
-    private DisciplineApplication disciplineApplication = ApplicationContext.getInstance().getBean("disciplineApplicationImpl", DisciplineApplication.class);
+    //private DisciplineApplication disciplineApplication = ApplicationContext.getInstance().getBean("disciplineApplicationImpl", DisciplineApplication.class);
+	private DisciplineApplication disciplineApplication = getDisciplineApplication();
 
     /**
      * @param request

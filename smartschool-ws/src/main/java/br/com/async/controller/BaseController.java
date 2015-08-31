@@ -1,7 +1,10 @@
 package br.com.async.controller;
 
+import br.com.async.config.ApplicationContext;
+import br.com.async.core.application.DisciplineApplication;
 
-public abstract class BaseController {
+
+public class BaseController {
 
 //	@ExceptionHandler(Exception.class)
 //	@ResponseBody
@@ -9,5 +12,9 @@ public abstract class BaseController {
 //	    ResponseData responseData = new ResponseData("Error", HttpStatus.INTERNAL_SERVER_ERROR+"");
 //		return responseData;
 //	}
+	
+	protected DisciplineApplication getDisciplineApplication(){
+		return ApplicationContext.getInstance().getBean("disciplineApplicationImpl", DisciplineApplication.class);
+	}
 	
 }

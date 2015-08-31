@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Map;
 
+import br.com.async.Logger;
 import br.com.async.server.ServerRunnable;
 
 public class Console {
@@ -41,7 +42,7 @@ public class Console {
 		
 		Map<String, String> env = p.environment();
 		for (String key : env.keySet())
-		     System.out.println(key + ": " + env.get(key));
+			Logger.logInfo(key + ": " + env.get(key));
 		
 		InputStream input = process.getInputStream();
 		final InputStreamReader reader = new InputStreamReader(input);
@@ -50,7 +51,7 @@ public class Console {
 		String line;
 		while ((line = bufferReader.readLine()) != null) {
 			ServerRunnable.line += line;
-			System.out.println(line);
+			Logger.logInfo(line);
 		}
 		
 		InputStream inputError = process.getErrorStream();
@@ -59,7 +60,7 @@ public class Console {
 		
 		while ((line = bufferReaderError.readLine()) != null) {
 			ServerRunnable.line += line; 
-			System.out.println(line);
+			Logger.logSevere(line);
 		}
 		
 		input.close();

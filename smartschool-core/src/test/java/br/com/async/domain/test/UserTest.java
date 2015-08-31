@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import br.com.async.core.application.UserApplication;
 import br.com.async.core.entities.User;
-import br.com.async.domain.helper.test.UserHelper;
+import br.com.async.helper.test.UserHelper;
 
 /**
  * Created by rondymesquita on 15/08/2015
