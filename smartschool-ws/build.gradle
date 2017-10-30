@@ -10,6 +10,7 @@ buildscript {
     dependencies {
     	classpath 'org.ajoberstar:gradle-jacoco:0.2.0'
         classpath 'org.gradle.api.plugins:gradle-cargo-plugin:1.5'
+        classpath 'org.akhikhl.gretty:gretty:1.4.2'
     }
 }
 
@@ -17,6 +18,7 @@ apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'cargo'
 apply plugin: 'maven'
+apply plugin: 'org.akhikhl.gretty'
 
 repositories {
    mavenCentral()

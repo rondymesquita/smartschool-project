@@ -6,14 +6,17 @@ buildscript {
         maven { url 'http://repo.spring.io/milestone/'}
     }
     dependencies {
-        classpath 'org.gradle.api.plugins:gradle-cargo-plugin:1.5'
+        // classpath 'org.gradle.api.plugins:gradle-cargo-plugin:1.5'
+        classpath 'org.akhikhl.gretty:gretty:1.4.2'
     }
 }
 
 apply plugin: 'war'
+apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
-apply plugin: 'cargo'
+// apply plugin: 'cargo'
 apply plugin: 'maven'
+apply plugin: 'org.akhikhl.gretty'
 
 repositories {
    mavenCentral()
@@ -32,9 +35,9 @@ dependencies {
 	   providedCompile group: 'javax.servlet', name: 'servlet-api', version:'2.5'
 	   compile group: 'javax.servlet', name: 'jstl', version:'1.2'
 
-	   def cargoVersion = '1.4.5'
-	   cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion",
-	         "org.codehaus.cargo:cargo-ant:$cargoVersion"
+	   // def cargoVersion = '1.4.5'
+	   // cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion",
+	   //       "org.codehaus.cargo:cargo-ant:$cargoVersion"
 	   
 	   compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
 	   compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
@@ -49,6 +52,13 @@ dependencies {
 	   compile 'log4j:log4j:1.2.16'
 	   compile 'org.projectlombok:lombok:1.14.8'
 }
+
+compileJava {
+  sourceCompatibility = 1.6
+  targetCompatibility = 1.7
+}
+
+compileJava.options.encoding = 'UTF-8'
 
 javadoc {
 	source = sourceSets.main.allJava

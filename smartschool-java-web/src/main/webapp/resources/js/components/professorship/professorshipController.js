@@ -56,6 +56,7 @@ function professorshipController($scope, $rootScope, $filter, professorService, 
     	studentService.searchByCodeOrName(search)
     	.then(function(data, status){
     		$scope.students = data.data;
+
     		if($scope.students.length == 0){
                 $scope.responseData = new ResponseData(constants.message.EMPTY, constants.status.WARNING);
                 $scope.onWarning = true;
@@ -67,9 +68,9 @@ function professorshipController($scope, $rootScope, $filter, professorService, 
     		console.log(data);
 
             if(data.status == 0)
-                toast.error(constants.message.CONNECTION_ERROR);
+                console.log(constants.message.CONNECTION_ERROR);
             else
-                toast.error(data.status + " " +data.statusText);
+                console.log(data.status + " " +data.statusText);
             
     	}).finally(function(){
     		$scope.onTransaction = false;

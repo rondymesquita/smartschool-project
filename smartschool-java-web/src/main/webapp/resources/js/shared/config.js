@@ -1,6 +1,6 @@
 angular.module('SmartschoolApp').constant('config',(function(){
 	
-	var url = 'http://localhost:9090/smartschool-java-web/'; 
+	var url = 'http://172.17.0.2:8080/smartschool-java-web/'; 
 	
     return{
     	url: url,
